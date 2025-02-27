@@ -9,6 +9,14 @@ function toggleMenu() {
     document.querySelector('.side-menu').classList.toggle('open');
 }
 
+// Get a unique storage key for the current page
+function getPageKey(baseKey) {
+    // Extract the page path (e.g., '/DemoPages/matt-lambson/')
+    const pagePath = window.location.pathname;
+    // Create a unique key by combining the base key and path
+    return baseKey + '-' + pagePath.replace(/\//g, '-');
+}
+
 // Background image handling
 document.getElementById('imageUpload').addEventListener('change', function(event) {
     const file = event.target.files[0];
@@ -32,8 +40,8 @@ document.getElementById('imageUpload').addEventListener('change', function(event
         const imageUrl = e.target.result;
         document.body.style.backgroundImage = `url(${imageUrl})`;
         
-        // Save to localStorage
-        localStorage.setItem('backgroundImage', imageUrl);
+        // Save to localStorage with a unique key for this page
+        localStorage.setItem(getPageKey('backgroundImage'), imageUrl);
         
         feedback.innerHTML = 'Background updated successfully!';
         feedback.className = 'feedback success';
@@ -51,8 +59,8 @@ document.getElementById('imageUpload').addEventListener('change', function(event
 document.getElementById('resetBgBtn').addEventListener('click', function() {
     const feedback = document.getElementById('imageFeedback');
     
-    // Remove the background image from localStorage
-    localStorage.removeItem('backgroundImage');
+    // Remove the background image from localStorage using the page-specific key
+    localStorage.removeItem(getPageKey('backgroundImage'));
     
     // Reset the background to default (from CSS)
     document.body.style.backgroundImage = '';
@@ -125,8 +133,8 @@ saveScriptBtn.addEventListener('click', function() {
         // Append to the container
         document.getElementById('scriptContainer').appendChild(newScript);
         
-        // Save to localStorage
-        localStorage.setItem('webchatScript', newScriptHTML);
+        // Save to localStorage with a unique key for this page
+        localStorage.setItem(getPageKey('webchatScript'), newScriptHTML);
         
         // Update feedback and close modal
         scriptFeedback.innerHTML = 'Script updated successfully!';
@@ -142,7 +150,7 @@ saveScriptBtn.addEventListener('click', function() {
 
 // Load saved background image from localStorage
 function loadSavedBackground() {
-    const savedBackground = localStorage.getItem('backgroundImage');
+    const savedBackground = localStorage.getItem(getPageKey('backgroundImage'));
     if (savedBackground) {
         document.body.style.backgroundImage = `url(${savedBackground})`;
     }
@@ -150,7 +158,7 @@ function loadSavedBackground() {
 
 // Load saved script from localStorage
 function loadSavedScript() {
-    const savedScript = localStorage.getItem('webchatScript');
+    const savedScript = localStorage.getItem(getPageKey('webchatScript'));
     if (savedScript) {
         // Remove old script
         const oldScript = document.getElementById('webchatScript');
