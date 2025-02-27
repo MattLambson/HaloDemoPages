@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ronnie's CM.com Demo</title>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    
+    <div class="side-menu">
+        <h2>Background Settings</h2>
+        <div class="upload-section">
+            <label for="imageUpload" class="upload-btn">Choose Image</label>
+            <input type="file" id="imageUpload" accept="image/*" hidden>
+            <p class="instructions">Supported formats: PNG, JPG, GIF</p>
+            <div id="imageFeedback" class="feedback"></div>
+        </div>
+        
+        <h2>Script Settings</h2>
+        <div class="script-section">
+            <button id="updateScriptBtn" class="btn">Update Web Chat Script</button>
+            <div id="scriptFeedback" class="feedback"></div>
+        </div>
+    </div>
+    
+    <!-- Script Update Modal -->
+    <div id="scriptModal">
+        <div class="modal-content">
+            <h2>Update Web Chat Script</h2>
+            <p>Paste the new script tag below:</p>
+            <textarea id="scriptInput" placeholder="<script type='module' ..."></textarea>
+            <div class="btn-container">
+                <button id="cancelScriptBtn" class="btn" style="background-color: #6c757d;">Cancel</button>
+                <button id="saveScriptBtn" class="btn">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- This is the script tag that will be dynamically updated -->
+    <div id="scriptContainer">
+        <script id="webchatScript" type="module" crossorigin="anonymous" src='https://webchat.digitalcx.com/webchat.js' onload="cmwc.add('2580b8c7-4f8a-42f4-a15d-0556c7599526').install();"></script>
+    </div>
+
+    <script src="../../js/demo.js"></script>
+</body>
+</html>

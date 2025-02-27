@@ -1,0 +1,162 @@
+/* CM.com Brand Colors */
+:root {
+    --purple-100: #6610F2;
+    --blue-100: #007FFF;
+    --cyan-100: #04E4F4;
+    --black-140: #101E1E;
+    --orange-100: #FFA400;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: url('../img/default-bg.jpg') center/cover no-repeat;
+    transition: background-image 0.3s ease-in-out;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.menu-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.menu-toggle:hover {
+    transform: scale(1.1);
+}
+
+.side-menu {
+    position: fixed;
+    left: -250px;
+    top: 80px;
+    width: 200px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    box-sizing: border-box;
+    transition: left 0.3s ease-in-out;
+    border-radius: 0 10px 10px 0;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    transform: translateX(0);
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.side-menu h2 {
+    font-size: 1.2em;
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--purple-100);
+}
+
+.side-menu.open {
+    left: 0;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.upload-section, .script-section {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 15px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 8px 16px;
+    background: var(--orange-100);
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s;
+    border: none;
+    text-align: center;
+}
+
+.btn:hover {
+    background: var(--purple-100);
+}
+
+.upload-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    background: var(--orange-100);
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s;
+}
+
+.upload-btn:hover {
+    background: var(--purple-100);
+}
+
+.instructions {
+    font-size: 0.8em;
+    color: #666;
+    margin: 10px 0;
+}
+
+.feedback {
+    margin-top: 15px;
+    padding: 8px;
+    border-radius: 5px;
+    font-size: 0.9em;
+}
+
+.feedback.error {
+    background: #fff2f2;
+    color: #dc3545;
+    border: 1px solid #ffcdd2;
+}
+
+.feedback.success {
+    background: #f1f9f1;
+    color: #28a745;
+    border: 1px solid #c3e6cb;
+}
+
+#scriptModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 500px;
+    width: 90%;
+}
+
+#scriptInput {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    height: 100px;
+    font-family: monospace;
+    resize: vertical;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
