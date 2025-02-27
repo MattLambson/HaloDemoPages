@@ -1,5 +1,6 @@
 // Load saved settings on page load
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('Page loaded, current path:', window.location.pathname);
     loadSavedBackground();
     loadSavedScript();
 });
@@ -14,7 +15,9 @@ function getPageKey(baseKey) {
     // Extract the page path (e.g., '/DemoPages/matt-lambson/')
     const pagePath = window.location.pathname;
     // Create a unique key by combining the base key and path
-    return baseKey + '-' + pagePath.replace(/\//g, '-');
+    const pageSpecificKey = baseKey + '-' + pagePath.replace(/\//g, '-');
+    console.log(`Creating key for ${baseKey}: ${pageSpecificKey}`);
+    return pageSpecificKey;
 }
 
 // Background image handling
@@ -41,7 +44,9 @@ document.getElementById('imageUpload').addEventListener('change', function(event
         document.body.style.backgroundImage = `url(${imageUrl})`;
         
         // Save to localStorage with a unique key for this page
-        localStorage.setItem(getPageKey('backgroundImage'), imageUrl);
+        const storageKey = getPageKey('backgroundImage');
+        localStorage.setItem(storageKey, imageUrl);
+        console.log('Saved background to:', storageKey);
         
         feedback.innerHTML = 'Background updated successfully!';
         feedback.className = 'feedback success';
@@ -60,7 +65,9 @@ document.getElementById('resetBgBtn').addEventListener('click', function() {
     const feedback = document.getElementById('imageFeedback');
     
     // Remove the background image from localStorage using the page-specific key
-    localStorage.removeItem(getPageKey('backgroundImage'));
+    const storageKey = getPageKey('backgroundImage');
+    localStorage.removeItem(storageKey);
+    console.log('Removed background from:', storageKey);
     
     // Reset the background to default (from CSS)
     document.body.style.backgroundImage = '';
@@ -134,7 +141,9 @@ saveScriptBtn.addEventListener('click', function() {
         document.getElementById('scriptContainer').appendChild(newScript);
         
         // Save to localStorage with a unique key for this page
-        localStorage.setItem(getPageKey('webchatScript'), newScriptHTML);
+        const storageKey = getPageKey('webchatScript');
+        localStorage.setItem(storageKey, newScriptHTML);
+        console.log('Saved script to:', storageKey, newScriptHTML.substring(0, 50) + '...');
         
         // Update feedback and close modal
         scriptFeedback.innerHTML = 'Script updated successfully!';
@@ -150,7 +159,10 @@ saveScriptBtn.addEventListener('click', function() {
 
 // Load saved background image from localStorage
 function loadSavedBackground() {
-    const savedBackground = localStorage.getItem(getPageKey('backgroundImage'));
+    const storageKey = getPageKey('backgroundImage');
+    const savedBackground = localStorage.getItem(storageKey);
+    console.log('Loading background from:', storageKey, savedBackground ? 'Found' : 'Not found');
+    
     if (savedBackground) {
         document.body.style.backgroundImage = `url(${savedBackground})`;
     }
@@ -158,7 +170,10 @@ function loadSavedBackground() {
 
 // Load saved script from localStorage
 function loadSavedScript() {
-    const savedScript = localStorage.getItem(getPageKey('webchatScript'));
+    const storageKey = getPageKey('webchatScript');
+    const savedScript = localStorage.getItem(storageKey);
+    console.log('Loading script from:', storageKey, savedScript ? 'Found' : 'Not found');
+    
     if (savedScript) {
         // Remove old script
         const oldScript = document.getElementById('webchatScript');
@@ -190,7 +205,10 @@ function loadSavedScript() {
             
             // Append to the container
             document.getElementById('scriptContainer').appendChild(newScript);
+            console.log('Script applied successfully.');
         }
+    } else {
+        console.log('No saved script found for this page, using default.');
     }
 }
 
