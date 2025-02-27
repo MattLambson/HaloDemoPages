@@ -47,6 +47,20 @@ document.getElementById('imageUpload').addEventListener('change', function(event
     reader.readAsDataURL(file);
 });
 
+// Reset background to default
+document.getElementById('resetBgBtn').addEventListener('click', function() {
+    const feedback = document.getElementById('imageFeedback');
+    
+    // Remove the background image from localStorage
+    localStorage.removeItem('backgroundImage');
+    
+    // Reset the background to default (from CSS)
+    document.body.style.backgroundImage = '';
+    
+    feedback.innerHTML = 'Background reset to default';
+    feedback.className = 'feedback success';
+});
+
 // Script update functionality
 const updateScriptBtn = document.getElementById('updateScriptBtn');
 const scriptModal = document.getElementById('scriptModal');

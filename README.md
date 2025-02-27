@@ -77,6 +77,11 @@ Updating Webchat Script
     Click "Save Changes"
     The script will update immediately and be saved for future visits
 
+Resetting Backgound Image
+    Click the menu toggle (☰) button in the top-left corner
+    Under "Background Settings", click the "Reset" button
+    The background will revert to the default image
+
 🔧 Technical Details
 
 Browser Storage: Settings are stored in localStorage (5-10MB limit per domain)

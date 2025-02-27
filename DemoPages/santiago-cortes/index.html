@@ -12,7 +12,10 @@
     <div class="side-menu">
         <h2>Background Settings</h2>
         <div class="upload-section">
-            <label for="imageUpload" class="upload-btn">Choose Image</label>
+            <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                <label for="imageUpload" class="upload-btn">Choose Image</label>
+                <button id="resetBgBtn" class="btn" style="background-color: #6c757d;">Reset</button>
+            </div>
             <input type="file" id="imageUpload" accept="image/*" hidden>
             <p class="instructions">Supported formats: PNG, JPG, GIF</p>
             <div id="imageFeedback" class="feedback"></div>
