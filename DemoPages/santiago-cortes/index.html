@@ -24,9 +24,9 @@
         <h2>Script Settings</h2>
         <div class="script-section">
             <button id="updateScriptBtn" class="btn">Update Web Chat Script</button>
+            <button id="removeScriptBtn" class="btn" style="background-color: #dc3545; margin-top: 10px;">Remove Web Chat Script</button>
             <div id="scriptFeedback" class="feedback"></div>
         </div>
-    </div>
     
     <!-- Script Update Modal -->
     <div id="scriptModal">
@@ -43,7 +43,7 @@
 
     <!-- This is the script tag that will be dynamically updated -->
     <div id="scriptContainer">
-        <script id="webchatScript" type="module" crossorigin="anonymous" src='https://webchat.digitalcx.com/webchat.js' onload="cmwc.add('b9e614e0-9d20-429a-ad11-744edfb4ed45').install();"></script>
+        <!-- No default script - will be added via the update function -->
     </div>
 
     <script src="../../js/demo.js"></script>
