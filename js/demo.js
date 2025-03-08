@@ -117,11 +117,9 @@ saveScriptBtn.addEventListener('click', function() {
             throw new Error('Invalid script tag');
         }
         
-        // Remove old script
-        const oldScript = document.getElementById('webchatScript');
-        if (oldScript) {
-            oldScript.remove();
-        }
+        // UPDATED: Clear the entire script container
+        const scriptContainer = document.getElementById('scriptContainer');
+        scriptContainer.innerHTML = '';
         
         // Create new script element
         const newScript = document.createElement('script');
@@ -138,7 +136,7 @@ saveScriptBtn.addEventListener('click', function() {
         }
         
         // Append to the container
-        document.getElementById('scriptContainer').appendChild(newScript);
+        scriptContainer.appendChild(newScript);
         
         // Save to localStorage with a unique key for this page
         const storageKey = getPageKey('webchatScript');
@@ -175,11 +173,9 @@ function loadSavedScript() {
     console.log('Loading script from:', storageKey, savedScript ? 'Found' : 'Not found');
     
     if (savedScript) {
-        // Remove old script
-        const oldScript = document.getElementById('webchatScript');
-        if (oldScript) {
-            oldScript.remove();
-        }
+        // UPDATED: Clear the entire script container
+        const scriptContainer = document.getElementById('scriptContainer');
+        scriptContainer.innerHTML = '';
         
         // Create a temporary container to parse the HTML
         const tempContainer = document.createElement('div');
@@ -204,7 +200,7 @@ function loadSavedScript() {
             }
             
             // Append to the container
-            document.getElementById('scriptContainer').appendChild(newScript);
+            scriptContainer.appendChild(newScript);
             console.log('Script applied successfully.');
         }
     } else {
