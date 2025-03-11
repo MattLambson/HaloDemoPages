@@ -68,14 +68,15 @@ Changing Background Image
     Click the menu toggle (☰) button in the top-left corner
     Under "Background Settings", click the "Choose Image" button
     Select an image file from your device (PNG, JPG, or GIF)
-    The background will update immediately and be saved for future visits
+    The background will update immediately
 
 Updating Webchat Script
     Click the menu toggle (☰) button in the top-left corner
     Under "Script Settings", click the "Update Web Chat Script" button
     In the modal window, paste the new script tag
     Click "Save Changes"
-    The script will update immediately and be saved for future visits
+    The script will update immediately
+    If you need to remove the script, simply click the "Remove" button
 
 Resetting Backgound Image
     Click the menu toggle (☰) button in the top-left corner
