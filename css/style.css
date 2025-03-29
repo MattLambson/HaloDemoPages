@@ -35,9 +35,9 @@ body {
 
 .side-menu {
     position: fixed;
-    left: -250px;
+    left: -350px; /* Increased width to accommodate the script textarea */
     top: 80px;
-    width: 200px;
+    width: 300px; /* Increased width */
     background: rgba(255, 255, 255, 0.95);
     padding: 20px;
     box-sizing: border-box;
@@ -65,7 +65,7 @@ body {
     transform: translateX(0);
 }
 
-.upload-section, .script-section, .website-section {
+.upload-section, .script-section {
     padding: 10px 0;
     border-bottom: 1px solid #eee;
     margin-bottom: 15px;
@@ -128,75 +128,15 @@ body {
     border: 1px solid #c3e6cb;
 }
 
-#scriptModal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 2000;
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 5px;
-    max-width: 500px;
-    width: 90%;
-}
-
+/* Script textarea in the side menu */
 #scriptInput {
     width: 100%;
     padding: 8px;
     margin: 10px 0;
-    height: 100px;
+    height: 120px;
     font-family: monospace;
+    font-size: 0.9em;
     resize: vertical;
-}
-
-.btn-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 15px;
-}
-
-/* Website background styles */
-.website-input {
-    width: 100%;
-    padding: 8px;
-    border-radius: 5px;
     border: 1px solid #ddd;
-    margin-bottom: 5px;
-}
-
-.website-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none; /* Prevents interaction with the background */
-    display: none;
-}
-
-.website-background iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-.website-background::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.3); /* Semi-transparent overlay */
-    pointer-events: none;
+    border-radius: 4px;
 }

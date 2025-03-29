@@ -21,46 +21,22 @@
             <div id="imageFeedback" class="feedback"></div>
         </div>
         
-        <!-- Website Background Option -->
-        <h2>Website Background</h2>
-        <div class="website-section">
-            <input type="text" id="websiteUrl" placeholder="Enter website URL" class="website-input">
-            <div style="display: flex; gap: 10px; margin-top: 10px;">
-                <button id="loadWebsiteBtn" class="btn">Load Website</button>
-                <button id="removeWebsiteBtn" class="btn" style="background-color: #6c757d;">Remove</button>
-            </div>
-            <p class="instructions">Note: Some websites don't allow embedding</p>
-            <div id="websiteFeedback" class="feedback"></div>
-        </div>
-        
         <h2>Script Settings</h2>
         <div class="script-section">
-            <button id="updateScriptBtn" class="btn">Update Web Chat Script</button>
+            <p class="instructions">Paste your web chat script below:</p>
+            <textarea id="scriptInput" placeholder="<script type='module' ..."></textarea>
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <button id="updateScriptBtn" class="btn">Update Script</button>
+                <button id="removeScriptBtn" class="btn" style="background-color: #6c757d;">Remove</button>
+            </div>
             <div id="scriptFeedback" class="feedback"></div>
         </div>
     </div>
     
-    <!-- Script Update Modal -->
-    <div id="scriptModal">
-        <div class="modal-content">
-            <h2>Update Web Chat Script</h2>
-            <p>Paste the new script tag below:</p>
-            <textarea id="scriptInput" placeholder="<script type='module' ..."></textarea>
-            <div class="btn-container">
-                <button id="cancelScriptBtn" class="btn" style="background-color: #6c757d;">Cancel</button>
-                <button id="saveScriptBtn" class="btn">Save Changes</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Website background container -->
-    <div id="websiteBackground" class="website-background"></div>
-
     <!-- This is the script tag that will be dynamically updated -->
     <div id="scriptContainer">
         
     </div>
-
     <script src="../../js/demo.js"></script>
 </body>
 </html>

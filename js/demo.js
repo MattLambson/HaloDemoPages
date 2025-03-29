@@ -2,8 +2,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Page loaded, current path:', window.location.pathname);
     loadSavedBackground();
-    loadSavedWebsiteBackground();
     loadSavedScript();
+    loadCurrentScriptToTextarea();
 });
 
 // Menu toggle function
@@ -43,12 +43,6 @@ document.getElementById('imageUpload').addEventListener('change', function(event
     reader.onload = function(e) {
         const imageUrl = e.target.result;
         
-        // Remove any existing website background
-        const websiteContainer = document.getElementById('websiteBackground');
-        websiteContainer.style.display = 'none';
-        websiteContainer.innerHTML = '';
-        localStorage.removeItem(getPageKey('websiteBackground'));
-        
         // Apply the image background
         document.body.style.backgroundImage = `url(${imageUrl})`;
         
@@ -85,90 +79,25 @@ document.getElementById('resetBgBtn').addEventListener('click', function() {
     feedback.className = 'feedback success';
 });
 
-// Website background handling
-document.getElementById('loadWebsiteBtn').addEventListener('click', function() {
-    const websiteUrl = document.getElementById('websiteUrl').value.trim();
-    const feedback = document.getElementById('websiteFeedback');
-    
-    if (!websiteUrl) {
-        feedback.innerHTML = 'Please enter a valid URL';
-        feedback.className = 'feedback error';
-        return;
-    }
-    
-    // Basic URL validation
-    if (!websiteUrl.startsWith('http://') && !websiteUrl.startsWith('https://')) {
-        feedback.innerHTML = 'URL must start with http:// or https://';
-        feedback.className = 'feedback error';
-        return;
-    }
-    
-    feedback.innerHTML = 'Loading website...';
-    feedback.className = 'feedback';
-    
-    try {
-        // Remove any existing image background
-        document.body.style.backgroundImage = '';
-        localStorage.removeItem(getPageKey('backgroundImage'));
-        
-        // Set up iframe
-        const websiteContainer = document.getElementById('websiteBackground');
-        websiteContainer.innerHTML = `<iframe src="${websiteUrl}" sandbox="allow-same-origin allow-scripts"></iframe>`;
-        websiteContainer.style.display = 'block';
-        
-        // Save to localStorage
-        localStorage.setItem(getPageKey('websiteBackground'), websiteUrl);
-        
-        feedback.innerHTML = 'Website background loaded!';
-        feedback.className = 'feedback success';
-    } catch (error) {
-        feedback.innerHTML = 'Error loading website: ' + error.message;
-        feedback.className = 'feedback error';
-    }
-});
-
-// Remove website background
-document.getElementById('removeWebsiteBtn').addEventListener('click', function() {
-    const feedback = document.getElementById('websiteFeedback');
-    
-    // Remove website background
-    const websiteContainer = document.getElementById('websiteBackground');
-    websiteContainer.style.display = 'none';
-    websiteContainer.innerHTML = '';
-    
-    // Remove from localStorage
-    localStorage.removeItem(getPageKey('websiteBackground'));
-    
-    feedback.innerHTML = 'Website background removed';
-    feedback.className = 'feedback success';
-});
-
 // Script update functionality
 const updateScriptBtn = document.getElementById('updateScriptBtn');
-const scriptModal = document.getElementById('scriptModal');
+const removeScriptBtn = document.getElementById('removeScriptBtn');
 const scriptInput = document.getElementById('scriptInput');
-const saveScriptBtn = document.getElementById('saveScriptBtn');
-const cancelScriptBtn = document.getElementById('cancelScriptBtn');
 const scriptFeedback = document.getElementById('scriptFeedback');
 
-// Show modal when button is clicked
-updateScriptBtn.addEventListener('click', function() {
+// Load current script into textarea
+function loadCurrentScriptToTextarea() {
     const currentScript = document.getElementById('webchatScript');
     scriptInput.value = currentScript ? currentScript.outerHTML : '';
-    scriptModal.style.display = 'flex';
-});
+}
 
-// Hide modal when cancel is clicked
-cancelScriptBtn.addEventListener('click', function() {
-    scriptModal.style.display = 'none';
-});
-
-// Save new script when save is clicked
-saveScriptBtn.addEventListener('click', function() {
+// Update script when button is clicked
+updateScriptBtn.addEventListener('click', function() {
     const newScriptHTML = scriptInput.value.trim();
     
     if (!newScriptHTML) {
-        alert('Please enter a valid script tag');
+        scriptFeedback.innerHTML = 'Please enter a valid script tag';
+        scriptFeedback.className = 'feedback error';
         return;
     }
     
@@ -212,16 +141,33 @@ saveScriptBtn.addEventListener('click', function() {
         localStorage.setItem(storageKey, newScriptHTML);
         console.log('Saved script to:', storageKey, newScriptHTML.substring(0, 50) + '...');
         
-        // Update feedback and close modal
+        // Update feedback
         scriptFeedback.innerHTML = 'Script updated successfully!';
         scriptFeedback.className = 'feedback success';
-        scriptModal.style.display = 'none';
         
     } catch (error) {
         scriptFeedback.innerHTML = 'Failed to update script: ' + error.message;
         scriptFeedback.className = 'feedback error';
-        scriptModal.style.display = 'none';
     }
+});
+
+// Remove script when button is clicked
+removeScriptBtn.addEventListener('click', function() {
+    // Remove old script
+    const oldScript = document.getElementById('webchatScript');
+    if (oldScript) {
+        oldScript.remove();
+    }
+    
+    // Clear textarea
+    scriptInput.value = '';
+    
+    // Remove from localStorage
+    localStorage.removeItem(getPageKey('webchatScript'));
+    
+    // Update feedback
+    scriptFeedback.innerHTML = 'Script removed successfully!';
+    scriptFeedback.className = 'feedback success';
 });
 
 // Load saved background image from localStorage
@@ -232,22 +178,6 @@ function loadSavedBackground() {
     
     if (savedBackground) {
         document.body.style.backgroundImage = `url(${savedBackground})`;
-    }
-}
-
-// Load saved website background
-function loadSavedWebsiteBackground() {
-    const savedWebsite = localStorage.getItem(getPageKey('websiteBackground'));
-    if (savedWebsite) {
-        console.log('Loading website background:', savedWebsite);
-        
-        // Set up iframe
-        const websiteContainer = document.getElementById('websiteBackground');
-        websiteContainer.innerHTML = `<iframe src="${savedWebsite}" sandbox="allow-same-origin allow-scripts"></iframe>`;
-        websiteContainer.style.display = 'block';
-        
-        // Clear any image background as website takes precedence
-        document.body.style.backgroundImage = '';
     }
 }
 
@@ -294,10 +224,3 @@ function loadSavedScript() {
         console.log('No saved script found for this page, using default.');
     }
 }
-
-// Close modal if clicked outside of content
-window.onclick = function(event) {
-    if (event.target === scriptModal) {
-        scriptModal.style.display = 'none';
-    }
-};
