@@ -2,6 +2,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Page loaded, current path:', window.location.pathname);
     loadSavedBackground();
+    loadSavedWebsiteBackground();
     loadSavedScript();
 });
 
@@ -41,6 +42,14 @@ document.getElementById('imageUpload').addEventListener('change', function(event
     
     reader.onload = function(e) {
         const imageUrl = e.target.result;
+        
+        // Remove any existing website background
+        const websiteContainer = document.getElementById('websiteBackground');
+        websiteContainer.style.display = 'none';
+        websiteContainer.innerHTML = '';
+        localStorage.removeItem(getPageKey('websiteBackground'));
+        
+        // Apply the image background
         document.body.style.backgroundImage = `url(${imageUrl})`;
         
         // Save to localStorage with a unique key for this page
@@ -76,6 +85,64 @@ document.getElementById('resetBgBtn').addEventListener('click', function() {
     feedback.className = 'feedback success';
 });
 
+// Website background handling
+document.getElementById('loadWebsiteBtn').addEventListener('click', function() {
+    const websiteUrl = document.getElementById('websiteUrl').value.trim();
+    const feedback = document.getElementById('websiteFeedback');
+    
+    if (!websiteUrl) {
+        feedback.innerHTML = 'Please enter a valid URL';
+        feedback.className = 'feedback error';
+        return;
+    }
+    
+    // Basic URL validation
+    if (!websiteUrl.startsWith('http://') && !websiteUrl.startsWith('https://')) {
+        feedback.innerHTML = 'URL must start with http:// or https://';
+        feedback.className = 'feedback error';
+        return;
+    }
+    
+    feedback.innerHTML = 'Loading website...';
+    feedback.className = 'feedback';
+    
+    try {
+        // Remove any existing image background
+        document.body.style.backgroundImage = '';
+        localStorage.removeItem(getPageKey('backgroundImage'));
+        
+        // Set up iframe
+        const websiteContainer = document.getElementById('websiteBackground');
+        websiteContainer.innerHTML = `<iframe src="${websiteUrl}" sandbox="allow-same-origin allow-scripts"></iframe>`;
+        websiteContainer.style.display = 'block';
+        
+        // Save to localStorage
+        localStorage.setItem(getPageKey('websiteBackground'), websiteUrl);
+        
+        feedback.innerHTML = 'Website background loaded!';
+        feedback.className = 'feedback success';
+    } catch (error) {
+        feedback.innerHTML = 'Error loading website: ' + error.message;
+        feedback.className = 'feedback error';
+    }
+});
+
+// Remove website background
+document.getElementById('removeWebsiteBtn').addEventListener('click', function() {
+    const feedback = document.getElementById('websiteFeedback');
+    
+    // Remove website background
+    const websiteContainer = document.getElementById('websiteBackground');
+    websiteContainer.style.display = 'none';
+    websiteContainer.innerHTML = '';
+    
+    // Remove from localStorage
+    localStorage.removeItem(getPageKey('websiteBackground'));
+    
+    feedback.innerHTML = 'Website background removed';
+    feedback.className = 'feedback success';
+});
+
 // Script update functionality
 const updateScriptBtn = document.getElementById('updateScriptBtn');
 const scriptModal = document.getElementById('scriptModal');
@@ -86,18 +153,8 @@ const scriptFeedback = document.getElementById('scriptFeedback');
 
 // Show modal when button is clicked
 updateScriptBtn.addEventListener('click', function() {
-    // Check if there's any script in the container
-    const scriptContainer = document.getElementById('scriptContainer');
-    const currentScript = scriptContainer.querySelector('script');
-    
-    if (currentScript) {
-        // If there's an existing script, show it in the textarea
-        scriptInput.value = currentScript.outerHTML;
-    } else {
-        // If no script exists, provide a template or clear the input
-        scriptInput.value = '<!-- Paste your webchat script here -->';
-    }
-    
+    const currentScript = document.getElementById('webchatScript');
+    scriptInput.value = currentScript ? currentScript.outerHTML : '';
     scriptModal.style.display = 'flex';
 });
 
@@ -106,7 +163,7 @@ cancelScriptBtn.addEventListener('click', function() {
     scriptModal.style.display = 'none';
 });
 
-// Save new script when save is clicked - UPDATED
+// Save new script when save is clicked
 saveScriptBtn.addEventListener('click', function() {
     const newScriptHTML = scriptInput.value.trim();
     
@@ -116,76 +173,47 @@ saveScriptBtn.addEventListener('click', function() {
     }
     
     try {
-        // Extract the script information
+        // Create a temporary container to parse the HTML
         const tempContainer = document.createElement('div');
         tempContainer.innerHTML = newScriptHTML;
+        
+        // Get the script element
         const scriptElement = tempContainer.querySelector('script');
         
         if (!scriptElement) {
             throw new Error('Invalid script tag');
         }
         
-        // Extract the src and onload attributes
-        const scriptSrc = scriptElement.getAttribute('src');
-        const onloadContent = scriptElement.getAttribute('onload');
-        
-        if (!scriptSrc) {
-            throw new Error('Script must have a src attribute');
+        // Remove old script
+        const oldScript = document.getElementById('webchatScript');
+        if (oldScript) {
+            oldScript.remove();
         }
         
-        // Remove any existing scripts and clear any previous instances
-        const scriptContainer = document.getElementById('scriptContainer');
-        scriptContainer.innerHTML = '';
+        // Create new script element
+        const newScript = document.createElement('script');
+        newScript.id = 'webchatScript';
         
-        // Attempt to clean up any existing webchat instances
-        if (window.cmwc) {
-            try {
-                // Reset the webchat object if possible
-                window.cmwc = undefined;
-            } catch (e) {
-                console.warn("Could not reset webchat instance:", e);
-            }
+        // Copy attributes from the parsed script
+        Array.from(scriptElement.attributes).forEach(attr => {
+            newScript.setAttribute(attr.name, attr.value);
+        });
+        
+        // Set content if any
+        if (scriptElement.innerHTML) {
+            newScript.innerHTML = scriptElement.innerHTML;
         }
         
-        // Save to localStorage
+        // Append to the container
+        document.getElementById('scriptContainer').appendChild(newScript);
+        
+        // Save to localStorage with a unique key for this page
         const storageKey = getPageKey('webchatScript');
         localStorage.setItem(storageKey, newScriptHTML);
-        console.log('Saved script to localStorage:', newScriptHTML);
-        
-        // Create a new script element programmatically
-        const newScript = document.createElement('script');
-        newScript.type = scriptElement.type || 'module';
-        if (scriptElement.crossOrigin) newScript.crossOrigin = scriptElement.crossOrigin;
-        newScript.src = scriptSrc;
-        
-        // Handle the onload attribute properly
-        if (onloadContent) {
-            console.log('Setting onload handler with content:', onloadContent);
-            newScript.onload = function() {
-                console.log('Script loaded, executing onload');
-                
-                // Add a small delay to ensure the script is fully processed
-                setTimeout(function() {
-                    try {
-                        // Execute the onload content by creating and calling a function
-                        // This is safer than using eval directly
-                        new Function(onloadContent)();
-                        console.log('Webchat initialization completed');
-                    } catch (e) {
-                        console.error('Error executing onload content:', e);
-                        scriptFeedback.innerHTML = 'Error initializing webchat: ' + e.message;
-                        scriptFeedback.className = 'feedback error';
-                    }
-                }, 300);
-            };
-        }
-        
-        // Append the script to the container
-        scriptContainer.appendChild(newScript);
-        console.log('Script element added to DOM');
+        console.log('Saved script to:', storageKey, newScriptHTML.substring(0, 50) + '...');
         
         // Update feedback and close modal
-        scriptFeedback.innerHTML = 'Webchat script added successfully!';
+        scriptFeedback.innerHTML = 'Script updated successfully!';
         scriptFeedback.className = 'feedback success';
         scriptModal.style.display = 'none';
         
@@ -207,80 +235,63 @@ function loadSavedBackground() {
     }
 }
 
-// Load saved script from localStorage - UPDATED
+// Load saved website background
+function loadSavedWebsiteBackground() {
+    const savedWebsite = localStorage.getItem(getPageKey('websiteBackground'));
+    if (savedWebsite) {
+        console.log('Loading website background:', savedWebsite);
+        
+        // Set up iframe
+        const websiteContainer = document.getElementById('websiteBackground');
+        websiteContainer.innerHTML = `<iframe src="${savedWebsite}" sandbox="allow-same-origin allow-scripts"></iframe>`;
+        websiteContainer.style.display = 'block';
+        
+        // Clear any image background as website takes precedence
+        document.body.style.backgroundImage = '';
+    }
+}
+
+// Load saved script from localStorage
 function loadSavedScript() {
     const storageKey = getPageKey('webchatScript');
     const savedScript = localStorage.getItem(storageKey);
     console.log('Loading script from:', storageKey, savedScript ? 'Found' : 'Not found');
     
     if (savedScript) {
-        try {
-            // Extract the script information
-            const tempContainer = document.createElement('div');
-            tempContainer.innerHTML = savedScript;
-            const scriptElement = tempContainer.querySelector('script');
-            
-            if (!scriptElement) {
-                throw new Error('Invalid script tag in saved data');
-            }
-            
-            // Extract the src and onload attributes
-            const scriptSrc = scriptElement.getAttribute('src');
-            const onloadContent = scriptElement.getAttribute('onload');
-            
-            if (!scriptSrc) {
-                throw new Error('Script must have a src attribute');
-            }
-            
-            // Clear the script container
-            const scriptContainer = document.getElementById('scriptContainer');
-            scriptContainer.innerHTML = '';
-            
-            // Create a new script element programmatically
+        // Remove old script
+        const oldScript = document.getElementById('webchatScript');
+        if (oldScript) {
+            oldScript.remove();
+        }
+        
+        // Create a temporary container to parse the HTML
+        const tempContainer = document.createElement('div');
+        tempContainer.innerHTML = savedScript;
+        
+        // Get the script element
+        const scriptElement = tempContainer.querySelector('script');
+        
+        if (scriptElement) {
+            // Create new script element
             const newScript = document.createElement('script');
-            newScript.type = scriptElement.type || 'module';
-            if (scriptElement.crossOrigin) newScript.crossOrigin = scriptElement.crossOrigin;
-            newScript.src = scriptSrc;
+            newScript.id = 'webchatScript';
             
-            // Handle the onload attribute properly
-            if (onloadContent) {
-                console.log('Setting onload handler with content:', onloadContent);
-                newScript.onload = function() {
-                    console.log('Script loaded, executing onload');
-                    
-                    // Add a small delay to ensure the script is fully processed
-                    setTimeout(function() {
-                        try {
-                            // Execute the onload content
-                            new Function(onloadContent)();
-                            console.log('Webchat initialization completed');
-                        } catch (e) {
-                            console.error('Error executing onload content:', e);
-                            scriptFeedback.innerHTML = 'Error initializing webchat: ' + e.message;
-                            scriptFeedback.className = 'feedback error';
-                        }
-                    }, 300);
-                };
+            // Copy attributes
+            Array.from(scriptElement.attributes).forEach(attr => {
+                newScript.setAttribute(attr.name, attr.value);
+            });
+            
+            // Set content if any
+            if (scriptElement.innerHTML) {
+                newScript.innerHTML = scriptElement.innerHTML;
             }
             
-            // Append the script to the container
-            scriptContainer.appendChild(newScript);
+            // Append to the container
+            document.getElementById('scriptContainer').appendChild(newScript);
             console.log('Script applied successfully.');
-            
-            // Update UI to show a script is active
-            scriptFeedback.innerHTML = 'Webchat script is active';
-            scriptFeedback.className = 'feedback success';
-        } catch (error) {
-            console.error('Error loading saved script:', error);
-            scriptFeedback.innerHTML = 'Error loading webchat script: ' + error.message;
-            scriptFeedback.className = 'feedback error';
         }
     } else {
-        console.log('No saved script found for this page.');
-        
-        // Update UI to show that no script is installed
-        scriptFeedback.innerHTML = 'No webchat script installed. Use "Update Web Chat Script" to add one.';
-        scriptFeedback.className = 'feedback info';
+        console.log('No saved script found for this page, using default.');
     }
 }
 
@@ -290,28 +301,3 @@ window.onclick = function(event) {
         scriptModal.style.display = 'none';
     }
 };
-
-// Add a remove script button handler
-document.getElementById('removeScriptBtn').addEventListener('click', function() {
-    // Attempt to clean up any existing webchat instances
-    if (window.cmwc) {
-        try {
-            // Reset the webchat object if possible
-            window.cmwc = undefined;
-        } catch (e) {
-            console.warn("Could not reset webchat instance:", e);
-        }
-    }
-    
-    // Clear the script container
-    const scriptContainer = document.getElementById('scriptContainer');
-    scriptContainer.innerHTML = '';
-    
-    // Remove from localStorage
-    const storageKey = getPageKey('webchatScript');
-    localStorage.removeItem(storageKey);
-    
-    // Update feedback
-    scriptFeedback.innerHTML = 'Webchat script removed successfully';
-    scriptFeedback.className = 'feedback success';
-});

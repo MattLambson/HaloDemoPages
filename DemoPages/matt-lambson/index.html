@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matt's CM.com Demo</title>
+    <title>Matt Lambson's CM.com Demo</title>
     <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
@@ -21,10 +21,21 @@
             <div id="imageFeedback" class="feedback"></div>
         </div>
         
+        <!-- Website Background Option -->
+        <h2>Website Background</h2>
+        <div class="website-section">
+            <input type="text" id="websiteUrl" placeholder="Enter website URL" class="website-input">
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <button id="loadWebsiteBtn" class="btn">Load Website</button>
+                <button id="removeWebsiteBtn" class="btn" style="background-color: #6c757d;">Remove</button>
+            </div>
+            <p class="instructions">Note: Some websites don't allow embedding</p>
+            <div id="websiteFeedback" class="feedback"></div>
+        </div>
+        
         <h2>Script Settings</h2>
         <div class="script-section">
             <button id="updateScriptBtn" class="btn">Update Web Chat Script</button>
-            <button id="removeScriptBtn" class="btn" style="background-color: #dc3545; margin-top: 10px;">Remove Web Chat Script</button>
             <div id="scriptFeedback" class="feedback"></div>
         </div>
     </div>
@@ -42,9 +53,12 @@
         </div>
     </div>
 
+    <!-- Website background container -->
+    <div id="websiteBackground" class="website-background"></div>
+
     <!-- This is the script tag that will be dynamically updated -->
     <div id="scriptContainer">
-        <!-- No default script - will be added via the update function -->
+        
     </div>
 
     <script src="../../js/demo.js"></script>

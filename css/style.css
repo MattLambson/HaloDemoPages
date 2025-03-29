@@ -47,6 +47,9 @@ body {
     transform: translateX(0);
     opacity: 0;
     transition: all 0.3s ease-in-out;
+    z-index: 1000;
+    max-height: 80vh;
+    overflow-y: auto;
 }
 
 .side-menu h2 {
@@ -62,7 +65,7 @@ body {
     transform: translateX(0);
 }
 
-.upload-section, .script-section {
+.upload-section, .script-section, .website-section {
     padding: 10px 0;
     border-bottom: 1px solid #eee;
     margin-bottom: 15px;
@@ -159,4 +162,41 @@ body {
     display: flex;
     justify-content: space-between;
     margin-top: 15px;
+}
+
+/* Website background styles */
+.website-input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-bottom: 5px;
+}
+
+.website-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none; /* Prevents interaction with the background */
+    display: none;
+}
+
+.website-background iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.website-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.3); /* Semi-transparent overlay */
+    pointer-events: none;
 }
