@@ -23,30 +23,20 @@
         
         <h2>Script Settings</h2>
         <div class="script-section">
-            <button id="updateScriptBtn" class="btn">Update Web Chat Script</button>
-            <button id="removeScriptBtn" class="btn" style="background-color: #dc3545; margin-top: 10px;">Remove Web Chat Script</button>
+            <p class="instructions">Paste your web chat script below:</p>
+            <textarea id="scriptInput" placeholder="<script type='module' ..."></textarea>
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <button id="updateScriptBtn" class="btn">Update Script</button>
+                <button id="removeScriptBtn" class="btn" style="background-color: #6c757d;">Remove</button>
+            </div>
             <div id="scriptFeedback" class="feedback"></div>
         </div>
     </div>
     
-    <!-- Script Update Modal -->
-    <div id="scriptModal">
-        <div class="modal-content">
-            <h2>Update Web Chat Script</h2>
-            <p>Paste the new script tag below:</p>
-            <textarea id="scriptInput" placeholder="<script type='module' ..."></textarea>
-            <div class="btn-container">
-                <button id="cancelScriptBtn" class="btn" style="background-color: #6c757d;">Cancel</button>
-                <button id="saveScriptBtn" class="btn">Save Changes</button>
-            </div>
-        </div>
-    </div>
-
     <!-- This is the script tag that will be dynamically updated -->
     <div id="scriptContainer">
-        <!-- No default script - will be added via the update function -->
+        
     </div>
-
     <script src="../../js/demo.js"></script>
 </body>
 </html>
