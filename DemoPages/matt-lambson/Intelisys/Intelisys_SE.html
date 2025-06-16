@@ -10,14 +10,12 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background-color: #f7f7f7;
             color: #333;
             line-height: 1.4;
         }
-
         .header {
             background: white;
             padding: 12px 20px;
@@ -26,7 +24,6 @@
             align-items: center;
             gap: 20px;
         }
-
         .menu-btn {
             background: none;
             border: none;
@@ -34,13 +31,11 @@
             color: #1e3a8a;
             cursor: pointer;
         }
-
         .search-container {
             flex: 1;
             max-width: 400px;
             position: relative;
         }
-
         .search-input {
             width: 100%;
             padding: 8px 12px 8px 35px;
@@ -48,7 +43,6 @@
             border-radius: 6px;
             font-size: 14px;
         }
-
         .search-icon {
             position: absolute;
             left: 10px;
@@ -56,7 +50,6 @@
             transform: translateY(-50%);
             color: #666;
         }
-
         .user-avatar {
             width: 40px;
             height: 40px;
@@ -68,7 +61,6 @@
             color: white;
             font-weight: bold;
         }
-
         .main-container {
             display: grid;
             grid-template-columns: 300px 1fr 320px;
@@ -78,38 +70,32 @@
             margin: 0 auto;
             transition: transform 0.3s ease;
         }
-
         .main-container.chat-open {
             transform: translateX(-10%);
         }
-
         .sidebar, .right-panel {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
-
         .card {
             background: white;
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
-
         .card-title {
             font-size: 16px;
             font-weight: 600;
             margin-bottom: 16px;
             color: #333;
         }
-
         .partner-info {
             display: flex;
             align-items: center;
             gap: 12px;
             margin-bottom: 16px;
         }
-
         .partner-avatar {
             width: 40px;
             height: 40px;
@@ -122,39 +108,32 @@
             font-weight: bold;
             font-size: 18px;
         }
-
         .partner-details h3 {
             font-size: 16px;
             font-weight: 600;
             margin-bottom: 4px;
         }
-
         .partner-details span {
             color: #666;
             font-size: 14px;
         }
-
         .info-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
             font-size: 14px;
         }
-
         .info-item {
             display: flex;
             flex-direction: column;
         }
-
         .info-label {
             color: #666;
             margin-bottom: 2px;
         }
-
         .info-value {
             font-weight: 500;
         }
-
         .activity-item {
             display: flex;
             align-items: center;
@@ -162,11 +141,9 @@
             padding: 8px 0;
             border-bottom: 1px solid #f0f0f0;
         }
-
         .activity-item:last-child {
             border-bottom: none;
         }
-
         .activity-icon {
             width: 20px;
             height: 20px;
@@ -177,42 +154,34 @@
             font-size: 10px;
             color: white;
         }
-
         .activity-icon.info {
             background: #3b82f6;
         }
-
         .activity-icon.upload {
             background: #10b981;
         }
-
         .activity-icon.quote {
             background: #f59e0b;
         }
-
         .activity-text {
             font-size: 14px;
             color: #333;
         }
-
         .recommendations-list {
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
-
         .recommendation-item {
             display: flex;
             align-items: flex-start;
             gap: 8px;
             font-size: 14px;
         }
-
         .rec-bullet {
             color: #3b82f6;
             margin-top: 2px;
         }
-
         .doc-item {
             display: flex;
             align-items: center;
@@ -220,17 +189,14 @@
             padding: 8px 0;
             font-size: 14px;
         }
-
         .doc-icon {
             color: #3b82f6;
         }
-
         .button-group {
             display: flex;
             gap: 8px;
             margin: 16px 0;
         }
-
         .btn {
             padding: 8px 16px;
             border-radius: 6px;
@@ -239,13 +205,11 @@
             cursor: pointer;
             font-size: 14px;
         }
-
         .btn.active {
             background: #3b82f6;
             color: white;
             border-color: #3b82f6;
         }
-
         .input-field {
             width: 100%;
             padding: 10px;
@@ -254,7 +218,6 @@
             margin: 10px 0;
             font-size: 14px;
         }
-
         .generate-btn {
             width: 100%;
             padding: 12px;
@@ -266,25 +229,21 @@
             font-weight: 500;
             cursor: pointer;
         }
-
         .generate-btn:hover {
             background: #2563eb;
         }
-
         .checkbox-group {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 8px;
             margin: 16px 0;
         }
-
         .checkbox-item {
             display: flex;
             align-items: center;
             gap: 8px;
             font-size: 14px;
         }
-
         .command-item {
             display: flex;
             align-items: center;
@@ -292,14 +251,12 @@
             padding: 8px 0;
             font-size: 14px;
         }
-
         .command-bullet {
             width: 8px;
             height: 8px;
             border-radius: 50%;
             background: #3b82f6;
         }
-
         .dropdown {
             width: 100%;
             padding: 10px;
@@ -308,13 +265,11 @@
             margin-bottom: 16px;
             font-size: 14px;
         }
-
         .export-buttons {
             display: flex;
             gap: 12px;
             margin-top: 16px;
         }
-
         .export-btn {
             padding: 8px 16px;
             border: 1px solid #e0e0e0;
@@ -323,7 +278,6 @@
             cursor: pointer;
             font-size: 14px;
         }
-
         .supplier-select {
             display: flex;
             align-items: center;
@@ -331,7 +285,6 @@
             color: #666;
             cursor: pointer;
         }
-
         /* Chat Button Styles */
         .chat-button {
             position: fixed;
@@ -340,32 +293,34 @@
             transform: translateY(-50%);
             width: 50px;
             height: 120px;
-            background: #1e3a8a;
+            background: #6b00a9;
             border: none;
             border-radius: 8px 0 0 8px;
             color: white;
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
-            box-shadow: -2px 0 8px rgba(30, 58, 138, 0.3);
+            box-shadow: -2px 0 8px rgba(107, 0, 169, 0.3);
             transition: all 0.3s ease;
-            z-index: 1000;
+            z-index: 1002;
             writing-mode: vertical-lr;
             text-orientation: mixed;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-
         .chat-button:hover {
-            background: #1e40af;
+            background: #5a0090;
             transform: translateY(-50%) translateX(-5px);
         }
-
-        .chat-button.hidden {
-            transform: translateY(-50%) translateX(100%);
+        .chat-button.panel-open {
+            right: 40%;
+            border-radius: 8px;
+            box-shadow: -2px 0 8px rgba(107, 0, 169, 0.3);
         }
-
+        .chat-button.panel-open:hover {
+            transform: translateY(-50%) translateX(-5px);
+        }
         /* Chat Sidepanel Styles */
         .chat-sidepanel {
             position: fixed;
@@ -380,51 +335,15 @@
             display: flex;
             flex-direction: column;
         }
-
         .chat-sidepanel.open {
             right: 0;
         }
-
-        .chat-header {
-            padding: 20px;
-            border-bottom: 1px solid #e0e0e0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: #1e3a8a;
-            color: white;
-        }
-
-        .chat-title {
-            font-size: 18px;
-            font-weight: 600;
-        }
-
-        .chat-close {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            padding: 0;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 4px;
-        }
-
-        .chat-close:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
         .chat-content {
             flex: 1;
-            padding: 20px;
-            background: #f9f9f9;
+            background: white;
+            width: 100%;
+            height: 100%;
         }
-
         /* Overlay */
         .chat-overlay {
             position: fixed;
@@ -438,23 +357,22 @@
             transition: all 0.3s ease;
             z-index: 999;
         }
-
         .chat-overlay.active {
             opacity: 1;
             visibility: visible;
         }
-
         @media (max-width: 1200px) {
             .main-container {
                 grid-template-columns: 280px 1fr 300px;
             }
-
             .chat-sidepanel {
                 width: 50%;
                 right: -50%;
             }
+            .chat-button.panel-open {
+                right: 50%;
+            }
         }
-
         @media (max-width: 768px) {
             .main-container {
                 grid-template-columns: 1fr;
@@ -468,20 +386,20 @@
             .search-container {
                 max-width: none;
             }
-
             .chat-sidepanel {
                 width: 90%;
                 right: -90%;
             }
-
             .main-container.chat-open {
                 transform: translateX(-20%);
             }
-
             .chat-button {
                 width: 40px;
                 height: 100px;
                 font-size: 12px;
+            }
+            .chat-button.panel-open {
+                right: 90%;
             }
         }
     </style>
@@ -495,7 +413,6 @@
         </div>
         <div class="user-avatar">A</div>
     </div>
-
     <div class="main-container" id="mainContainer">
         <!-- Left Sidebar -->
         <div class="sidebar">
@@ -523,7 +440,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="card">
                 <h2 class="card-title">Recent Activity</h2>
                 <div class="activity-item">
@@ -539,7 +455,6 @@
                     <span class="activity-text">Quote request pending for 8x</span>
                 </div>
             </div>
-
             <div class="card">
                 <h2 class="card-title">Solution Compare Tool</h2>
                 <div class="supplier-select">
@@ -562,7 +477,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Center Content -->
         <div class="center-content">
             <div class="card">
@@ -582,7 +496,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="card">
                 <h2 class="card-title">Proposal & Quote Builder</h2>
                 <select class="dropdown">
@@ -602,7 +515,6 @@
                 <input type="text" class="input-field" placeholder="Input Client specs">
                 <button class="generate-btn">Auto-generate config</button>
             </div>
-
             <div class="card">
                 <h2 class="card-title">Solution Compare Tool</h2>
                 <div class="checkbox-group">
@@ -629,7 +541,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Right Panel -->
         <div class="right-panel">
             <div class="card">
@@ -647,7 +558,6 @@
                     <span>Supplier Playbook, Mid-market UCaaS Checklist</span>
                 </div>
             </div>
-
             <div class="card">
                 <h2 class="card-title">Quick Commands</h2>
                 <p style="color: #666; font-size: 14px; margin-bottom: 12px;">(Agent Triggers)</p>
@@ -668,7 +578,6 @@
                     <span>Explain SD-WAN in 30 seconds or less</span>
                 </div>
             </div>
-
             <div class="card">
                 <h2 class="card-title">Quick Commands</h2>
                 <p style="color: #666; font-size: 14px; margin-bottom: 12px;">(Agent Triggers)</p>
@@ -683,51 +592,53 @@
             </div>
         </div>
     </div>
-
     <!-- Chat Button -->
-    <button class="chat-button" id="chatButton">🏗️ Navigator</button>
-
+    <button class="chat-button" id="chatButton">🏗️ Architect</button>
     <!-- Chat Overlay -->
     <div class="chat-overlay" id="chatOverlay"></div>
-
     <!-- Chat Sidepanel -->
     <div class="chat-sidepanel" id="chatSidepanel">
-        <div class="chat-header">
-            <h3 class="chat-title">🏗️ Navigator</h3>
-            <button class="chat-close" id="chatClose">×</button>
-        </div>
         <div class="chat-content" id="chatContent">
             <script type="module" crossorigin="anonymous" src='https://webchat.digitalcx.com/inline.js' onload="cmwc.add('0bf86404-2264-494f-9600-e168ff23c789').install();"></script>
         </div>
     </div>
-
     <script>
         // Chat panel functionality
         const chatButton = document.getElementById('chatButton');
         const chatSidepanel = document.getElementById('chatSidepanel');
         const chatOverlay = document.getElementById('chatOverlay');
-        const chatClose = document.getElementById('chatClose');
         const mainContainer = document.getElementById('mainContainer');
-
+        
         function openChat() {
             chatSidepanel.classList.add('open');
             chatOverlay.classList.add('active');
-            chatButton.classList.add('hidden');
             mainContainer.classList.add('chat-open');
+            chatButton.classList.add('panel-open');
+            // Change button text to "Close"
+            chatButton.textContent = 'Close';
         }
-
+        
         function closeChat() {
             chatSidepanel.classList.remove('open');
             chatOverlay.classList.remove('active');
-            chatButton.classList.remove('hidden');
             mainContainer.classList.remove('chat-open');
+            chatButton.classList.remove('panel-open');
+            // Change button text back to "Architect"
+            chatButton.textContent = '🏗️ Architect';
         }
-
+        
+        function toggleChat() {
+            if (chatSidepanel.classList.contains('open')) {
+                closeChat();
+            } else {
+                openChat();
+            }
+        }
+        
         // Event listeners
-        chatButton.addEventListener('click', openChat);
-        chatClose.addEventListener('click', closeChat);
+        chatButton.addEventListener('click', toggleChat);
         chatOverlay.addEventListener('click', closeChat);
-
+        
         // Close chat with Escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && chatSidepanel.classList.contains('open')) {
