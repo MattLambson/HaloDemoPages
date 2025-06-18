@@ -83,7 +83,7 @@
             transform: translateY(-2px);
         }
 
-        /* Hero Section */
+        /* Hero Section with Cityscape */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -91,29 +91,46 @@
             justify-content: center;
             text-align: center;
             position: relative;
-            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
+            background-attachment: fixed;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.6) 100%);
+            z-index: 1;
         }
 
         .hero-content {
             max-width: 800px;
             padding: 0 2rem;
             margin-top: 80px;
+            position: relative;
+            z-index: 2;
         }
 
         .hero h1 {
             font-size: 4rem;
             font-weight: 900;
             margin-bottom: 1rem;
-            background: linear-gradient(45deg, #ffffff, #888);
+            background: linear-gradient(45deg, #ffffff, #e0e0e0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .hero p {
             font-size: 1.5rem;
-            color: #888;
+            color: #e0e0e0;
             margin-bottom: 2rem;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
         }
 
         .cta-button {
@@ -128,12 +145,13 @@
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
         }
 
         .cta-button:hover {
-            background: #888;
+            background: #e0e0e0;
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.4);
         }
 
         /* Services Grid */
@@ -312,6 +330,10 @@
                 display: none;
             }
 
+            .hero {
+                background-attachment: scroll; /* Fixed backgrounds can cause issues on mobile */
+            }
+
             .hero h1 {
                 font-size: 2.5rem;
             }
@@ -343,6 +365,13 @@
 
         .service-card, .action-item {
             animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Parallax effect for hero */
+        @media (min-width: 769px) {
+            .hero {
+                background-attachment: fixed;
+            }
         }
     </style>
 </head>
