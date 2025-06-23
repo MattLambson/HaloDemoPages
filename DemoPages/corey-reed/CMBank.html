@@ -73,7 +73,7 @@
             background: #888;
             transform: translateY(-2px);
         }
-        /* Hero Section with Cityscape */
+        /* Hero Section with Cityscape - OVERLAY REMOVED */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -81,10 +81,12 @@
             justify-content: center;
             text-align: center;
             position: relative;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), 
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), 
                         url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
             background-attachment: fixed;
         }
+        /* REMOVED - This was the problematic overlay layer */
+        /*
         .hero::before {
             content: '';
             position: absolute;
@@ -95,6 +97,7 @@
             background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.6) 100%);
             z-index: 1;
         }
+        */
         .hero-content {
             max-width: 800px;
             padding: 0 2rem;
@@ -282,19 +285,18 @@
             color: #888;
         }
 
-        /* CHATBOT Z-INDEX FIX - Add this section */
-        /* Common chatbot container selectors */
-        [id*="webchat"], [class*="webchat"], [id*="chat"], [class*="chat"],
-        [data-testid*="chat"], [data-cy*="chat"], .cmwc-webchat,
-        div[style*="position: fixed"], div[style*="position:fixed"] {
-            z-index: 10001 !important;
-        }
-        
-        /* More specific overrides for potential chatbot elements */
-        div[style*="bottom"][style*="right"], 
-        div[style*="bottom"][style*="left"],
-        iframe[src*="webchat"], iframe[src*="chat"] {
-            z-index: 10001 !important;
+        /* CHATBOT Z-INDEX FIX */
+        iframe[src*="digitalcx.com"], 
+        iframe[src*="webchat"], 
+        div[id*="webchat"],
+        div[class*="webchat"],
+        div[data-testid*="webchat"],
+        .webchat-container,
+        [id*="cmwc"], [class*="cmwc"],
+        div[style*="position: fixed"],
+        div[style*="position:fixed"] {
+            z-index: 99999 !important;
+            position: fixed !important;
         }
 
         /* Responsive */
@@ -303,7 +305,7 @@
                 display: none;
             }
             .hero {
-                background-attachment: scroll; /* Fixed backgrounds can cause issues on mobile */
+                background-attachment: scroll;
             }
             .hero h1 {
                 font-size: 2.5rem;
@@ -528,21 +530,9 @@
                 header.style.background = 'rgba(0, 0, 0, 0.95)';
             }
         });
-
-        // Additional chatbot z-index fix - runs after chatbot loads
-        setTimeout(() => {
-            // Find any iframe or div that might be the chatbot
-            const chatElements = document.querySelectorAll('iframe[src*="webchat"], iframe[src*="chat"], div[id*="chat"], div[class*="chat"]');
-            chatElements.forEach(element => {
-                element.style.zIndex = '10001';
-                if (element.parentElement) {
-                    element.parentElement.style.zIndex = '10001';
-                }
-            });
-        }, 2000);
     </script>
 
-    <!-- Chatbot script moved inside body tag and positioned correctly -->
+    <!-- Chatbot script -->
     <script type="module" crossorigin="anonymous" src='https://webchat.digitalcx.com/webchat.js' onload="cmwc.add('0bd76af2-ba04-436b-ad40-4388e85de8e7').install();"></script>
 </body>
 </html>
