@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goldstein Law - Experienced Legal Representation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background-color: #1e3a5f;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+            color: white;
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            right: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 300px;
+            height: 300px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50" font-size="80">⚖️</text></svg>') no-repeat center;
+            background-size: contain;
+            opacity: 0.3;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+
+        .cta-button {
+            background-color: white;
+            color: #1e3a5f;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #f7fafc;
+            transform: translateY(-2px);
+        }
+
+        /* About Section */
+        .about {
+            background-color: #f7fafc;
+            padding: 4rem 0;
+        }
+
+        .about h2 {
+            color: #1e3a5f;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            color: #4a5568;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* Practice Areas */
+        .practice-areas {
+            background-color: white;
+            padding: 4rem 0;
+        }
+
+        .practice-areas h2 {
+            color: #1e3a5f;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .areas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .area-card {
+            background-color: #1e3a5f;
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .area-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .area-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .area-card h3 {
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: #1e3a5f;
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: bold;
+        }
+
+        .contact p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact .cta-button {
+            background-color: white;
+            color: #1e3a5f;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .areas-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1>GOLDSTEIN LAW</h1>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Experienced & Trusted Legal Representation</h2>
+                <a href="#contact" class="cta-button">REQUEST A CONSULTATION</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <h2>ABOUT OUR FIRM</h2>
+            <p>At Goldstein Law, we are committed to providing exceptional legal services to our clients. With decades of combined experience, our dedicated attorneys offer personalized and effective representation across a wide range of legal matters. Whether you are facing a complex business dispute, a family law issue, or need assistance with estate planning, we are here to help.</p>
+        </div>
+    </section>
+
+    <!-- Practice Areas -->
+    <section class="practice-areas">
+        <div class="container">
+            <h2>OUR PRACTICE AREAS</h2>
+            <div class="areas-grid">
+                <div class="area-card">
+                    <div class="area-icon">🏛️</div>
+                    <h3>Business Law</h3>
+                </div>
+                <div class="area-card">
+                    <div class="area-icon">⚖️</div>
+                    <h3>Civil Litigation</h3>
+                </div>
+                <div class="area-card">
+                    <div class="area-icon">👨‍👩‍👧‍👦</div>
+                    <h3>Family Law</h3>
+                </div>
+                <div class="area-card">
+                    <div class="area-icon">📋</div>
+                    <h3>Estate Planning</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>CONTACT US</h2>
+            <p>If you have any legal questions or would like to schedule a consultation, please do not hesitate to contact us.</p>
+            <a href="mailto:info@goldsteinlaw.com" class="cta-button">GET IN TOUCH</a>
+        </div>
+    </section>
+    <script type="module" crossorigin="anonymous" src='https://webchat.digitalcx.com/webchat.js' onload="cmwc.add('be327f21-f5a3-46b3-acb0-ceeccd9f35ca').install();"></script>
+</body>
+</html>
