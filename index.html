@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CM.com North America Halo Demo Hub</title>
+    <title>CM.com North America HALO Demo Hub</title>
     <style>
         :root {
             /* CM.com Brand Colors */
@@ -211,29 +211,21 @@
             <!-- Replace with actual logo -->
             <div class="logo"></div>
         </div>
-        <h1>CM.com North America Halo Demo Hub</h1>
-        <p class="subtitle">The hub for Halo demo implementations from the CM.com NA team</p>
+        <h1>CM.com North America HALO Demo Hub</h1>
+        <p class="subtitle">The hub for HALO demo implementations from the CM.com NA team</p>
     </header>
-
-    <div class="search-container">
-        <input type="text" id="searchBox" class="search-box" placeholder="Search by name..." onkeyup="filterDemos()">
-    </div>
 
     <div class="demo-grid" id="demoGrid">
     </div>
     <!-- Demo entries will be dynamically populated -->
 
     <footer>
-        <p>CM.com North America Halo Demo Hub | <a href="https://www.cm.com/" target="_blank">Visit CM.com</a></p>
+        <p>CM.com North America HALO Demo Hub | <a href="https://www.cm.com/" target="_blank">Visit CM.com</a></p>
     </footer>
 
     <script>
         // Demo data with your team members in alphabetical order
         const demos = [
-            {
-                name: "Adrian Vargas",
-                path: "DemoPages/adrian-vargas/"
-            },
             {
                 name: "Corey Reed",
                 path: "DemoPages/corey-reed/"
@@ -257,14 +249,6 @@
             {
                 name: "Michael Ogorek",
                 path: "DemoPages/michael-ogorek/"
-            },
-            {
-                name: "Ronnie Jones",
-                path: "DemoPages/ronnie-jones/"
-            },
-            {
-                name: "Ryan Sherman",
-                path: "DemoPages/ryan-sherman/"
             },
             {
                 name: "Santiago Cortes",
@@ -296,15 +280,6 @@
                 
                 grid.appendChild(card);
             });
-        }
-
-        // Function to filter demos
-        function filterDemos() {
-            const searchTerm = document.getElementById('searchBox').value.toLowerCase();
-            const filteredDemos = demos.filter(demo => 
-                demo.name.toLowerCase().includes(searchTerm)
-            );
-            renderDemos(filteredDemos);
         }
 
         // Initial render

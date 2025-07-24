@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Hub - Michael Ogorek's CM.com Demo</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        body {
+            background-image: url('HaloBG.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        
+        .side-menu {
+            padding-top: 50px; /* Add space at top to avoid menu button conflict */
+        }
+        
+        .main-content {
+            margin: 60px auto 0;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.85); /* Restored to 85% transparency */
+            border-radius: 8px;
+            max-width: 660px;
+            width: 100%;
+            max-height: 450px; /* Limit height */
+        }
+        
+        .demo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .demo-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .demo-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .demo-card h3 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .demo-card p {
+            color: #666;
+            margin-bottom: 12px;
+            min-height: 60px; /* Reduced height */
+            font-size: 0.95em; /* Slightly smaller text */
+        }
+        
+        h1, p {
+            color: #333;
+            margin: 0 0 10px 0; /* Compact margins */
+        }
+        
+        h1 {
+            font-size: 1.8em; /* Slightly smaller heading */
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                width: 90%;
+                margin-top: 80px;
+                max-height: none;
+            }
+            
+            .demo-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            body {
+                overflow-y: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    
+    <div class="side-menu">
+        <h2>Demo Hub Navigation</h2>
+        <div class="demo-section">
+            <p class="instructions">Return to main demo:</p>
+            <button id="backBtn" class="btn" onclick="window.location.href='index.html'">Back to Main Demo</button>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        <h1>Demo Environments Hub</h1>
+        <p>Select a demo environment to explore:</p>
+        
+        <div class="demo-grid">
+        </div>
+    </div>
+    
+    <script src="../../js/demo.js"></script>
+</body>
+</html>
