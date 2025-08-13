@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Southern Tool + Equipment — Demo Homepage</title>
+  <style>
+    :root{
+      --bg:#f6f6f6; --card:#ffffff; --ink:#0f1115; --muted:#6b7280; --line:#e5e7eb;
+      --brand1:#111827; /* charcoal */
+      --brand2:#f59e0b; /* amber */
+      --brand2-hi:#fbbf24;
+      --radius:16px;
+      --shadow:0 10px 20px rgba(0,0,0,.06), 0 2px 6px rgba(0,0,0,.06);
+    }
+    html,body{height:100%;}
+    body{margin:0; font:14px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji"; color:var(--ink); background:var(--bg);}    
+    a{color:inherit; text-decoration:none}
+    .container{max-width:1120px; margin:0 auto; padding:0 16px}
+    .bar{background:#0b0d12; color:#e5e7eb}
+    .bar .container{display:flex; gap:16px; align-items:center; justify-content:space-between; padding:10px 16px}
+    .bar a{text-decoration:underline dotted}
+
+    /* Header */
+    header{position:sticky; top:0; z-index:10; background:#fff; border-bottom:1px solid var(--line)}
+    header .row{display:flex; align-items:center; gap:18px; padding:16px 0}
+    .logo{display:flex; align-items:center; gap:10px}
+    .logo-badge{width:40px; height:40px; border-radius:12px; background:linear-gradient(135deg, var(--brand2-hi), var(--brand2)); box-shadow:var(--shadow)}
+    .brand{font-weight:900; letter-spacing:.2px}
+    nav{display:none}
+    @media(min-width:860px){ nav{display:flex; gap:22px} }
+    nav a{font-weight:600; color:#374151}
+    .search{margin-left:auto; position:relative}
+    .search input{width:280px; max-width:40vw; border:1px solid var(--line); border-radius:12px; padding:10px 12px; padding-right:36px}
+    .kbd{position:absolute; right:10px; top:9px; font-size:11px; color:#9ca3af}
+    .btn{border-radius:12px; padding:10px 14px; border:1px solid var(--line); background:#fff; font-weight:600}
+    .btn.primary{background:#111827; color:#fff; border-color:#111827}
+
+    /* Hero */
+    .hero{color:#fff; background:linear-gradient(90deg, #0b0d12, #1f2937)}
+    .hero .grid{display:grid; grid-template-columns:1fr; gap:24px; padding:48px 0}
+    @media(min-width:860px){ .hero .grid{grid-template-columns:1.1fr .9fr; align-items:center} }
+    .chip{display:inline-block; background:rgba(255,255,255,.12); padding:6px 10px; border-radius:999px; letter-spacing:.12em; font-size:11px; text-transform:uppercase}
+    .hero h1{font-size:40px; line-height:1.1; margin:12px 0 8px; font-weight:900}
+    .hero p{color:#cbd5e1; max-width:52ch}
+    .cta{display:flex; gap:10px; margin-top:18px}
+    .cta .btn{border-color:#fff; color:#0b0d12; background:linear-gradient(135deg, var(--brand2-hi), var(--brand2)); font-weight:800}
+    .hero-figure{position:relative}
+    .hero-figure .photo{height:auto}
+    .hero-figure img{width:100%; height:auto; border-radius:20px; box-shadow:var(--shadow); object-fit:cover}
+    .hero-tag{position:absolute; right:-12px; bottom:-12px; background:#fff; color:#111827; border-radius:16px; padding:10px 14px; box-shadow:var(--shadow)}
+
+    /* Sections */
+    section{padding:36px 0}
+    h2{font-size:22px; font-weight:900; letter-spacing:.2px}
+
+    /* Category tiles */
+    .tiles{display:grid; grid-template-columns:1fr; gap:14px; margin-top:14px}
+    @media(min-width:740px){ .tiles{grid-template-columns:repeat(3, 1fr)} }
+    .tile{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:18px; transition:.2s box-shadow}
+    .tile:hover{box-shadow:var(--shadow)}
+    .tile-top{display:flex; align-items:center; justify-content:space-between}
+    .hint{color:var(--muted); font-size:13px}
+    .thumb{height:110px; border-radius:12px; background:linear-gradient(135deg, #eef2ff, #e5e7eb); margin-top:14px}
+
+    /* Product cards */
+    .grid{display:grid; grid-template-columns:1fr; gap:16px}
+    @media(min-width:740px){ .grid{grid-template-columns:repeat(3, 1fr)} }
+    .card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; transition:.2s box-shadow}
+    .card:hover{box-shadow:var(--shadow)}
+    .photo{height:190px; background:#e5e7eb}
+    .photo img{width:100%; height:100%; object-fit:cover}
+    .pad{padding:14px}
+    .cat{color:#6b7280; font-size:13px}
+    .price{font-weight:900; font-size:20px}
+
+    /* Footer */
+    footer{background:#0f1117; color:#cbd5e1;}
+    footer .grid{display:grid; gap:24px}
+    @media(min-width:860px){ footer .grid{grid-template-columns:2fr 1fr 1fr 1fr} }
+    footer a{color:#d1d5db}
+    .foot-legal{border-top:1px solid #1f2937; color:#94a3b8; font-size:12px; padding:12px 0}
+
+    .note li{margin:6px 0}
+  </style>
+</head>
+<body>
+  <!-- Top disclaimer bar -->
+  <div class="bar">
+    <div class="container">
+      <div></div>
+      <a href="#about"></a>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="container row">
+      <a class="logo" href="#">
+        <div class="logo-badge"></div>
+        <div>
+          <div class="brand">Southern Tool + Equipment</div>
+          <div style="font-size:11px; color:#6b7280; letter-spacing:.12em; text-transform:uppercase">Industrial • Contractor • DIY</div>
+        </div>
+      </a>
+      <nav>
+        <a href="#shop">Shop All</a>
+        <a href="#power">Power Tools</a>
+        <a href="#generators">Generators</a>
+        <a href="#outdoor">Outdoor</a>
+        <a href="#deals">Deals</a>
+      </nav>
+      <div class="search">
+        <input placeholder="Search tools, SKUs, brands…" aria-label="Search" />
+        <span class="kbd">⌘K</span>
+      </div>
+      <button class="btn">Sign in</button>
+      <button class="btn primary">Cart (0)</button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container grid">
+      <div>
+        <span class="chip">Summer Shop Event</span>
+        <h1>Build, repair, and power every job with confidence.</h1>
+        <p>From compact drills to job‑site generators, Southern Tool + Equipment equips pros and makers with reliable, warranty‑backed gear.</p>
+        <div class="cta">
+          <a class="btn" href="#deals" style="border-color:#fff">Shop Deals</a>
+          <a class="btn" href="#shop" style="background:transparent; color:#fff; border-color:#ffffff66">Browse All</a>
+        </div>
+      </div>
+      <div class="hero-figure">
+        <div class="photo"><img alt="Workbench tools" src="https://tse4.mm.bing.net/th/id/OIP.d1ee0glQ1HhC9C27OgbRDwHaHa?pid=Api" /></div>
+        <div class="hero-tag">
+          <div style="font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:#6b7280">This Week Only</div>
+          <div style="font-weight:900; font-size:22px">Up to 30% off</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section id="shop">
+    <div class="container">
+      <h2>Shop by category</h2>
+      <!-- categories unchanged -->
+    </div>
+  </section>
+
+  <!-- Featured products -->
+  <section id="deals" style="background:#fff; border-top:1px solid var(--line)">
+    <div class="container">
+      <div style="display:flex; align-items:flex-end; justify-content:space-between">
+        <h2>Featured deals</h2>
+        <a class="hint" href="#">View all</a>
+      </div>
+      <div class="grid" style="margin-top:14px">
+        <div class="card">
+          <div class="photo"><img alt="Drill" src="https://tse2.mm.bing.net/th/id/OIP.js22EIn96LwXk014xKP1EgHaEJ?pid=Api" /></div>
+          <div class="pad">
+            <div class="cat">Power Tools</div>
+            <div style="font-weight:800; margin-top:2px">ST Pro 20V Drill/Driver Kit</div>
+            <div style="display:flex; gap:8px; align-items:center; margin-top:6px">
+              <div class="price">$129</div>
+              <div class="hint">• 4.6★</div>
+            </div>
+            <div style="display:flex; gap:8px; margin-top:10px">
+              <button class="btn primary">Add to cart</button>
+              <button class="btn">Details</button>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="photo"><img alt="Generator" src="https://tse1.mm.bing.net/th/id/OIP.2sL3H6B7gJR9EgfukEIeywHaF7?pid=Api" /></div>
+          <div class="pad">
+            <div class="cat">Generators</div>
+            <div style="font-weight:800; margin-top:2px">ForgeLine 3500W Inverter Generator</div>
+            <div style="display:flex; gap:8px; align-items:center; margin-top:6px">
+              <div class="price">$699</div>
+              <div class="hint">• 4.8★</div>
+            </div>
+            <div style="display:flex; gap:8px; margin-top:10px">
+              <button class="btn primary">Add to cart</button>
+              <button class="btn">Details</button>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="photo"><img alt="Drill press" src="https://tse4.mm.bing.net/th/id/OIP.yLGviNZQ6ViYC8Ws32-OrAHaLu?pid=Api" /></div>
+          <div class="pad">
+            <div class="cat">Shop Essentials</div>
+            <div style="font-weight:800; margin-top:2px">Mag‑Base 9" Drill Press</div>
+            <div style="display:flex; gap:8px; align-items:center; margin-top:6px">
+              <div class="price">$399</div>
+              <div class="hint">• 4.5★</div>
+            </div>
+            <div style="display:flex; gap:8px; margin-top:10px">
+              <button class="btn primary">Add to cart</button>
+              <button class="btn">Details</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script type="module" crossorigin="anonymous" src='https://webchat.digitalcx.com/webchat.js' onload="cmwc.add('2dcff4f9-d368-49ab-8e19-a1858b0cc810').install();"></script>
+
+  <!-- Footer unchanged -->
+</body>
+</html>
