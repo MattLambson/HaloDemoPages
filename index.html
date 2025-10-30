@@ -11,7 +11,6 @@
     }
     </style>
 </head>
-
 <body class="home">
     <header>
         <div class="logo-container">
@@ -24,130 +23,272 @@
         <nav class="tabs" role="tablist">
             <div class="tab active" role="tab" aria-selected="true" tabindex="0" id="tab-team">Team</div>
             <div class="tab" role="tab" aria-selected="false" tabindex="-1" id="tab-tools">Tools</div>
+            <div class="tab" role="tab" aria-selected="false" tabindex="-1" id="tab-videos">Videos</div>
         </nav>
     </div>
-
     <div class="demo-grid tab-content" id="demoGrid">
     </div>
-
+    
+    <!-- Video Player Overlay -->
+    <div class="video-overlay" id="videoOverlay">
+        <div class="video-player-container">
+            <button class="close-video-btn" id="closeVideoBtn" aria-label="Close video player">&times;</button>
+            <video id="videoPlayer" autoplay></video>
+        </div>
+    </div>
+    
     <footer>
         <p>CM.com North America HALO Demo Hub | <a href="https://www.cm.com/" target="_blank">Visit CM.com</a></p>
     </footer>
-
     <script>
         const teamDemos = [
             {
                 name: "Corey Reed",
-                path: "DemoPages/corey-reed/"
+                path: "DemoPages/corey-reed/index.html"
             },
             {
                 name: "David White",
-                path: "DemoPages/david-white/"
+                path: "DemoPages/david-white/index.html"
             },
             {
                 name: "Evan Manning",
-                path: "DemoPages/evan-manning/"
+                path: "DemoPages/evan-manning/index.html"
             },
             {
                 name: "Josh Intagliata",
-                path: "DemoPages/josh-intagliata/"
+                path: "DemoPages/josh-intagliata/index.html"
             },
             {
                 name: "Matt Lambson",
-                path: "DemoPages/matt-lambson/"
+                path: "DemoPages/matt-lambson/index.html"
             },
             {
                 name: "Michael Ogorek",
-                path: "DemoPages/michael-ogorek/"
+                path: "DemoPages/michael-ogorek/index.html"
             },
             {
                 name: "Santiago Cortes",
-                path: "DemoPages/santiago-cortes/"
+                path: "DemoPages/santiago-cortes/index.html"
             }
         ];
-
+        
         const toolDemos = [
             {
                 name: "HALO Router Builder",
-                path: "DemoPages/router-builder/"
+                path: "DemoPages/router-builder/index.html"
             },
             {
                 name: "HALO AVA Prompt Builder",
-                path: "DemoPages/prompt-builder/"
+                path: "DemoPages/prompt-builder/index."
             }
         ];
-
-        // Function to create demo cards
-        function renderDemos(demoList) {
+        
+        const videosDemos = [
+            {
+                name: "Vertical Videos",
+                path: "DemoPages/videos/verticals/index.html"
+            },
+            {
+                name: "All Videos (Looped)",
+                path: "ALL_VIDEOS_LOOPED",
+                isVideoPlayer: true
+            }
+        ];
+        
+        // List all video files in the verticals folder
+        // Update this array with your actual video filenames
+        const verticalVideos = [
+            "DemoPages/videos/halo-by-cm.mp4",
+            "DemoPages/videos/edtech.mp4",
+            "DemoPages/videos/hospitality.mp4",
+            "DemoPages/videos/retail.mp4",
+            "DemoPages/videos/theme-parks.mp4",
+            "DemoPages/videos/what-is-engagement.mp4",
+            // Add more video files as needed
+        ];
+        
+        let currentVideoIndex = 0;
+        
+        // Video Player Functions
+        function openVideoPlayer() {
+            const overlay = document.getElementById('videoOverlay');
+            const videoPlayer = document.getElementById('videoPlayer');
+            
+            overlay.classList.add('active');
+            currentVideoIndex = 0;
+            playCurrentVideo();
+        }
+        
+        function closeVideoPlayer() {
+            const overlay = document.getElementById('videoOverlay');
+            const videoPlayer = document.getElementById('videoPlayer');
+            
+            overlay.classList.remove('active');
+            videoPlayer.pause();
+            videoPlayer.src = '';
+        }
+        
+        function playCurrentVideo() {
+            const videoPlayer = document.getElementById('videoPlayer');
+            
+            if (verticalVideos.length === 0) {
+                console.error('No videos available');
+                return;
+            }
+            
+            videoPlayer.src = verticalVideos[currentVideoIndex];
+            videoPlayer.play();
+        }
+        
+        function playNextVideo() {
+            currentVideoIndex = (currentVideoIndex + 1) % verticalVideos.length;
+            playCurrentVideo();
+        }
+        
+        // Ripple Effect Function
+        function addRippleEffect(e) {
+            const tab = e.currentTarget;
+            const ripple = document.createElement('span');
+            const rect = tab.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.classList.add('ripple');
+            
+            tab.appendChild(ripple);
+            
+            setTimeout(() => ripple.remove(), 600);
+        }
+        
+        // Function to create demo cards with custom button text
+        function renderDemos(demoList, buttonText = 'View Demo') {
             const grid = document.getElementById('demoGrid');
             grid.innerHTML = ''; // Clear existing content
-
+            
             if (demoList.length === 0) {
                 grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 30px; color: var(--cyan-100);">No demos found matching your search.</p>';
                 return;
             }
-
+            
             demoList.forEach(demo => {
                 const card = document.createElement('a');
-                card.href = demo.path;
+                
+                // Check if this is the video player card
+                if (demo.isVideoPlayer) {
+                    card.href = '#';
+                    card.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        openVideoPlayer();
+                    });
+                } else {
+                    card.href = demo.path;
+                }
+                
                 card.className = 'demo-card';
                 
                 card.innerHTML = `
                     <h3 class="card-title">${demo.name}</h3>
                     <div>
-                        <span class="view-button">View Demo</span>
+                        <span class="view-button">${buttonText}</span>
                     </div>
                 `;
                 
                 grid.appendChild(card);
             });
         }
-
+        
         // Tab functionality
         document.addEventListener('DOMContentLoaded', () => {
             const tabTeam = document.getElementById('tab-team');
             const tabTools = document.getElementById('tab-tools');
-
+            const tabVideos = document.getElementById('tab-videos');
+            const videoPlayer = document.getElementById('videoPlayer');
+            const closeVideoBtn = document.getElementById('closeVideoBtn');
+            
+            // Video player event listeners
+            videoPlayer.addEventListener('ended', playNextVideo);
+            closeVideoBtn.addEventListener('click', closeVideoPlayer);
+            
+            // Close on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeVideoPlayer();
+                }
+            });
+            
             function setActiveTab(activeTab) {
+                // Remove active class from all tabs
+                tabTeam.classList.remove('active');
+                tabTeam.setAttribute('aria-selected', 'false');
+                tabTeam.setAttribute('tabindex', '-1');
+                
+                tabTools.classList.remove('active');
+                tabTools.setAttribute('aria-selected', 'false');
+                tabTools.setAttribute('tabindex', '-1');
+                
+                tabVideos.classList.remove('active');
+                tabVideos.setAttribute('aria-selected', 'false');
+                tabVideos.setAttribute('tabindex', '-1');
+                
+                // Set active tab
                 if (activeTab === 'team') {
                     tabTeam.classList.add('active');
                     tabTeam.setAttribute('aria-selected', 'true');
                     tabTeam.setAttribute('tabindex', '0');
-                    tabTools.classList.remove('active');
-                    tabTools.setAttribute('aria-selected', 'false');
-                    tabTools.setAttribute('tabindex', '-1');
-                    renderDemos(teamDemos);
+                    renderDemos(teamDemos, 'View Demo');
                 } else if (activeTab === 'tools') {
                     tabTools.classList.add('active');
                     tabTools.setAttribute('aria-selected', 'true');
                     tabTools.setAttribute('tabindex', '0');
-                    tabTeam.classList.remove('active');
-                    tabTeam.setAttribute('aria-selected', 'false');
-                    tabTeam.setAttribute('tabindex', '-1');
-                    renderDemos(toolDemos);
+                    renderDemos(toolDemos, 'View Tool');
+                } else if (activeTab === 'videos') {
+                    tabVideos.classList.add('active');
+                    tabVideos.setAttribute('aria-selected', 'true');
+                    tabVideos.setAttribute('tabindex', '0');
+                    renderDemos(videosDemos, 'View Videos');
                 }
             }
-
-            tabTeam.addEventListener('click', () => {
+            
+            tabTeam.addEventListener('click', (e) => {
+                addRippleEffect(e);
                 setActiveTab('team');
             });
-            tabTools.addEventListener('click', () => {
+            
+            tabTools.addEventListener('click', (e) => {
+                addRippleEffect(e);
                 setActiveTab('tools');
             });
-
+            
+            tabVideos.addEventListener('click', (e) => {
+                addRippleEffect(e);
+                setActiveTab('videos');
+            });
+            
             tabTeam.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
                     setActiveTab('team');
                 }
             });
+            
             tabTools.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
                     setActiveTab('tools');
                 }
             });
-
+            
+            tabVideos.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setActiveTab('videos');
+                }
+            });
+            
             // Default to Team tab active
             setActiveTab('team');
         });

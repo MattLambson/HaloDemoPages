@@ -5,7 +5,6 @@
     --cyan-100: #04E4F4;
     --black-140: #101E1E;
     --orange-100: #FFA400;
-
     /* HALO Brand (Primary/Secondary) */
     --berry-prim: #A4009B;    /* Lustrous Berry */
     --navy-bright: #001FFF;   /* Bright Navy */
@@ -13,10 +12,10 @@
     --sky-whisper: #007AFF;   /* Sky Whisper */
     --radiant-azure: #1746DD; /* Radiant Azure */
     --twilight-glow: #5F09F8; /* Twilight Glow */
-
     /* Gradients */
     --grad-pink-purple: linear-gradient(135deg, #A4009B 0%, #5F09F8 55%, #001FFF 100%);
     --grad-blue-purple: linear-gradient(135deg, #007AFF 0%, #1746DD 50%, #5F09F8 100%);
+    --white: #ffffff;
 }
 
 body {
@@ -155,10 +154,7 @@ body {
     border-radius: 4px;
 }
 
-/* ===== Boxed Tabs (Team / Tools) ===== */
-:root {
-    --white: #ffffff;
-}
+/* ===== Boxed Tabs (Team / Tools / Videos) ===== */
 
 /* Use higher specificity to override inline page styles if present */
 nav.tabs {
@@ -192,6 +188,8 @@ nav.tabs .tab {
     border-radius: 8px;                 /* so active tab looks like a pill inside the box */
     transition: background 160ms ease, color 160ms ease, transform 120ms ease;
     user-select: none;
+    position: relative;
+    overflow: hidden;
 }
 
 /* Hover state for inactive tabs */
@@ -243,12 +241,45 @@ body.home header {
   border-bottom: 1px solid rgba(255,255,255,0.12);
 }
 
-body.home .logo-container { display:flex; justify-content:center; margin-bottom:20px; }
-body.home .logo { height:80px; background:url('img/cm-logo.svg') no-repeat center; background-size:contain; width:200px; margin:0 auto; }
+body.home .logo-container { 
+    display:flex; 
+    justify-content:center; 
+    margin-bottom:20px; 
+}
 
-body.home h1 { margin:0; font-size:2.5rem; color:var(--white); position:relative; display:inline-block; }
-body.home h1::after { content:''; position:absolute; bottom:-10px; left:50%; transform:translateX(-50%); width:60px; height:4px; background:var(--cyan-100); border-radius:2px; }
-body.home .subtitle { font-size:1.1rem; color:var(--blue-100); margin-top:20px; }
+body.home .logo { 
+    height:80px; 
+    background:url('img/cm-logo.svg') no-repeat center; 
+    background-size:contain; 
+    width:200px; 
+    margin:0 auto; 
+}
+
+body.home h1 { 
+    margin:0; 
+    font-size:2.5rem; 
+    color:var(--white); 
+    position:relative; 
+    display:inline-block; 
+}
+
+body.home h1::after { 
+    content:''; 
+    position:absolute; 
+    bottom:-10px; 
+    left:50%; 
+    transform:translateX(-50%); 
+    width:60px; 
+    height:4px; 
+    background:var(--cyan-100); 
+    border-radius:2px; 
+}
+
+body.home .subtitle { 
+    font-size:1.1rem; 
+    color:var(--blue-100); 
+    margin-top:20px; 
+}
 
 /* grid + cards */
 body.home .demo-grid {
@@ -279,9 +310,12 @@ body.home .demo-card {
 
 body.home .demo-card::before {
   content:'';
-  position:absolute; inset:0 0 auto 0; height:4px;
+  position:absolute; 
+  inset:0 0 auto 0; 
+  height:4px;
   background: var(--grad-blue-purple);
   border-radius:12px 12px 0 0;
+  transition: height 0.3s ease, background 0.3s ease;
 }
 
 body.home .demo-card:hover {
@@ -303,7 +337,7 @@ body.home .card-title {
   text-shadow: 0 2px 4px rgba(0,0,0,.35);
 }
 
-/* the “View Demo” pill */
+/* the "View Demo" pill */
 body.home .view-button {
   align-self:center;
   background: var(--grad-pink-purple);
@@ -315,6 +349,7 @@ body.home .view-button {
   box-shadow:0 4px 14px rgba(164,0,155,.35);
   transition: transform .15s ease, filter .15s ease;
 }
+
 body.home .demo-card:hover .view-button {
   transform: translateY(-1px);
   filter: saturate(112%);
@@ -329,14 +364,144 @@ body.home footer {
   font-size:.95rem;
   color:rgba(255,255,255,.7);
 }
-body.home footer a { color: var(--cyan-100); text-decoration:none; }
-body.home footer a:hover { color: var(--purple-100); text-decoration:underline; }
+
+body.home footer a { 
+    color: var(--cyan-100); 
+    text-decoration:none; 
+}
+
+body.home footer a:hover { 
+    color: var(--purple-100); 
+    text-decoration:underline; 
+}
 
 @media (max-width: 768px) {
-  body.home .demo-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+  body.home .demo-grid { 
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+  }
 }
 
 .tabs-container {
   display: flex;
   justify-content: center;
+}
+
+/* ===== MICRO ANIMATIONS ===== */
+
+/* 1. Staggered Card Entrance */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+body.home .demo-card {
+    animation: fadeInUp 0.4s ease-out backwards;
+}
+
+body.home .demo-card:nth-child(1) { animation-delay: 0.05s; }
+body.home .demo-card:nth-child(2) { animation-delay: 0.1s; }
+body.home .demo-card:nth-child(3) { animation-delay: 0.15s; }
+body.home .demo-card:nth-child(4) { animation-delay: 0.2s; }
+body.home .demo-card:nth-child(5) { animation-delay: 0.25s; }
+body.home .demo-card:nth-child(6) { animation-delay: 0.3s; }
+body.home .demo-card:nth-child(7) { animation-delay: 0.35s; }
+
+/* 2. Card Gradient Border on Hover */
+body.home .demo-card:hover::before {
+    height: 6px;
+    background: var(--grad-pink-purple);
+}
+
+/* 3. Tab Ripple Effect */
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(0);
+    animation: rippleEffect 0.6s ease-out;
+    pointer-events: none;
+}
+
+@keyframes rippleEffect {
+    to {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+/* 4. Smooth Video Overlay Animation */
+.video-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.video-overlay.active {
+    display: flex;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+.video-player-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.video-overlay.active .video-player-container {
+    transform: scale(1);
+}
+
+.video-player-container video {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+}
+
+.close-video-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid #fff;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    transition: all 0.3s ease;
+}
+
+.close-video-btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: rotate(90deg);
 }

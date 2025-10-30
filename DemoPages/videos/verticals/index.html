@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HALO Vertical Videos | CM.com North America HALO Demo Hub</title>
+    <link rel="stylesheet" href="../../../css/style.css?v=20250814b">
+    <style>
+    body.home {
+      background: url('../../../img/halo-bg.png') center/cover no-repeat fixed;
+    }
+    
+    /* Back button styling */
+    .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        background: var(--grad-pink-purple);
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(164, 0, 155, 0.3);
+        margin-bottom: 20px;
+    }
+    
+    .back-button:hover {
+        background: var(--grad-blue-purple);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(164, 0, 155, 0.4);
+    }
+    
+    .back-button::before {
+        content: '←';
+        font-size: 1.2rem;
+    }
+    
+    .button-container {
+        max-width: 1100px;
+        margin: 0 auto 20px;
+        padding: 0 16px;
+    }
+    </style>
+</head>
+<body class="home">
+    <header>
+        <div class="logo-container">
+            <div class="logo"></div>
+        </div>
+        <h1>HALO Vertical Videos</h1>
+        <p class="subtitle">Explore HALO solutions across different industries</p>
+    </header>
+    
+    <div class="button-container">
+        <a href="../../../index.html" class="back-button">Back to Demo Hub</a>
+    </div>
+    
+    <div class="demo-grid tab-content" id="demoGrid">
+    </div>
+    
+    <!-- Video Player Overlay -->
+    <div class="video-overlay" id="videoOverlay">
+        <div class="video-player-container">
+            <button class="close-video-btn" id="closeVideoBtn" aria-label="Close video player">&times;</button>
+            <video id="videoPlayer" autoplay></video>
+        </div>
+    </div>
+    
+    <footer>
+        <p>CM.com North America HALO Demo Hub | <a href="https://www.cm.com/" target="_blank">Visit CM.com</a></p>
+    </footer>
+    <script>
+        const verticalVideos = [
+            {
+                name: "HALO by CM.com",
+                videoFile: "../halo-by-cm.mp4"
+            },
+            {
+                name: "EdTech",
+                videoFile: "../edtech.mp4"
+            },
+            {
+                name: "Hospitality",
+                videoFile: "../hospitality.mp4"
+            },
+            {
+                name: "Retail",
+                videoFile: "../retail.mp4"
+            },
+            {
+                name: "Theme Parks",
+                videoFile: "../theme-parks.mp4"
+            },
+            {
+                name: "What is Engagement",
+                videoFile: "../what-is-engagement.mp4"
+            }
+        ];
+        
+        let currentVideo = null;
+        
+        // Video Player Functions
+        function openVideoPlayer(videoFile) {
+            const overlay = document.getElementById('videoOverlay');
+            const videoPlayer = document.getElementById('videoPlayer');
+            
+            currentVideo = videoFile;
+            overlay.classList.add('active');
+            videoPlayer.src = videoFile;
+            videoPlayer.play();
+        }
+        
+        function closeVideoPlayer() {
+            const overlay = document.getElementById('videoOverlay');
+            const videoPlayer = document.getElementById('videoPlayer');
+            
+            overlay.classList.remove('active');
+            videoPlayer.pause();
+            videoPlayer.src = '';
+            currentVideo = null;
+        }
+        
+        // Function to create video cards
+        function renderVideoCards() {
+            const grid = document.getElementById('demoGrid');
+            grid.innerHTML = ''; // Clear existing content
+            
+            verticalVideos.forEach(video => {
+                const card = document.createElement('a');
+                card.href = '#';
+                card.className = 'demo-card';
+                
+                card.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openVideoPlayer(video.videoFile);
+                });
+                
+                card.innerHTML = `
+                    <h3 class="card-title">${video.name}</h3>
+                    <div>
+                        <span class="view-button">Watch Video</span>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            const videoPlayer = document.getElementById('videoPlayer');
+            const closeVideoBtn = document.getElementById('closeVideoBtn');
+            
+            // Auto-close video player when video ends
+            videoPlayer.addEventListener('ended', () => {
+                closeVideoPlayer();
+            });
+            
+            // Manual close button
+            closeVideoBtn.addEventListener('click', closeVideoPlayer);
+            
+            // Close on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeVideoPlayer();
+                }
+            });
+            
+            // Render all video cards
+            renderVideoCards();
+        });
+    </script>
+</body>
+</html>
