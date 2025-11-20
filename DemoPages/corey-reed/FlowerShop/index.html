@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ABF | All 'Bout Flowers</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --primary-red: #d7232a;
+      --primary-dark: #1e191a;
+      --accent-gold: #f8b500;
+      --bg-light: #f7f7f7;
+      --text-main: #333333;
+      --text-muted: #666666;
+      --border-subtle: #e4e4e4;
+      --white: #ffffff;
+      --max-width: 1200px;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --shadow-soft: 0 6px 18px rgba(0, 0, 0, 0.08);
+      --transition-fast: 0.2s ease-in-out;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      color: var(--text-main);
+      background-color: #ffffff;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* Top utility bar */
+    .top-bar {
+      background: var(--primary-dark);
+      color: #f7f7f7;
+      font-size: 0.85rem;
+      padding: 6px 16px;
+    }
+
+    .top-bar-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .top-bar-left span {
+      margin-right: 16px;
+      white-space: nowrap;
+    }
+
+    .top-bar-links a {
+      margin-left: 12px;
+      opacity: 0.85;
+    }
+
+    .top-bar-links a:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    /* Main header / nav */
+    header {
+      border-bottom: 1px solid var(--border-subtle);
+      background: #ffffff;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #ffefef, var(--primary-red));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 0.95rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .brand-text .name {
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--primary-dark);
+    }
+
+    .brand-text .tagline {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--primary-red);
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .nav-links a {
+      padding-bottom: 4px;
+      border-bottom: 2px solid transparent;
+    }
+
+    .nav-links a:hover {
+      border-bottom-color: var(--primary-red);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.9rem;
+    }
+
+    .nav-phone {
+      color: var(--primary-dark);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .nav-btn {
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--primary-red);
+      color: var(--primary-red);
+      background: #fff;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: background var(--transition-fast), color var(--transition-fast),
+        box-shadow var(--transition-fast);
+    }
+
+    .nav-btn.primary {
+      background: var(--primary-red);
+      color: #ffffff;
+      border-color: var(--primary-red);
+    }
+
+    .nav-btn:hover {
+      box-shadow: var(--shadow-soft);
+      background: #ffffff;
+      color: var(--primary-red);
+    }
+
+    .nav-btn.primary:hover {
+      background: #b9171e;
+      color: #ffffff;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(
+          120deg,
+          rgba(0, 0, 0, 0.75),
+          rgba(0, 0, 0, 0.35)
+        ),
+        url("https://images.pexels.com/photos/196664/pexels-photo-196664.jpeg?auto=compress&cs=tinysrgb&w=1600")
+          center/cover no-repeat;
+      color: #ffffff;
+      padding: 40px 16px 32px;
+    }
+
+    .hero-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: grid;
+      gap: 28px;
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.5fr);
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .hero-tagline {
+      font-size: 0.85rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #ffe9e9;
+      margin-bottom: 10px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.3rem, 4vw, 2.9rem);
+      font-weight: 800;
+      line-height: 1.05;
+      margin-bottom: 10px;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      max-width: 460px;
+      color: #f7f7f7;
+      margin-bottom: 18px;
+    }
+
+    .hero-meta {
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.9;
+    }
+
+    .hero-meta-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent-gold);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-actions .primary-btn {
+      background: var(--primary-red);
+      color: #ffffff;
+      border-radius: 999px;
+      padding: 10px 22px;
+      border: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: var(--shadow-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .hero-actions .primary-btn:hover {
+      background: #b9171e;
+    }
+
+    .hero-actions .ghost-btn {
+      background: transparent;
+      color: #ffffff;
+      border-radius: 999px;
+      padding: 10px 18px;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .hero-actions .ghost-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .hero-card {
+      background: rgba(255, 255, 255, 0.96);
+      color: var(--primary-dark);
+      border-radius: var(--radius-md);
+      padding: 18px 18px 20px;
+      box-shadow: var(--shadow-soft);
+      max-width: 360px;
+      margin-left: auto;
+    }
+
+    @media (max-width: 900px) {
+      .hero-card {
+        margin: 0;
+      }
+    }
+
+    .hero-card-title {
+      font-weight: 700;
+      font-size: 1.02rem;
+      margin-bottom: 4px;
+    }
+
+    .hero-card-subtitle {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .hero-card-row {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .form-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+    }
+
+    .form-field {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .form-input,
+    .form-select {
+      flex: 1;
+      padding: 8px 10px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      font-size: 0.9rem;
+    }
+
+    .hero-card button {
+      width: 100%;
+      margin-top: 4px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: none;
+      background: var(--primary-red);
+      color: #ffffff;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      cursor: pointer;
+    }
+
+    .hero-card button:hover {
+      background: #b9171e;
+    }
+
+    .hero-card-footnote {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* Category shortcuts */
+    .section {
+      max-width: var(--max-width);
+      margin: 28px auto 0;
+      padding: 0 16px 24px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      color: var(--primary-dark);
+    }
+
+    .section-link {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--primary-red);
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      font-size: 0.85rem;
+      background: #ffffff;
+      cursor: pointer;
+      transition: background var(--transition-fast),
+        border-color var(--transition-fast), color var(--transition-fast);
+    }
+
+    .chip:hover {
+      background: #fff4f4;
+      border-color: var(--primary-red);
+      color: var(--primary-red);
+    }
+
+    .chip.primary {
+      background: var(--primary-red);
+      border-color: var(--primary-red);
+      color: #ffffff;
+    }
+
+    /* Product grids */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 18px;
+    }
+
+    .product-card {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card-image {
+      position: relative;
+      overflow: hidden;
+      max-height: 200px;
+    }
+
+    .product-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.02);
+      transition: transform var(--transition-fast);
+    }
+
+    .product-card:hover .product-card-image img {
+      transform: scale(1.06);
+    }
+
+    .product-body {
+      padding: 12px 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .product-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .product-price {
+      font-size: 0.9rem;
+      color: var(--primary-red);
+      font-weight: 700;
+    }
+
+    .product-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .product-actions {
+      margin-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .product-btn {
+      flex: 1;
+      padding: 7px 8px;
+      font-size: 0.8rem;
+      border-radius: 999px;
+      border: 1px solid var(--primary-red);
+      background: #ffffff;
+      color: var(--primary-red);
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .product-btn:hover {
+      background: #fff4f4;
+    }
+
+    .product-link {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-align: right;
+    }
+
+    .product-link a {
+      color: var(--primary-red);
+    }
+
+    /* Info strip */
+    .info-strip {
+      margin-top: 10px;
+      padding: 12px 16px;
+      background: var(--bg-light);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .info-strip-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 30px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .info-strip-inner span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .bullet {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--primary-red);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--primary-dark);
+      color: #f3f3f3;
+      margin-top: 30px;
+      padding: 26px 16px 16px;
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .footer-columns {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 24px;
+      font-size: 0.86rem;
+      margin-bottom: 18px;
+    }
+
+    .footer-title {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.78rem;
+      margin-bottom: 8px;
+      color: #ffdddd;
+    }
+
+    .footer-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-list li + li {
+      margin-top: 4px;
+    }
+
+    .footer-list a {
+      opacity: 0.85;
+    }
+
+    .footer-list a:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: #e0e0e0;
+    }
+
+    .footer-bottom span {
+      opacity: 0.9;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .social-pill {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+    }
+
+    .social-pill:hover {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    @media (max-width: 700px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-actions {
+        width: 100%;
+        justify-content: flex-start;
+      }
+      .nav-links {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top bar -->
+  <div class="top-bar">
+    <div class="top-bar-inner">
+      <div class="top-bar-left">
+        <span>Same-day delivery available</span>
+        <span>Order by 2:00pm Mon–Sat</span>
+      </div>
+      <div class="top-bar-links">
+        <a href="#">Hours &amp; Locations</a>
+        <a href="#">Help</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header / Nav -->
+  <header>
+    <div class="nav">
+      <a href="#" class="brand">
+        <div class="brand-mark">ABF</div>
+        <div class="brand-text">
+          <span class="name">All 'Bout Flowers</span>
+          <span class="tagline">We’re all 'bout the blooms</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#">Birthday</a>
+        <a href="#">Anniversary</a>
+        <a href="#">Sympathy</a>
+        <a href="#">Occasions</a>
+        <a href="#">Flowers</a>
+        <a href="#">Plants &amp; Gifts</a>
+        <a href="#">Weddings</a>
+      </nav>
+
+      <div class="nav-actions">
+        <span class="nav-phone">(555) 123-4567</span>
+        <button class="nav-btn">Login</button>
+        <button class="nav-btn primary">Cart (0)</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-tagline">St. Louis • Local Florist • Since 1988</div>
+        <h1 class="hero-title">Autumn florals, hand-designed &amp; hand-delivered.</h1>
+        <p class="hero-subtitle">
+          ABF – All 'Bout Flowers crafts seasonal arrangements with fresh,
+          premium stems delivered with care across the metro area.
+        </p>
+        <div class="hero-meta">
+          <span>
+            <span class="hero-meta-dot"></span> Same-day delivery on local
+            orders
+          </span>
+          <span>
+            <span class="hero-meta-dot"></span> 100% freshness promise
+          </span>
+        </div>
+        <div class="hero-actions">
+          <button class="primary-btn">Shop Fall Collection</button>
+          <button class="ghost-btn">Browse all occasions</button>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <div class="hero-card-title">Check availability</div>
+        <div class="hero-card-subtitle">
+          See designs available for your delivery address.
+        </div>
+
+        <div class="hero-card-row">
+          <label class="form-label">Delivery zip code</label>
+          <div class="form-field">
+            <input
+              type="text"
+              class="form-input"
+              placeholder="Enter ZIP (e.g. 63104)"
+            />
+          </div>
+        </div>
+
+        <div class="hero-card-row">
+          <label class="form-label">Delivery date</label>
+          <div class="form-field">
+            <select class="form-select">
+              <option>Today</option>
+              <option>Tomorrow</option>
+              <option>This weekend</option>
+              <option>Next week</option>
+            </select>
+          </div>
+        </div>
+
+        <button>Show available designs</button>
+        <div class="hero-card-footnote">
+          You’ll only see products that can be hand-delivered to this area.
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Quick occasion chips -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-title">Shop by occasion</div>
+      <a href="#" class="section-link">View all categories</a>
+    </div>
+    <div class="chip-row">
+      <button class="chip primary">Birthday</button>
+      <button class="chip">Anniversary</button>
+      <button class="chip">Just Because</button>
+      <button class="chip">Get Well</button>
+      <button class="chip">Sympathy</button>
+      <button class="chip">New Baby</button>
+      <button class="chip">Thank You</button>
+    </div>
+  </section>
+
+  <!-- Fall flowers -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-title">Fall flowers &amp; gifts</div>
+      <a href="#" class="section-link">See more</a>
+    </div>
+    <div class="product-grid">
+      <article class="product-card">
+        <div class="product-card-image">
+          <img
+            src="https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg?auto=compress&cs=tinysrgb&w=800"
+            alt="Autumn Glow bouquet"
+          />
+        </div>
+        <div class="product-body">
+          <div class="product-name">Autumn Glow</div>
+          <div class="product-price">from $69.99</div>
+          <div class="product-meta">Warm oranges, golds &amp; lush greens.</div>
+          <div class="product-actions">
+            <button class="product-btn">Add to cart</button>
+            <div class="product-link">
+              <a href="#">Details</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-card-image">
+          <img
+            src="https://images.pexels.com/photos/34789794/pexels-photo-34789794.jpeg"
+            alt="Harvest Meadow arrangement"
+          />
+        </div>
+        <div class="product-body">
+          <div class="product-name">Harvest Meadow</div>
+          <div class="product-price">$94.99</div>
+          <div class="product-meta">
+            Rich seasonal blooms in a keepsake vase.
+          </div>
+          <div class="product-actions">
+            <button class="product-btn">Add to cart</button>
+            <div class="product-link">
+              <a href="#">Details</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-card-image">
+          <img
+            src="https://images.pexels.com/photos/931159/pexels-photo-931159.jpeg?auto=compress&cs=tinysrgb&w=800"
+            alt="Golden Harvest centerpiece"
+          />
+        </div>
+        <div class="product-body">
+          <div class="product-name">Golden Harvest Centerpiece</div>
+          <div class="product-price">from $79.99</div>
+          <div class="product-meta">
+            Perfect for autumn tables &amp; gatherings.
+          </div>
+          <div class="product-actions">
+            <button class="product-btn">Add to cart</button>
+            <div class="product-link">
+              <a href="#">Details</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-card-image">
+          <img
+            src="https://images.pexels.com/photos/34789658/pexels-photo-34789658.jpeg"
+            alt="Cranberry Sunrise bouquet"
+          />
+        </div>
+        <div class="product-body">
+          <div class="product-name">Cranberry Sunrise</div>
+          <div class="product-price">from $64.99</div>
+          <div class="product-meta">
+            Jewel-tone blooms with soft seasonal accents.
+          </div>
+          <div class="product-actions">
+            <button class="product-btn">Add to cart</button>
+            <div class="product-link">
+              <a href="#">Details</a>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Birthday section -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-title">Birthday flowers</div>
+      <a href="#" class="section-link">See birthday collection</a>
+    </div>
+    <div class="product-grid">
+      <article class="product-card">
+        <div class="product-card-image">
+          <img
+            src="https://images.pexels.com/photos/267360/pexels-photo-267360.jpeg"
+            alt="Birthday Brights bouquet"
+          />
+        </div>
+        <div class="product-body">
+          <div class="product-name">Birthday Brights</div>
+          <div class="product-price">$59.99</div>
+          <div class="product-meta">
+            Colorful blooms that feel like a celebration.
+          </div>
+          <div class="product-actions">
+            <button class="product-btn">Add to cart</button>
+            <div class="product-link">
+              <a href="#">Details</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-card-image">
+          <img
+            src="https://images.pexels.com/photos/931167/pexels-photo-931167.jpeg?auto=compress&cs=tinysrgb&w=800"
+            alt="Rosy Wishes arrangement"
+          />
+        </div>
+        <div class="product-body">
+          <div class="product-name">Rosy Wishes</div>
+          <div class="product-price">from $84.99</div>
+          <div class="product-meta">
+            Elegant roses in ABF’s signature style.
+          </div>
+          <div class="product-actions">
+            <button class="product-btn">Add to cart</button>
+            <div class="product-link">
+              <a href="#">Details</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-card-image">
+          <img
+            src="https://images.pexels.com/photos/34769698/pexels-photo-34769698.jpeg"
+            alt="Sugar &amp; Petals birthday bouquet"
+          />
+        </div>
+        <div class="product-body">
+          <div class="product-name">Sugar &amp; Petals</div>
+          <div class="product-price">$72.99</div>
+          <div class="product-meta">
+            Soft pastels with playful pops of color.
+          </div>
+          <div class="product-actions">
+            <button class="product-btn">Add to cart</button>
+            <div class="product-link">
+              <a href="#">Details</a>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Info strip -->
+  <div class="info-strip">
+    <div class="info-strip-inner">
+      <span><span class="bullet"></span> Family-owned &amp; local</span>
+      <span><span class="bullet"></span> Hand-crafted arrangements</span>
+      <span><span class="bullet"></span> Contactless delivery options</span>
+      <span><span class="bullet"></span> Satisfaction guarantee</span>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-columns">
+        <div>
+          <div class="footer-title">Store Information</div>
+          <ul class="footer-list">
+            <li><a href="#">Our Story</a></li>
+            <li><a href="#">Locations &amp; Hours</a></li>
+            <li><a href="#">Customer Reviews</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-title">Flower Resources</div>
+          <ul class="footer-list">
+            <li><a href="#">Flower Care</a></li>
+            <li><a href="#">Plant Care</a></li>
+            <li><a href="#">Flower Meanings</a></li>
+            <li><a href="#">Seasonal Guides</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-title">Account &amp; Help</div>
+          <ul class="footer-list">
+            <li><a href="#">My Account</a></li>
+            <li><a href="#">Order Tracking</a></li>
+            <li><a href="#">FAQs &amp; Policies</a></li>
+            <li><a href="#">Contact Support</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-title">Service Area</div>
+          <ul class="footer-list">
+            <li>St. Louis Metro &amp; Surrounding Areas</li>
+            <li>Same-Day Local Delivery</li>
+            <li>Nationwide Partner Delivery</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2025 ABF – All 'Bout Flowers. All rights reserved.</span>
+        <div class="footer-social">
+          <span>Follow us</span>
+          <a href="#" class="social-pill">F</a>
+          <a href="#" class="social-pill">I</a>
+          <a href="#" class="social-pill">P</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
