@@ -3,7 +3,7 @@
    - Local save/load
    - Summary + PDF export (html2canvas + jsPDF)
    - Autosave on every change / step navigation (no toast). Toast only on Save + Done.
-   - Clear All (hard reset)
+   - Summary is reactive. Export lockout shows reason.
 */
 
 const STORAGE_KEY = "cm_sow_builder_v1";
@@ -38,13 +38,18 @@ const SECTIONS = [
     tag: "1",
     help: "Contextualize the customer's business. Briefly describe who the customer is, what they do, and their current situation.",
     fields: [
-      { key: "customerBackgroundText", label: "Write the customer background", type: "textarea", placeholder:
+      {
+        key: "customerBackgroundText",
+        label: "Write the customer background",
+        type: "textarea",
+        placeholder:
 `Who are they?
 What do they do?
 What's happening now?
 
 Example:
-"Acme Retail is a national e-commerce brand currently in a rapid growth phase, looking to modernize customer communications and support operations."` }
+"Acme Retail is a national e-commerce brand currently in a rapid growth phase, looking to modernize customer communications and support operations."`
+      }
     ]
   },
   {
@@ -53,13 +58,18 @@ Example:
     tag: "2",
     help: "Define the problem CM.com is solving. Describe the pain points clearly and concretely.",
     fields: [
-      { key: "currentChallengesText", label: "List current challenges", type: "textarea", placeholder:
+      {
+        key: "currentChallengesText",
+        label: "List current challenges",
+        type: "textarea",
+        placeholder:
 `Write in plain language. 2 to 6 bullets is usually enough.
 
 Examples:
 - Communication is fragmented across decentralized channels.
 - Agents spend too much time on repetitive questions.
-- Upcoming changes in legislation require a channel shift.` }
+- Upcoming changes in legislation require a channel shift.`
+      }
     ]
   },
   {
@@ -68,11 +78,16 @@ Examples:
     tag: "3",
     help: "State the high-level objective. What is the main outcome CM.com and the customer want to achieve?",
     fields: [
-      { key: "projectGoalsText", label: "Describe project goals", type: "textarea", placeholder:
+      {
+        key: "projectGoalsText",
+        label: "Describe project goals",
+        type: "textarea",
+        placeholder:
 `Examples:
 - Centralize support into a single platform.
 - Automate FAQs with HALO while keeping a clean handover path to agents.
-- Increase conversion with faster response times and proactive messaging.` }
+- Increase conversion with faster response times and proactive messaging.`
+      }
     ]
   },
   {
@@ -81,7 +96,11 @@ Examples:
     tag: "4",
     help: "Define how you'll measure completion. Use tangible outcomes that are testable and time-bound when possible.",
     fields: [
-      { key: "successCriteriaText", label: "Success criteria (bullets recommended)", type: "textarea", placeholder:
+      {
+        key: "successCriteriaText",
+        label: "Success criteria (bullets recommended)",
+        type: "textarea",
+        placeholder:
 `Technical:
 - Channels X, Y, and Z are live.
 - Number porting is complete.
@@ -90,7 +109,8 @@ Operational:
 - Agents are trained and working in MSC.
 
 Data:
-- Management has access to the Analytics Portal.` }
+- Management has access to the Analytics Portal.`
+      }
     ]
   },
   {
@@ -134,7 +154,11 @@ For MSC:
     tag: "6",
     help: "Describe the standard CM.com implementation methodology. Clarify what is configured by CM.com vs completed by the customer.",
     fields: [
-      { key: "projectPhasingText", label: "Describe phases 1 to 7", type: "textarea", placeholder:
+      {
+        key: "projectPhasingText",
+        label: "Describe phases 1 to 7",
+        type: "textarea",
+        placeholder:
 `Phase 1: Preparation (Customer responsibility)
 - Prerequisites: access to Meta Business Manager, website backend, DNS settings
 - Assign project lead and stakeholders
@@ -153,7 +177,8 @@ Phase 5: Go Live
 - Launch-day support
 
 Phase 6 & 7: Optimization, Aftercare & Handover
-- Hypercare length and handover to Customer Success` }
+- Hypercare length and handover to Customer Success`
+      }
     ]
   },
   {
@@ -162,14 +187,19 @@ Phase 6 & 7: Optimization, Aftercare & Handover
     tag: "7",
     help: "Capture timeline expectations. Always mention dependency on customer responsiveness and availability.",
     fields: [
-      { key: "planningText", label: "Planning notes", type: "textarea", placeholder:
+      {
+        key: "planningText",
+        label: "Planning notes",
+        type: "textarea",
+        placeholder:
 `Include:
 - Intended start date
 - Estimated lead time
 - Dependencies and assumptions
 
 Example:
-"Estimated lead time is 6 weeks from kickoff, dependent on timely customer feedback and completion of prerequisites."` }
+"Estimated lead time is 6 weeks from kickoff, dependent on timely customer feedback and completion of prerequisites."`
+      }
     ]
   },
   {
@@ -178,17 +208,27 @@ Example:
     tag: "8",
     help: "Manage expectations clearly. What can the customer expect from CM.com. What is expected from the customer.",
     fields: [
-      { key: "rolesCm", label: "What CM.com will provide", type: "textarea", placeholder:
+      {
+        key: "rolesCm",
+        label: "What CM.com will provide",
+        type: "textarea",
+        placeholder:
 `Examples:
 - Project management and coordination
 - Technical setup of the backend
-- Guidance and coaching (not doing customer work unless explicitly scoped)` },
-      { key: "rolesCustomer", label: "What the customer will provide", type: "textarea", placeholder:
+- Guidance and coaching (not doing customer work unless explicitly scoped)`
+      },
+      {
+        key: "rolesCustomer",
+        label: "What the customer will provide",
+        type: "textarea",
+        placeholder:
 `Examples:
 - Availability for meetings and testing
 - Creating content (emails, FAQs, IVR scripts)
 - Technical tasks on their side (DNS, website scripts)
-- Channel onboarding tasks (embedded signup for WhatsApp)` }
+- Channel onboarding tasks (embedded signup for WhatsApp)`
+      }
     ],
     layout: "grid"
   },
@@ -198,12 +238,17 @@ Example:
     tag: "9",
     help: "Prevent scope creep by listing what is not included unless explicitly stated.",
     fields: [
-      { key: "outOfScopeText", label: "Out of scope items", type: "textarea", placeholder:
+      {
+        key: "outOfScopeText",
+        label: "Out of scope items",
+        type: "textarea",
+        placeholder:
 `Common examples:
 - Integrations with custom CRMs/ERPs (unless specified)
 - Channels not listed on the order
 - Custom development (coding)
-- Content creation (writing the actual text for the bot)` }
+- Content creation (writing the actual text for the bot)`
+      }
     ]
   },
   {
@@ -212,11 +257,16 @@ Example:
     tag: "10",
     help: "Capture future wishes as later phases. This shows you listened, while keeping the current scope tight.",
     fields: [
-      { key: "futurePhasesText", label: "Future phases", type: "textarea", placeholder:
+      {
+        key: "futurePhasesText",
+        label: "Future phases",
+        type: "textarea",
+        placeholder:
 `Examples:
 - Add Instagram as Phase B
 - Expand knowledge sources and languages
-- Add proactive campaigns or outbound messaging` }
+- Add proactive campaigns or outbound messaging`
+      }
     ]
   },
   {
@@ -228,8 +278,8 @@ Example:
   }
 ];
 
-function $(sel, root = document){ return root.querySelector(sel); }
-function $all(sel, root = document){ return Array.from(root.querySelectorAll(sel)); }
+function $(sel, root=document){ return root.querySelector(sel); }
+function $all(sel, root=document){ return Array.from(root.querySelectorAll(sel)); }
 
 const state = {
   step: 0,
@@ -255,8 +305,9 @@ function isSectionComplete(sec){
     return !isBlank(state.data.rolesCm) && !isBlank(state.data.rolesCustomer);
   }
 
+  // Planning should only complete when user explicitly fills Planning.
   if(sec.id === "planning"){
-    return !isBlank(mergePlanning());
+    return !isBlank(state.data.planningText);
   }
 
   if(sec.id === "useCaseSpecifics"){
@@ -276,11 +327,10 @@ function getMissingRequiredSections(){
 
 function setTheme(theme){
   document.documentElement.dataset.theme = theme;
-  localStorage.setItem("cm_sow_theme", theme);
+  try{ localStorage.setItem("cm_sow_theme", theme); }catch(e){}
 }
-
 function initTheme(){
-  const saved = localStorage.getItem("cm_sow_theme");
+  const saved = (() => { try{ return localStorage.getItem("cm_sow_theme"); }catch(e){ return null; } })();
   if(saved){ setTheme(saved); return; }
   const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
   setTheme(prefersDark ? "dark" : "light");
@@ -293,8 +343,8 @@ function toast(title, msg){
   el.className = "toast";
   el.innerHTML = `<div class="toast__title">${escapeHtml(title)}</div><div class="toast__msg">${escapeHtml(msg)}</div>`;
   host.appendChild(el);
-  setTimeout(() => { el.style.opacity = "0"; el.style.transform = "translateY(8px)"; }, 2600);
-  setTimeout(() => { el.remove(); }, 3200);
+  setTimeout(()=>{ el.style.opacity="0"; el.style.transform="translateY(8px)"; }, 2600);
+  setTimeout(()=>{ el.remove(); }, 3200);
 }
 
 function escapeHtml(s){
@@ -312,7 +362,7 @@ function loadSaved(){
     if(!raw) return false;
     const parsed = JSON.parse(raw);
     if(parsed && typeof parsed === "object"){
-      state.data = { ...state.data, ...parsed.data };
+      state.data = { ...state.data, ...(parsed.data || {}) };
       state.step = Math.min(parsed.step ?? 0, SECTIONS.length - 1);
       return true;
     }
@@ -335,15 +385,7 @@ function clearSaved(){
   try{ localStorage.removeItem(STORAGE_KEY); }catch(e){}
 }
 
-/** Hard reset: clears storage + in-memory state + DOM */
-function resetAll(){
-  clearSaved();
-  state.step = 0;
-  state.data = { useCaseType: "Chatbot (CAIC/HALO)" };
-  renderCards();
-  activateStep(0, "back");
-  toast("Cleared", "All sections have been reset.");
-}
+/* ------- Render ------- */
 
 function renderCards(){
   const deck = $("#cardDeck");
@@ -413,8 +455,9 @@ function renderFields(section){
 
     const onChange = () => {
       state.data[field.key] = input.value;
-      persist();         // autosave, no toast
-      updateProgress();  // keep stepper + summary state correct
+      persist();
+      updateProgress();
+      if(getCurrentSection()?.summary) refreshSummaryCard();
     };
 
     input.addEventListener("input", onChange);
@@ -440,6 +483,12 @@ function renderFields(section){
   }
 
   return wrap;
+}
+
+function getMissingReasonText(missing){
+  if(!missing.length) return "";
+  const tags = missing.map(m => m.tag).join(", ");
+  return `Export is disabled until you complete: ${tags}`;
 }
 
 function renderSummary(){
@@ -484,11 +533,16 @@ function renderSummary(){
 
   const actions = document.createElement("div");
   actions.className = "nav";
+
+  const reason = getMissingReasonText(missing);
+  const disabledAttr = missing.length ? "disabled" : "";
+  const titleAttr = reason ? `title="${escapeHtml(reason)}"` : "";
+
   actions.innerHTML = `
     <button class="btn btn--ghost" type="button" id="clearBtn">Clear saved</button>
     <div class="nav__right">
-      <button class="btn btn--ghost" type="button" id="previewBtn" ${missing.length ? "disabled" : ""}>Preview PDF</button>
-      <button class="btn btn--primary" type="button" id="exportBtn" ${missing.length ? "disabled" : ""}>Export PDF</button>
+      <button class="btn btn--ghost" type="button" id="previewBtn" ${disabledAttr} ${titleAttr}>Preview PDF</button>
+      <button class="btn btn--primary" type="button" id="exportBtn" ${disabledAttr} ${titleAttr}>Export PDF</button>
     </div>
   `;
   wrap.appendChild(actions);
@@ -529,6 +583,12 @@ function line(k, v){
   return `${k}: ${s}`;
 }
 
+function getCurrentSection(){
+  return SECTIONS[state.step];
+}
+
+/* ------- Step Validation ------- */
+
 function validateStep(idx){
   const sec = SECTIONS[idx];
   if(!sec || sec.summary) return { ok: true };
@@ -541,6 +601,8 @@ function validateStep(idx){
   }
   return { ok:true };
 }
+
+/* ------- Stepper ------- */
 
 function ensureStepper(){
   if($("#stepper")) return;
@@ -619,11 +681,28 @@ function updateProgress(){
   updateStepper();
 }
 
+/* ------- Card Activation ------- */
+
 function resetCardClasses(cards){
   cards.forEach(c => {
     c.classList.remove("card--active");
     c.classList.remove("card--exit-left");
   });
+}
+
+function refreshSummaryCard(){
+  const summaryIdx = SECTIONS.findIndex(s => s.summary);
+  if(summaryIdx < 0) return;
+
+  const deck = $("#cardDeck");
+  const card = deck?.querySelector(`.card[data-index="${summaryIdx}"]`);
+  if(!card) return;
+
+  const existing = card.querySelector(".summary");
+  if(existing) existing.remove();
+
+  card.appendChild(renderSummary());
+  bindSummaryActions(true);
 }
 
 function activateStep(nextIdx, direction){
@@ -638,7 +717,7 @@ function activateStep(nextIdx, direction){
   if(current){
     current.classList.remove("card--active");
     if(direction === "forward") current.classList.add("card--exit-left");
-    setTimeout(() => current.classList.remove("card--exit-left"), 600);
+    setTimeout(()=>current.classList.remove("card--exit-left"), 600);
   }
 
   next.classList.add("card--active");
@@ -649,7 +728,7 @@ function activateStep(nextIdx, direction){
 
   const sec = SECTIONS[state.step];
   if(sec.summary){
-    bindSummaryActions();
+    refreshSummaryCard();
   }
 
   const anyActive = cards.some(c => c.classList.contains("card--active"));
@@ -659,15 +738,19 @@ function activateStep(nextIdx, direction){
   }
 }
 
-function bindSummaryActions(){
+/* ------- Summary Actions ------- */
+
+function bindSummaryActions(force=false){
   const summaryRoot = $(".summary");
-  if(summaryRoot && summaryRoot.dataset.bound === "1"){
+  if(!summaryRoot) return;
+
+  if(!force && summaryRoot.dataset.bound === "1"){
     updateStepper();
     return;
   }
-  if(summaryRoot) summaryRoot.dataset.bound = "1";
+  summaryRoot.dataset.bound = "1";
 
-  $all("[data-jump]").forEach(btn => {
+  $all("[data-jump]", summaryRoot).forEach(btn => {
     btn.addEventListener("click", () => {
       const idx = Number(btn.dataset.jump);
       activateStep(idx, "back");
@@ -676,11 +759,14 @@ function bindSummaryActions(){
 
   const clearBtn = $("#clearBtn");
   if(clearBtn){
-    clearBtn.addEventListener("click", () => {
-      const ok = confirm("This will clear all sections and cannot be undone.\n\nContinue?");
-      if(!ok) return;
-      resetAll();
-    });
+    clearBtn.onclick = () => {
+      clearSaved();
+      state.data = { useCaseType: "Chatbot (CAIC/HALO)" };
+      state.step = 0;
+      renderCards();
+      activateStep(0, "back");
+      toast("Cleared", "Saved data removed.");
+    };
   }
 
   const previewBtn = $("#previewBtn");
@@ -689,7 +775,7 @@ function bindSummaryActions(){
   previewBtn?.addEventListener("click", async () => {
     const missing = getMissingRequiredSections();
     if(missing.length){
-      toast("Complete sections", `Finish: ${missing.map(m => m.tag).join(", ")}`);
+      toast("Export locked", `Complete: ${missing.map(m => m.tag).join(", ")}`);
       return;
     }
     await buildPdfDom();
@@ -700,11 +786,23 @@ function bindSummaryActions(){
   exportBtn?.addEventListener("click", async () => {
     const missing = getMissingRequiredSections();
     if(missing.length){
-      toast("Complete sections", `Finish: ${missing.map(m => m.tag).join(", ")}`);
+      toast("Export locked", `Complete: ${missing.map(m => m.tag).join(", ")}`);
       return;
     }
     await exportPdf();
   });
+}
+
+/* ------- Navigation ------- */
+
+function clearAll(){
+  clearSaved();
+  state.data = { useCaseType: "Chatbot (CAIC/HALO)" };
+  state.step = 0;
+
+  renderCards();
+  activateStep(0, "back");
+  toast("Cleared", "All inputs have been cleared.");
 }
 
 function bindNav(){
@@ -728,13 +826,10 @@ function bindNav(){
 
   $("#saveBtn").addEventListener("click", saveWithToast);
 
+  // Optional Clear All button you added somewhere in the UI.
   const clearAllBtn = $("#clearAllBtn");
   if(clearAllBtn){
-    clearAllBtn.addEventListener("click", () => {
-      const ok = confirm("This will clear all sections and cannot be undone.\n\nContinue?");
-      if(!ok) return;
-      resetAll();
-    });
+    clearAllBtn.addEventListener("click", clearAll);
   }
 
   $("#themeToggle").addEventListener("click", () => {
@@ -743,6 +838,8 @@ function bindNav(){
     persist();
   });
 }
+
+/* ------- PDF Export ------- */
 
 function buildPdfSubtitle(){
   const company = (state.data.companyName || "").trim();
@@ -875,7 +972,6 @@ async function exportPdf(){
   const filename = makeFilename();
   pdf.save(filename);
 
-  // “Done” should give confirmation. Autosave is silent.
   saveWithToast();
   toast("Done", `Downloaded ${filename}`);
 }
@@ -885,6 +981,8 @@ function makeFilename(){
   const project = (state.data.projectName || "SoW").trim().replaceAll(/[^a-z0-9]+/gi, "_");
   return `SoW_${company}_${project}.pdf`;
 }
+
+/* ------- Init ------- */
 
 function init(){
   initTheme();
@@ -898,6 +996,11 @@ function init(){
 
   const first = $all(".card")[state.step];
   if(first) first.classList.add("card--active");
+
+  // If we land on Summary from saved state, make sure it is fresh.
+  if(getCurrentSection()?.summary){
+    refreshSummaryCard();
+  }
 
   persist();
 
