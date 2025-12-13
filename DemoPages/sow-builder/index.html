@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CM.com SoW Builder</title>
+  <meta name="description" content="Generate a CM.com Statement of Work from guided sections and export to PDF." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Montserrat is used in the provided brand pages. If you need fully offline fonts, download and self-host. -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#app">Skip to content</a>
+
+  <header class="topbar">
+    <div class="topbar__inner">
+      <div class="brand" aria-label="CM.com">
+        <!-- Theme-swapped SVG logos (place both in /img) -->
+        <img
+          id="brandLogoLight"
+          class="brand__logoimg"
+          src="img/CM.com-logo-horizontal-RGB-SVG.svg"
+          alt="CM.com"
+          loading="eager"
+          decoding="async"
+          draggable="false"
+        />
+        <img
+          id="brandLogoDark"
+          class="brand__logoimg"
+          src="img/CM.com-logo-horizontal-white outlined-RGB-SVG.svg"
+          alt="CM.com"
+          loading="eager"
+          decoding="async"
+          draggable="false"
+        />
+      </div>
+
+      <div class="topbar__actions">
+        <button id="themeToggle" class="icon-btn" type="button" aria-label="Toggle theme">
+          <span class="icon" aria-hidden="true">◐</span>
+          <span class="icon-btn__label">Theme</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="app" class="app" role="main">
+    <section class="shell">
+      <div class="shell__head">
+        <div class="titleblock">
+          <h1 class="h1">Statement of Work Builder</h1>
+          <p class="sub">
+            Build a clean SoW by filling one section at a time. Your inputs roll into a final preview and PDF export.
+          </p>
+        </div>
+
+        <div class="progress" aria-label="Progress">
+          <div class="progress__meta">
+            <span id="stepLabel" class="progress__label">Step 1 of 12</span>
+            <span id="progressPct" class="progress__pct">0%</span>
+          </div>
+          <div class="progress__bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div id="progressFill" class="progress__fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cardstage" aria-live="polite">
+        <div id="cardDeck" class="carddeck">
+          <!-- Cards injected by JS -->
+        </div>
+
+        <div class="nav">
+          <button id="prevBtn" class="btn btn--ghost" type="button">Back</button>
+          <div class="nav__right">
+            <button id="saveBtn" class="btn btn--ghost" type="button" title="Saves to your browser">Save</button>
+            <button id="nextBtn" class="btn btn--primary" type="button">Next</button>
+          </div>
+        </div>
+
+        <p class="hint">
+          Tip. You can jump to any section on the Summary screen to refine language before exporting.
+        </p>
+      </div>
+    </section>
+
+    <!-- PDF Content (rendered for export) -->
+    <section class="pdfwrap" aria-hidden="true">
+      <div id="pdfContent" class="pdf">
+        <div class="pdf__header">
+          <div class="pdf__logo" id="pdfLogo">
+            <!-- JS should inject/clone the LIGHT logo here for export -->
+          </div>
+          <div class="pdf__meta">
+            <div class="pdf__title" id="pdfTitle">Statement of Work</div>
+            <div class="pdf__subtitle" id="pdfSubtitle"></div>
+          </div>
+        </div>
+
+        <div class="pdf__body" id="pdfBody">
+          <!-- injected -->
+        </div>
+
+        <div class="pdf__footer">
+          <div class="pdf__footleft">Generated with CM.com SoW Builder</div>
+          <div class="pdf__footright" id="pdfDate"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Toasts -->
+    <div id="toastHost" class="toasts" aria-live="assertive" aria-atomic="true"></div>
+  </main>
+
+  <!-- Libraries for PDF export -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js" referrerpolicy="no-referrer" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js" referrerpolicy="no-referrer" defer></script>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>
