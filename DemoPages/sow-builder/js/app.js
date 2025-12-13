@@ -3,6 +3,7 @@
    - Local save/load
    - Summary + PDF export (html2canvas + jsPDF)
    - Autosave on every change / step navigation (no toast). Toast only on Save + Done.
+   - Clear All (hard reset)
 */
 
 const STORAGE_KEY = "cm_sow_builder_v1";
@@ -37,18 +38,13 @@ const SECTIONS = [
     tag: "1",
     help: "Contextualize the customer's business. Briefly describe who the customer is, what they do, and their current situation.",
     fields: [
-      {
-        key: "customerBackgroundText",
-        label: "Write the customer background",
-        type: "textarea",
-        placeholder:
+      { key: "customerBackgroundText", label: "Write the customer background", type: "textarea", placeholder:
 `Who are they?
 What do they do?
 What's happening now?
 
 Example:
-"Acme Retail is a national e-commerce brand currently in a rapid growth phase, looking to modernize customer communications and support operations."`
-      }
+"Acme Retail is a national e-commerce brand currently in a rapid growth phase, looking to modernize customer communications and support operations."` }
     ]
   },
   {
@@ -57,18 +53,13 @@ Example:
     tag: "2",
     help: "Define the problem CM.com is solving. Describe the pain points clearly and concretely.",
     fields: [
-      {
-        key: "currentChallengesText",
-        label: "List current challenges",
-        type: "textarea",
-        placeholder:
+      { key: "currentChallengesText", label: "List current challenges", type: "textarea", placeholder:
 `Write in plain language. 2 to 6 bullets is usually enough.
 
 Examples:
 - Communication is fragmented across decentralized channels.
 - Agents spend too much time on repetitive questions.
-- Upcoming changes in legislation require a channel shift.`
-      }
+- Upcoming changes in legislation require a channel shift.` }
     ]
   },
   {
@@ -77,16 +68,11 @@ Examples:
     tag: "3",
     help: "State the high-level objective. What is the main outcome CM.com and the customer want to achieve?",
     fields: [
-      {
-        key: "projectGoalsText",
-        label: "Describe project goals",
-        type: "textarea",
-        placeholder:
+      { key: "projectGoalsText", label: "Describe project goals", type: "textarea", placeholder:
 `Examples:
 - Centralize support into a single platform.
 - Automate FAQs with HALO while keeping a clean handover path to agents.
-- Increase conversion with faster response times and proactive messaging.`
-      }
+- Increase conversion with faster response times and proactive messaging.` }
     ]
   },
   {
@@ -95,11 +81,7 @@ Examples:
     tag: "4",
     help: "Define how you'll measure completion. Use tangible outcomes that are testable and time-bound when possible.",
     fields: [
-      {
-        key: "successCriteriaText",
-        label: "Success criteria (bullets recommended)",
-        type: "textarea",
-        placeholder:
+      { key: "successCriteriaText", label: "Success criteria (bullets recommended)", type: "textarea", placeholder:
 `Technical:
 - Channels X, Y, and Z are live.
 - Number porting is complete.
@@ -108,8 +90,7 @@ Operational:
 - Agents are trained and working in MSC.
 
 Data:
-- Management has access to the Analytics Portal.`
-      }
+- Management has access to the Analytics Portal.` }
     ]
   },
   {
@@ -153,11 +134,7 @@ For MSC:
     tag: "6",
     help: "Describe the standard CM.com implementation methodology. Clarify what is configured by CM.com vs completed by the customer.",
     fields: [
-      {
-        key: "projectPhasingText",
-        label: "Describe phases 1 to 7",
-        type: "textarea",
-        placeholder:
+      { key: "projectPhasingText", label: "Describe phases 1 to 7", type: "textarea", placeholder:
 `Phase 1: Preparation (Customer responsibility)
 - Prerequisites: access to Meta Business Manager, website backend, DNS settings
 - Assign project lead and stakeholders
@@ -176,8 +153,7 @@ Phase 5: Go Live
 - Launch-day support
 
 Phase 6 & 7: Optimization, Aftercare & Handover
-- Hypercare length and handover to Customer Success`
-      }
+- Hypercare length and handover to Customer Success` }
     ]
   },
   {
@@ -186,19 +162,14 @@ Phase 6 & 7: Optimization, Aftercare & Handover
     tag: "7",
     help: "Capture timeline expectations. Always mention dependency on customer responsiveness and availability.",
     fields: [
-      {
-        key: "planningText",
-        label: "Planning notes",
-        type: "textarea",
-        placeholder:
+      { key: "planningText", label: "Planning notes", type: "textarea", placeholder:
 `Include:
 - Intended start date
 - Estimated lead time
 - Dependencies and assumptions
 
 Example:
-"Estimated lead time is 6 weeks from kickoff, dependent on timely customer feedback and completion of prerequisites."`
-      }
+"Estimated lead time is 6 weeks from kickoff, dependent on timely customer feedback and completion of prerequisites."` }
     ]
   },
   {
@@ -207,27 +178,17 @@ Example:
     tag: "8",
     help: "Manage expectations clearly. What can the customer expect from CM.com. What is expected from the customer.",
     fields: [
-      {
-        key: "rolesCm",
-        label: "What CM.com will provide",
-        type: "textarea",
-        placeholder:
+      { key: "rolesCm", label: "What CM.com will provide", type: "textarea", placeholder:
 `Examples:
 - Project management and coordination
 - Technical setup of the backend
-- Guidance and coaching (not doing customer work unless explicitly scoped)`
-      },
-      {
-        key: "rolesCustomer",
-        label: "What the customer will provide",
-        type: "textarea",
-        placeholder:
+- Guidance and coaching (not doing customer work unless explicitly scoped)` },
+      { key: "rolesCustomer", label: "What the customer will provide", type: "textarea", placeholder:
 `Examples:
 - Availability for meetings and testing
 - Creating content (emails, FAQs, IVR scripts)
 - Technical tasks on their side (DNS, website scripts)
-- Channel onboarding tasks (embedded signup for WhatsApp)`
-      }
+- Channel onboarding tasks (embedded signup for WhatsApp)` }
     ],
     layout: "grid"
   },
@@ -237,17 +198,12 @@ Example:
     tag: "9",
     help: "Prevent scope creep by listing what is not included unless explicitly stated.",
     fields: [
-      {
-        key: "outOfScopeText",
-        label: "Out of scope items",
-        type: "textarea",
-        placeholder:
+      { key: "outOfScopeText", label: "Out of scope items", type: "textarea", placeholder:
 `Common examples:
 - Integrations with custom CRMs/ERPs (unless specified)
 - Channels not listed on the order
 - Custom development (coding)
-- Content creation (writing the actual text for the bot)`
-      }
+- Content creation (writing the actual text for the bot)` }
     ]
   },
   {
@@ -256,16 +212,11 @@ Example:
     tag: "10",
     help: "Capture future wishes as later phases. This shows you listened, while keeping the current scope tight.",
     fields: [
-      {
-        key: "futurePhasesText",
-        label: "Future phases",
-        type: "textarea",
-        placeholder:
+      { key: "futurePhasesText", label: "Future phases", type: "textarea", placeholder:
 `Examples:
 - Add Instagram as Phase B
 - Expand knowledge sources and languages
-- Add proactive campaigns or outbound messaging`
-      }
+- Add proactive campaigns or outbound messaging` }
     ]
   },
   {
@@ -277,8 +228,8 @@ Example:
   }
 ];
 
-function $(sel, root=document){ return root.querySelector(sel); }
-function $all(sel, root=document){ return Array.from(root.querySelectorAll(sel)); }
+function $(sel, root = document){ return root.querySelector(sel); }
+function $all(sel, root = document){ return Array.from(root.querySelectorAll(sel)); }
 
 const state = {
   step: 0,
@@ -308,7 +259,6 @@ function isSectionComplete(sec){
     return !isBlank(mergePlanning());
   }
 
-  // Important. Don’t let the default select value mark complete.
   if(sec.id === "useCaseSpecifics"){
     return !isBlank(state.data.useCaseSpecificsText);
   }
@@ -328,6 +278,7 @@ function setTheme(theme){
   document.documentElement.dataset.theme = theme;
   localStorage.setItem("cm_sow_theme", theme);
 }
+
 function initTheme(){
   const saved = localStorage.getItem("cm_sow_theme");
   if(saved){ setTheme(saved); return; }
@@ -342,8 +293,8 @@ function toast(title, msg){
   el.className = "toast";
   el.innerHTML = `<div class="toast__title">${escapeHtml(title)}</div><div class="toast__msg">${escapeHtml(msg)}</div>`;
   host.appendChild(el);
-  setTimeout(()=>{ el.style.opacity="0"; el.style.transform="translateY(8px)"; }, 2600);
-  setTimeout(()=>{ el.remove(); }, 3200);
+  setTimeout(() => { el.style.opacity = "0"; el.style.transform = "translateY(8px)"; }, 2600);
+  setTimeout(() => { el.remove(); }, 3200);
 }
 
 function escapeHtml(s){
@@ -382,6 +333,16 @@ function saveWithToast(){
 
 function clearSaved(){
   try{ localStorage.removeItem(STORAGE_KEY); }catch(e){}
+}
+
+/** Hard reset: clears storage + in-memory state + DOM */
+function resetAll(){
+  clearSaved();
+  state.step = 0;
+  state.data = { useCaseType: "Chatbot (CAIC/HALO)" };
+  renderCards();
+  activateStep(0, "back");
+  toast("Cleared", "All sections have been reset.");
 }
 
 function renderCards(){
@@ -452,16 +413,8 @@ function renderFields(section){
 
     const onChange = () => {
       state.data[field.key] = input.value;
-      persist();
-      updateProgress();
-
-      // If user is on Summary, keep it live, otherwise it will look "wrong".
-      const sec = SECTIONS[state.step];
-      if(sec && sec.summary){
-        refreshSummaryCard();
-        bindSummaryActions(true);
-        updateStepper();
-      }
+      persist();         // autosave, no toast
+      updateProgress();  // keep stepper + summary state correct
     };
 
     input.addEventListener("input", onChange);
@@ -673,37 +626,6 @@ function resetCardClasses(cards){
   });
 }
 
-/* Rebuild Summary on demand so "missing sections" is never stale */
-function refreshSummaryCard(){
-  const summaryIdx = SECTIONS.findIndex(s => s.summary);
-  if(summaryIdx < 0) return;
-
-  const deck = $("#cardDeck");
-  if(!deck) return;
-
-  const cards = $all(".card", deck);
-  const card = cards[summaryIdx];
-  if(!card) return;
-
-  const keep = [];
-  for(const node of Array.from(card.children)){
-    if(node.classList?.contains("summary") || node.classList?.contains("grid") || node.classList?.contains("stack")){
-      break;
-    }
-    keep.push(node);
-  }
-
-  const wasActive = card.classList.contains("card--active");
-
-  card.innerHTML = "";
-  keep.forEach(n => card.appendChild(n));
-  card.appendChild(renderSummary());
-
-  if(wasActive){
-    card.classList.add("card--active");
-  }
-}
-
 function activateStep(nextIdx, direction){
   const deck = $("#cardDeck");
   const cards = $all(".card", deck);
@@ -716,7 +638,7 @@ function activateStep(nextIdx, direction){
   if(current){
     current.classList.remove("card--active");
     if(direction === "forward") current.classList.add("card--exit-left");
-    setTimeout(()=>current.classList.remove("card--exit-left"), 600);
+    setTimeout(() => current.classList.remove("card--exit-left"), 600);
   }
 
   next.classList.add("card--active");
@@ -726,33 +648,26 @@ function activateStep(nextIdx, direction){
   updateProgress();
 
   const sec = SECTIONS[state.step];
-  if(sec && sec.summary){
-    refreshSummaryCard();
-    bindSummaryActions(true);
+  if(sec.summary){
+    bindSummaryActions();
   }
 
-  // Safety. Ensure exactly one active card exists.
-  const activeCards = cards.filter(c => c.classList.contains("card--active"));
-  if(activeCards.length !== 1){
+  const anyActive = cards.some(c => c.classList.contains("card--active"));
+  if(!anyActive){
     resetCardClasses(cards);
     next.classList.add("card--active");
   }
 }
 
-function bindSummaryActions(forceRebind=false){
+function bindSummaryActions(){
   const summaryRoot = $(".summary");
-  if(!summaryRoot) return;
-
-  if(!forceRebind && summaryRoot.dataset.bound === "1"){
+  if(summaryRoot && summaryRoot.dataset.bound === "1"){
     updateStepper();
     return;
   }
-  summaryRoot.dataset.bound = "1";
+  if(summaryRoot) summaryRoot.dataset.bound = "1";
 
-  // Remove and rebind by cloning handlers safely.
-  // Simpler. Re-render already replaced DOM, so just attach fresh listeners.
-
-  $all("[data-jump]", summaryRoot).forEach(btn => {
+  $all("[data-jump]").forEach(btn => {
     btn.addEventListener("click", () => {
       const idx = Number(btn.dataset.jump);
       activateStep(idx, "back");
@@ -762,12 +677,9 @@ function bindSummaryActions(forceRebind=false){
   const clearBtn = $("#clearBtn");
   if(clearBtn){
     clearBtn.addEventListener("click", () => {
-      clearSaved();
-      state.data = { useCaseType: "Chatbot (CAIC/HALO)" };
-      state.step = 0;
-      renderCards();
-      activateStep(0, "back");
-      toast("Cleared", "Saved data removed.");
+      const ok = confirm("This will clear all sections and cannot be undone.\n\nContinue?");
+      if(!ok) return;
+      resetAll();
     });
   }
 
@@ -793,8 +705,6 @@ function bindSummaryActions(forceRebind=false){
     }
     await exportPdf();
   });
-
-  updateStepper();
 }
 
 function bindNav(){
@@ -817,6 +727,15 @@ function bindNav(){
   });
 
   $("#saveBtn").addEventListener("click", saveWithToast);
+
+  const clearAllBtn = $("#clearAllBtn");
+  if(clearAllBtn){
+    clearAllBtn.addEventListener("click", () => {
+      const ok = confirm("This will clear all sections and cannot be undone.\n\nContinue?");
+      if(!ok) return;
+      resetAll();
+    });
+  }
 
   $("#themeToggle").addEventListener("click", () => {
     const current = document.documentElement.dataset.theme || "light";
@@ -956,6 +875,7 @@ async function exportPdf(){
   const filename = makeFilename();
   pdf.save(filename);
 
+  // “Done” should give confirmation. Autosave is silent.
   saveWithToast();
   toast("Done", `Downloaded ${filename}`);
 }
@@ -976,16 +896,8 @@ function init(){
   ensureStepper();
   updateStepper();
 
-  const cards = $all(".card");
-  const first = cards[state.step];
+  const first = $all(".card")[state.step];
   if(first) first.classList.add("card--active");
-
-  // If we loaded into Summary, refresh it immediately so it matches stored data.
-  const sec = SECTIONS[state.step];
-  if(sec && sec.summary){
-    refreshSummaryCard();
-    bindSummaryActions(true);
-  }
 
   persist();
 
