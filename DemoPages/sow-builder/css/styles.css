@@ -229,8 +229,9 @@ body{
 .carddeck{
   position:relative;
   min-height: 560px;
-  overflow:hidden;
+  overflow:hidden; /* keep the stage clean. cards manage their own scroll as needed */
 }
+
 .card{
   position:absolute;
   inset:0;
@@ -243,25 +244,31 @@ body{
   opacity:0;
   pointer-events:none;
   transition: transform .55s var(--ease), opacity .55s var(--ease);
-}
-/* Allow long cards (Summary) to scroll inside the card */
-.card{
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
+
+  /* Default. do NOT scroll inside most cards (fixes Setup showing a scrollbar) */
+  overflow: hidden;
+
+  /* Default breathing room above the bottom nav */
+  padding-bottom: 140px;
 }
 
-/* Optional: give the card a little breathing room above the bottom nav */
-.card{
-  padding-bottom: 140px; /* keeps Summary content from hiding behind the bottom buttons */
-}
 .card--active{
   transform: translateX(0%) scale(1);
   opacity:1;
   pointer-events:auto;
 }
+
 .card--exit-left{
   transform: translateX(-110%) scale(.98);
   opacity:0;
+}
+
+/* Only cards that explicitly opt-in should scroll (Finish card) */
+.card--scroll{
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding-right: 18px; /* keeps content away from the scrollbar */
 }
 
 .card__tag{
@@ -277,12 +284,14 @@ body{
   letter-spacing:.8px;
   font-size:12px;
 }
+
 .dot{
   width:10px; height:10px;
   border-radius:999px;
   background: linear-gradient(180deg, var(--cta-cyan), var(--cta-pink));
   box-shadow: 0 10px 20px rgba(255,109,255,.18);
 }
+
 .card__title{margin: 14px 0 8px; font-size: var(--h2); letter-spacing:.2px;}
 .card__help{margin: 0 0 14px; color: var(--muted); line-height:1.55}
 
@@ -305,13 +314,11 @@ body{
 }
 
 /* Card 5 spacing fix (and generally improves non-grid sections) */
-/* Remove the global sibling spacing rule */
 .field + .field{ margin-top: 0; }
+.stack .field + .field{ margin-top: 14px; }
 
-/* Only add vertical spacing for non-grid sections */
-.stack .field + .field{
-  margin-top: 14px;
-}
+/* Keep fields aligned in grid rows */
+.grid .field{ align-self: start; }
 
 label{
   font-weight:800;
@@ -319,6 +326,7 @@ label{
   text-transform:uppercase;
   font-size:12px;
 }
+
 input, textarea, select{
   font: inherit;
   color: var(--text);
@@ -330,11 +338,14 @@ input, textarea, select{
   transition: border-color .2s var(--ease), transform .2s var(--ease), box-shadow .2s var(--ease);
   min-width: 0;
 }
+
 textarea{min-height: 150px; resize: vertical;}
+
 input:focus, textarea:focus, select:focus{
   border-color: color-mix(in srgb, var(--navy) 40%, var(--border));
   box-shadow: 0 0 0 4px var(--focus);
 }
+
 input::placeholder, textarea::placeholder{
   color: color-mix(in srgb, var(--muted) 70%, transparent);
 }
