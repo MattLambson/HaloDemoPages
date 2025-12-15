@@ -1142,6 +1142,46 @@ try {
   pdf.line(marginX, y, pageW - marginX, y);
   y += 26;
 
+  // Disclaimer (right under header divider)
+{
+  const disclaimer =
+    "Disclaimer: This Statement of Work covers only the items explicitly listed within this document. " +
+    "Any additional items requested or added after approval will require a new Statement of Work to be created and negotiated.";
+
+  const boxPad = 10;
+  const boxW = contentW;
+  const maxTextW = boxW - boxPad * 2;
+
+  jsPdfSetFontSafe(pdf, "helvetica", "normal");
+  pdf.setFontSize(10);
+  pdf.setTextColor(60, 60, 60);
+
+  const lines = pdf.splitTextToSize(disclaimer, maxTextW);
+  const lineH = 13;
+  const boxH = boxPad * 2 + lines.length * lineH;
+
+  // Ensure space
+  if (y + boxH > pageH - 54) {
+    pdf.addPage();
+    y = marginTop;
+  }
+
+  // Light gray callout box
+  pdf.setFillColor(248, 248, 248);
+  pdf.setDrawColor(225, 225, 225);
+  pdf.setLineWidth(1);
+  pdf.roundedRect(marginX, y, boxW, boxH, 6, 6, "FD");
+
+  // Text inside box
+  let ty = y + boxPad + lineH - 2;
+  lines.forEach((ln) => {
+    pdf.text(ln, marginX + boxPad, ty);
+    ty += lineH;
+  });
+
+  y += boxH + 18; // spacing before first section
+}
+
   // Body sections
   const sections = getPdfSectionsOrdered();
 
@@ -1184,11 +1224,78 @@ try {
     y += SECTION_GAP;
   });
 
-  // Footer (last page only)
+  // Signature area (kept at the bottom of the final page).
+  // If there isn't enough room, it moves to a new page automatically.
+  function drawSignatureAreaAtBottom() {
+    const marginBottom = 54;
+
+    // Layout
+    const colGap = 28;
+    const colW = (contentW - colGap) / 2;
+
+    const labelFont = 10.5;
+    const lineH = 14;
+
+    // Total height this signature area needs
+    // (3 lines per column: heading, Date:, signature line)
+    const blockH = (lineH * 3) + 18;
+
+    // If we don't have enough room remaining, push to a new page
+    if (y > pageH - marginBottom - blockH) {
+      pdf.addPage();
+      y = marginTop;
+    }
+
+    // Anchor it at the bottom of the current page
+    const topY = pageH - marginBottom - blockH;
+
+    // Headings
+    jsPdfSetFontSafe(pdf, "helvetica", "bold");
+    pdf.setFontSize(labelFont);
+    pdf.setTextColor(20, 20, 20);
+
+    // Left column. Customer
+    pdf.text("Customer", marginX, topY);
+
+    // Right column. Onboarding manager
+    const rx = marginX + colW + colGap;
+    const obName = (state.data.onboardingManager || "").trim();
+    pdf.text(obName ? `Onboarding Manager (${obName})` : "Onboarding Manager", rx, topY);
+
+    // Lines + labels
+    jsPdfSetFontSafe(pdf, "helvetica", "normal");
+    pdf.setFontSize(10);
+    pdf.setTextColor(60, 60, 60);
+
+    const dateY = topY + lineH;
+    const sigY = topY + lineH * 2;
+
+    // Customer
+    pdf.text("Date:", marginX, dateY);
+    pdf.line(marginX + 34, dateY + 4, marginX + colW, dateY + 4);
+
+    pdf.text("Signature:", marginX, sigY);
+    pdf.line(marginX + 58, sigY + 4, marginX + colW, sigY + 4);
+
+    // Onboarding Manager
+    pdf.text("Date:", rx, dateY);
+    pdf.line(rx + 34, dateY + 4, rx + colW, dateY + 4);
+
+    pdf.text("Signature:", rx, sigY);
+    pdf.line(rx + 58, sigY + 4, rx + colW, sigY + 4);
+
+    // Return topY so we can place the footer above it.
+    return topY;
+  }
+
+  const signatureTopY = drawSignatureAreaAtBottom();
+
+  // Footer (placed above the signature area so it never overlaps)
+  const footerY = Math.max(marginTop + 12, signatureTopY - 18);
   pdf.setFontSize(9);
   pdf.setTextColor(120, 120, 120);
-  pdf.text("Generated with CM.com SoW Builder", marginX, pageH - 34);
-  pdf.text(dateStr, pageW - marginX, pageH - 34, { align: "right" });
+  pdf.text("Generated with CM.com SoW Builder", marginX, footerY);
+  pdf.text(dateStr, pageW - marginX, footerY, { align: "right" });
 
   if (openInNewTab) {
     const blobUrl = pdf.output("bloburl");
