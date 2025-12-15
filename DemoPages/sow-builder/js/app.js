@@ -1128,15 +1128,28 @@ try {
   pdf.setFontSize(20);
   pdf.text(title, pageW / 2, y + 8, { align: "center" });
 
-  // Subtitle centered
-  jsPdfSetFontSafe(pdf, "helvetica", "normal");
-  pdf.setFontSize(10.5);
-  if (subtitle) {
-    pdf.text(subtitle, pageW / 2, y + 28, { align: "center" });
-  }
+ // Subtitle centered. Wrap to max 2 lines.
+jsPdfSetFontSafe(pdf, "helvetica", "normal");
+pdf.setFontSize(10.5);
+
+let headerExtra = 0; // we will use this to push the divider down if the subtitle wraps
+
+if (subtitle) {
+  const subtitleMaxW = contentW; // keep within margins
+  const subtitleLines = pdf.splitTextToSize(subtitle, subtitleMaxW).slice(0, 2);
+
+  const subLineH = 12;
+  const subStartY = y + 28;
+
+  subtitleLines.forEach((ln, i) => {
+    pdf.text(ln, pageW / 2, subStartY + i * subLineH, { align: "center" });
+  });
+
+  if (subtitleLines.length > 1) headerExtra = subLineH; // push divider down 1 line
+}
 
   // Divider
-  y += 46;
+  y += 46 + headerExtra;
   pdf.setDrawColor(225, 225, 225);
   pdf.setLineWidth(1);
   pdf.line(marginX, y, pageW - marginX, y);
@@ -1224,30 +1237,43 @@ try {
     y += SECTION_GAP;
   });
 
-  // Signature area (kept at the bottom of the final page).
-  // If there isn't enough room, it moves to a new page automatically.
-  function drawSignatureAreaAtBottom() {
-    const marginBottom = 54;
+  // Signature area + footer
+  // Goal: signatures sit just above the footer. Footer is the bottom-most element.
+  // If there isn't enough room remaining on the current page, both move to a new page.
+  function drawSignatureAreaAndFooterAtBottom(dateStr) {
+    // Footer is always at the very bottom of the page
+    const footerY = pageH - 34; // visual bottom margin
+
+    // Space between signatures and footer
+    const gapAboveFooter = 18;
 
     // Layout
     const colGap = 28;
     const colW = (contentW - colGap) / 2;
+    const rx = marginX + colW + colGap;
 
     const labelFont = 10.5;
     const lineH = 14;
 
     // Total height this signature area needs
-    // (3 lines per column: heading, Date:, signature line)
+    // (heading line + Date line + Signature line + small top padding)
     const blockH = (lineH * 3) + 18;
 
+    // The signatures must end above the footer
+    const sigBottomY = footerY - gapAboveFooter;
+    const topY = sigBottomY - blockH;
+
     // If we don't have enough room remaining, push to a new page
-    if (y > pageH - marginBottom - blockH) {
+    // Use a small buffer so we don't collide with content
+    if (y > topY - 12) {
       pdf.addPage();
       y = marginTop;
     }
 
-    // Anchor it at the bottom of the current page
-    const topY = pageH - marginBottom - blockH;
+    // Recompute anchors (in case we added a page)
+    const footerY2 = pageH - 34;
+    const sigBottomY2 = footerY2 - gapAboveFooter;
+    const topY2 = sigBottomY2 - blockH;
 
     // Headings
     jsPdfSetFontSafe(pdf, "helvetica", "bold");
@@ -1255,20 +1281,23 @@ try {
     pdf.setTextColor(20, 20, 20);
 
     // Left column. Customer
-    pdf.text("Customer", marginX, topY);
+    pdf.text("Customer", marginX, topY2);
 
     // Right column. Onboarding manager
-    const rx = marginX + colW + colGap;
     const obName = (state.data.onboardingManager || "").trim();
-    pdf.text(obName ? `Onboarding Manager (${obName})` : "Onboarding Manager", rx, topY);
+    pdf.text(obName ? `Onboarding Manager (${obName})` : "Onboarding Manager", rx, topY2);
 
-    // Lines + labels
+    // Labels
     jsPdfSetFontSafe(pdf, "helvetica", "normal");
     pdf.setFontSize(10);
     pdf.setTextColor(60, 60, 60);
 
-    const dateY = topY + lineH;
-    const sigY = topY + lineH * 2;
+    const dateY = topY2 + lineH;
+    const sigY = topY2 + lineH * 2;
+
+    // Line style
+    pdf.setDrawColor(200, 200, 200);
+    pdf.setLineWidth(1);
 
     // Customer
     pdf.text("Date:", marginX, dateY);
@@ -1284,18 +1313,15 @@ try {
     pdf.text("Signature:", rx, sigY);
     pdf.line(rx + 58, sigY + 4, rx + colW, sigY + 4);
 
-    // Return topY so we can place the footer above it.
-    return topY;
+    // Footer. Under signatures. Bottom-most.
+    jsPdfSetFontSafe(pdf, "helvetica", "normal");
+    pdf.setFontSize(9);
+    pdf.setTextColor(120, 120, 120);
+    pdf.text("Generated with CM.com SoW Builder", marginX, footerY2);
+    pdf.text(dateStr, pageW - marginX, footerY2, { align: "right" });
   }
 
-  const signatureTopY = drawSignatureAreaAtBottom();
-
-  // Footer (placed above the signature area so it never overlaps)
-  const footerY = Math.max(marginTop + 12, signatureTopY - 18);
-  pdf.setFontSize(9);
-  pdf.setTextColor(120, 120, 120);
-  pdf.text("Generated with CM.com SoW Builder", marginX, footerY);
-  pdf.text(dateStr, pageW - marginX, footerY, { align: "right" });
+  drawSignatureAreaAndFooterAtBottom(dateStr);
 
   if (openInNewTab) {
     const blobUrl = pdf.output("bloburl");
