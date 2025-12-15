@@ -448,6 +448,23 @@ function renderCards(){
   });
 }
 
+function rerenderCurrentStepFields() {
+  const sec = SECTIONS[state.step];
+  if (!sec || sec.summary) return;
+
+  const deck = $("#cardDeck");
+  const cards = $all(".card", deck);
+  const card = cards[state.step];
+  if (!card) return;
+
+  // Replace the existing fields wrapper (grid/stack) with a freshly-rendered one
+  const oldWrap = card.querySelector(".grid, .stack");
+  if (!oldWrap) return;
+
+  const freshWrap = renderFields(sec);
+  oldWrap.replaceWith(freshWrap);
+}
+
 function renderFields(section) {
   const wrap = document.createElement("div");
   wrap.className = section.layout === "grid" ? "grid" : "stack";
@@ -488,9 +505,21 @@ function renderFields(section) {
 
     const onChange = () => {
       state.data[field.key] = input.value;
-      if(field.key === "useCaseType" && input.value !== "Other / Mixed"){
-        delete state.data.useCaseTypeOther;
+
+      if (field.key === "useCaseType") {
+        // If they move away from Other / Mixed, clear the "other" text
+        if (input.value !== "Other / Mixed") {
+          delete state.data.useCaseTypeOther;
+        }
+
+        persist();
+        updateProgress(true);
+
+        // Critical: rebuild the current card so showWhen() is re-evaluated
+        rerenderCurrentStepFields();
+        return;
       }
+
       persist();
       updateProgress(true);
     };
@@ -891,7 +920,7 @@ function getPdfSectionsOrdered() {
   ];
 }
 
-async function svgElementToPngDataUrl(svgEl, targetWidthPx = 520) {
+async function svgElementToPngDataUrl(svgEl, targetWidthPx = 900) {
   // Serialize SVG
   const serializer = new XMLSerializer();
   let svgText = serializer.serializeToString(svgEl);
@@ -953,7 +982,7 @@ async function getBrandLogoPngDataUrl() {
 
   // inline svg
   if (el.tagName && el.tagName.toLowerCase() === "svg") {
-    return await svgElementToPngDataUrl(el, 520);
+    return await svgElementToPngDataUrl(el, 900);
   }
 
   // img tag pointing to svg or png
@@ -974,7 +1003,7 @@ async function getBrandLogoPngDataUrl() {
         wrap.remove();
         return null;
       }
-      const png = await svgElementToPngDataUrl(svgNode, 520);
+      const png = await svgElementToPngDataUrl(svgNode, 900);
       wrap.remove();
       return png;
     }
@@ -1038,18 +1067,33 @@ async function buildPdf({ openInNewTab = false } = {}) {
 
   let y = marginTop;
 
-  // Logo (top-left)
-  try {
-    const logoPng = await getBrandLogoPngDataUrl();
-    if (logoPng) {
-      // Place logo at top-left, scaled to fit
-      const logoW = 140;
-      const logoH = 34;
-      pdf.addImage(logoPng, "PNG", marginX, y - 6, logoW, logoH);
+// Logo (top-left). Preserve aspect ratio.
+try {
+  const logoPng = await getBrandLogoPngDataUrl();
+  if (logoPng) {
+    const props = pdf.getImageProperties(logoPng);
+
+    // Choose one constraint. Keep this consistent with your layout.
+    const maxW = 140;   // points
+    const maxH = 34;    // points
+
+    // props.width/height are in pixels. Ratio is what matters.
+    const ratio = props.width / props.height;
+
+    let drawW = maxW;
+    let drawH = drawW / ratio;
+
+    // If height exceeds maxH, scale down by height instead
+    if (drawH > maxH) {
+      drawH = maxH;
+      drawW = drawH * ratio;
     }
-  } catch (e) {
-    // Ignore logo failures, do not block PDF
+
+    pdf.addImage(logoPng, "PNG", marginX, y - 6, drawW, drawH);
   }
+} catch (e) {
+  // Ignore logo failures, do not block PDF
+}
 
   // Title centered
   jsPdfSetFontSafe(pdf, "helvetica", "bold");
