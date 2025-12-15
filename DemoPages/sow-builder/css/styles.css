@@ -567,6 +567,62 @@ input::placeholder, textarea::placeholder{
 .toast__title{font-weight:900}
 .toast__msg{margin-top:6px; color: var(--muted); font-size: 12px; line-height:1.45}
 
+.field__labelwrap{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.info{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:18px;
+  height:18px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  font-size:12px;
+  font-weight:900;
+  cursor:help;
+  color: var(--muted);
+  background: color-mix(in srgb, var(--bg) 80%, transparent);
+}
+
+.info:hover,
+.info:focus-visible{
+  color: var(--text);
+  border-color: color-mix(in srgb, var(--navy) 35%, var(--border));
+}
+
+.info__tip{
+  position:absolute;
+  left:50%;
+  top:calc(100% + 10px);
+  transform:translateX(-50%);
+  min-width:260px;
+  max-width:420px;
+  padding:12px 14px;
+  border-radius:14px;
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  border:1px solid var(--border);
+  box-shadow: var(--shadow);
+  font-size:12px;
+  line-height:1.5;
+  color: var(--text);
+  white-space:pre-wrap;
+  z-index:30;
+  opacity:0;
+  pointer-events:none;
+  transition: opacity .15s var(--ease), transform .15s var(--ease);
+}
+
+.info:hover .info__tip,
+.info:focus-visible .info__tip{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
 /* PDF styling */
 .pdfwrap{position:absolute; left:-99999px; top:-99999px;}
 .pdf{

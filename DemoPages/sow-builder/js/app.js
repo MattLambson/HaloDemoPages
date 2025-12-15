@@ -476,10 +476,38 @@ function renderFields(section) {
     f.className = "field";
 
     const id = `${section.id}_${field.key}`;
+    // Label + inline info tooltip (uses the same content as the placeholder)
+    const labelWrap = document.createElement("div");
+    labelWrap.className = "field__labelwrap";
+
     const label = document.createElement("label");
     label.setAttribute("for", id);
     label.textContent = field.label;
-    f.appendChild(label);
+    labelWrap.appendChild(label);
+
+    // If placeholder exists, show an info icon that reveals it on hover/focus
+    const tipText = String(field.placeholder || "").trim();
+    if (tipText) {
+      const info = document.createElement("span");
+      info.className = "info";
+      info.setAttribute("tabindex", "0");
+      info.setAttribute("role", "button");
+      info.setAttribute("aria-label", "Show example");
+
+      const tip = document.createElement("div");
+      tip.className = "info__tip";
+      tip.textContent = tipText;
+
+      // Visible icon
+      info.textContent = "i";
+      info.appendChild(tip);
+      labelWrap.appendChild(info);
+
+      // Also set a native tooltip as a fallback
+      info.title = tipText;
+    }
+
+    f.appendChild(labelWrap);
 
     let input;
     if (field.type === "textarea") {
