@@ -584,11 +584,19 @@ input::placeholder, textarea::placeholder{
   border-bottom: 2px solid rgba(0,0,0,.08);
   padding-bottom: 14px;
 }
-.pdf__logo svg,
-.pdf__logo img{
-  height:30px;
-  width:auto;
+.pdf__logo{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  max-width: 220px; /* optional cap */
+}
+
+.pdf__logo img,
+.pdf__logo svg{
   display:block;
+  height:30px;      /* pick the height you want */
+  width:auto;       /* this prevents stretching */
+  max-width:100%;
 }
 .pdf__title{font-weight:900; font-size: 22px; letter-spacing:.6px}
 .pdf__subtitle{margin-top:6px; font-size: 12px; color: rgba(0,0,0,.65)}

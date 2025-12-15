@@ -132,14 +132,21 @@ Data:
         key: "useCaseType",
         label: "Primary use case type",
         type: "select",
-        options: ["Chatbot (CAIC/HALO)", "Voice", "MSC", "MMC/CDP", "Other / Mixed"]
+        options: ["HALO", "Voice", "MSC", "MMC/CDP", "Other / Mixed"]
+      },
+      {
+        key: "useCaseTypeOther",
+        label: "Describe the use case type",
+        type: "text",
+        placeholder: "Example: HALO + Voice for scheduling, plus MSC for agent support",
+        showWhen: (data) => data.useCaseType === "Other / Mixed"
       },
       {
         key: "useCaseSpecificsText",
         label: "Describe the logic and flow",
         type: "textarea",
         placeholder:
-`For Chatbots (CAIC/HALO):
+`For HALO:
 - Public FAQ vs authenticated flows
 - Handover conditions and what data is passed to agents
 - Guardrails and knowledge source(s)
@@ -292,7 +299,7 @@ function $all(sel, root = document) { return Array.from(root.querySelectorAll(se
 
 const state = {
   step: 0,
-  data: { useCaseType: "Chatbot (CAIC/HALO)" }
+  data: { useCaseType: "HALO" }
 };
 
 function isBlank(v) { return !(String(v ?? "").trim().length); }
@@ -398,7 +405,7 @@ function clearSaved() {
 function clearAllHardReset() {
   clearSaved();
   try { localStorage.removeItem("cm_sow_theme"); } catch (e) {}
-  state.data = { useCaseType: "Chatbot (CAIC/HALO)" };
+  state.data = { useCaseType: "HALO" };
   state.step = 0;
   initTheme();
   renderCards();
@@ -446,6 +453,8 @@ function renderFields(section) {
   wrap.className = section.layout === "grid" ? "grid" : "stack";
 
   (section.fields || []).forEach(field => {
+    const shouldShow = typeof field.showWhen === "function" ? field.showWhen(state.data) : true;
+    if(!shouldShow) return;
     const f = document.createElement("div");
     f.className = "field";
 
@@ -479,6 +488,9 @@ function renderFields(section) {
 
     const onChange = () => {
       state.data[field.key] = input.value;
+      if(field.key === "useCaseType" && input.value !== "Other / Mixed"){
+        delete state.data.useCaseTypeOther;
+      }
       persist();
       updateProgress(true);
     };
@@ -746,7 +758,7 @@ function bindSummaryActions(force = false) {
   if (clearBtn) {
     clearBtn.addEventListener("click", () => {
       clearSaved();
-      state.data = { useCaseType: "Chatbot (CAIC/HALO)" };
+      state.data = { useCaseType: "HALO" };
       state.step = 0;
       renderCards();
       activateStep(0, "back");
