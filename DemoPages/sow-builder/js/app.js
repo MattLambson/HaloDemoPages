@@ -132,13 +132,13 @@ Data:
         key: "useCaseType",
         label: "Primary use case type",
         type: "select",
-        options: ["HALO", "Voice", "MSC", "MMC/CDP", "Other / Mixed"]
+        options: ["HALO", "MSC", "MMC/CDP", "Other / Mixed"]
       },
       {
         key: "useCaseTypeOther",
         label: "Describe the use case type",
         type: "text",
-        placeholder: "Example: HALO + Voice for scheduling, plus MSC for agent support",
+        placeholder: "Example: HALO: Chatbot and SMS/WhatsApp, plus MSC for agent support",
         showWhen: (data) => data.useCaseType === "Other / Mixed"
       },
       {
@@ -151,12 +151,12 @@ Data:
 - Handover conditions and what data is passed to agents
 - Guardrails and knowledge source(s)
 
-For Voice:
-- IVR and routing logic
-- Call reasons and escalation paths
-
 For MSC:
-- Team structure, queues, users, roles, and channel coverage`
+- Team structure, queues, users, roles, and channel coverage
+
+For CDP:
+- Custom API Endpoints
+- Customized/Completed Workflows`
       }
     ],
     callout: {
