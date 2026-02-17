@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CM HVAC Services - Comfort & Care</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Color Palette */
+            --primary: #004e92;
+            --primary-dark: #003666;
+            --accent: #ff6b35;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --white: #ffffff;
+            --bg-light: #f3f4f6;
+            --border: #e5e7eb;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .cta-btn {
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            /* Pill shape */
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        .cta-btn:hover {
+            background-color: #e55a2b;
+        }
+
+        /* Mobile Menu Setup (Hidden for now, shown via JS ideally but keeping pure CSS simple mock via media query hiding) */
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 78, 146, 0.9), rgba(0, 54, 102, 0.9)), url('https://images.unsplash.com/photo-1581094288338-2314dddb7ece?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 8rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .hero-btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: #e55a2b;
+        }
+
+        .btn-outline {
+            border: 2px solid var(--white);
+            color: var(--white);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--primary);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 0;
+            background-color: var(--bg-light);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-title {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .icon-box {
+            width: 64px;
+            height: 64px;
+            background-color: rgba(0, 78, 146, 0.1);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .learn-more {
+            color: var(--primary);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .learn-more:hover {
+            text-decoration: underline;
+        }
+
+        /* USP Section */
+        .usp {
+            padding: 5rem 0;
+            background-color: var(--white);
+        }
+
+        .usp-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .usp-image img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .usp-content h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .usp-list li {
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
+        .usp-list i {
+            color: var(--accent);
+            margin-top: 4px;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 5rem 0;
+            background-color: var(--bg-light);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .stars {
+            color: #fbbf24;
+            margin-bottom: 1rem;
+        }
+
+        .quote {
+            color: var(--text-dark);
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .avatar {
+            width: 48px;
+            height: 48px;
+            background-color: var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-weight: 700;
+            overflow: hidden;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .author-info span {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-dark);
+            color: var(--white);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .footer-col p {
+            color: #9ca3af;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #9ca3af;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .contact-info li {
+            display: flex;
+            gap: 0.75rem;
+            color: #9ca3af;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info i {
+            color: var(--accent);
+        }
+
+        .copyright {
+            border-top: 1px solid #374151;
+            padding-top: 2rem;
+            text-align: center;
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                /* simple mock fix */
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .usp-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <i class="fas fa-snowflake"></i> CM HVAC Services
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#" class="nav-link">Home</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#about" class="nav-link">About Us</a></li>
+                    <li><a href="#testimonials" class="nav-link">Reviews</a></li>
+                </ul>
+            </nav>
+            <div style="display: flex; gap: 1rem; align-items: center;">
+                <a href="tel:5551234567" class="cta-btn hidden-mobile"
+                    style="display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="fas fa-phone-alt"></i> (555) 123-4567
+                </a>
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>Comfort You Can Count On <br> All Year Round</h1>
+            <p>Professional heating and cooling services for your home and business. Reliable, affordable, and always on
+                time.</p>
+            <div class="hero-btns">
+                <a href="#" class="hero-btn btn-primary">Get a Free Quote</a>
+                <a href="#services" class="hero-btn btn-outline">Our Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-title">What We Do</span>
+                <h2>Expert HVAC Solutions</h2>
+            </div>
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card">
+                    <div class="icon-box">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>AC Repair & Install</h3>
+                    <p>Keep your home cool with our expert AC repair and installation services. We service all major
+                        brands.</p>
+                    <a href="#" class="learn-more">Learn more <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <!-- Service 2 -->
+                <div class="service-card">
+                    <div class="icon-box">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h3>Heating Systems</h3>
+                    <p>Stay warm during the winter. From furnace repairs to complete system replacements, we've got you
+                        covered.</p>
+                    <a href="#" class="learn-more">Learn more <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <!-- Service 3 -->
+                <div class="service-card">
+                    <div class="icon-box">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3>Maintenance Plans</h3>
+                    <p>Prevent costly breakdowns with our regular maintenance check-ups. Join our Priority Club today.
+                    </p>
+                    <a href="#" class="learn-more">Learn more <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- USP / About -->
+    <section id="about" class="usp">
+        <div class="container usp-grid">
+            <div class="usp-image">
+                <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                    alt="Technician working">
+            </div>
+            <div class="usp-content">
+                <span class="section-title">Why Choose Us</span>
+                <h2>We Treat Your Home Like Our Own</h2>
+                <p style="color: var(--text-light); margin-bottom: 2rem;">For over 15 years, CM HVAC Services has been
+                    providing top-tier service to our local community. Our certified technicians are dedicated to your
+                    comfort and satisfaction.</p>
+                <ul class="usp-list">
+                    <li><i class="fas fa-check-circle"></i> Licensed, Bonded & Insured</li>
+                    <li><i class="fas fa-check-circle"></i> 24/7 Emergency Service Available</li>
+                    <li><i class="fas fa-check-circle"></i> 100% Satisfaction Guarantee</li>
+                    <li><i class="fas fa-check-circle"></i> Upfront Pricing - No Hidden Fees</li>
+                </ul>
+                <a href="#" class="cta-btn" style="display: inline-block; margin-top: 1rem;">Meet The Team</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-title">Testimonials</span>
+                <h2>What Our Neighbors Say</h2>
+            </div>
+            <div class="testimonial-grid">
+                <!-- Review 1 -->
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="quote">"Absolutely fantastic service! The technician arrived on time, was super polite,
+                        and fixed our AC in under an hour. Highly recommend CM HVAC Services!"</p>
+                    <div class="author">
+                        <div class="avatar" style="background: #e0f2fe; color: #0284c7;">SM</div>
+                        <div class="author-info">
+                            <h4>Sarah Miller</h4>
+                            <span>Homeowner</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Review 2 -->
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="quote">"They saved us during the heatwave! Called them at 8 PM and they had someone out
+                        the same night. Fair pricing and great work."</p>
+                    <div class="author">
+                        <div class="avatar" style="background: #fef3c7; color: #d97706;">JD</div>
+                        <div class="author-info">
+                            <h4>James Davis</h4>
+                            <span>Local Business Owner</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Review 3 -->
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="quote">"Very professional team. We had them install a new furnace last fall and the
+                        process was seamless. Clean, efficient, and friendly."</p>
+                    <div class="author">
+                        <div class="avatar" style="background: #dcfce7; color: #16a34a;">EW</div>
+                        <div class="author-info">
+                            <h4>Emily Wilson</h4>
+                            <span>Homeowner</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <a href="#" class="logo" style="color: white; margin-bottom: 1rem; display: inline-block;">
+                    <i class="fas fa-snowflake"></i> CM HVAC Services
+                </a>
+                <p>Your trusted partner for all heating and cooling needs. Delivering comfort and quality since 2010.
+                </p>
+                <div style="display: flex; gap: 1rem; font-size: 1.25rem;">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Our Services</h3>
+                <ul class="footer-links">
+                    <li><a href="#">AC Repair</a></li>
+                    <li><a href="#">Heating Installation</a></li>
+                    <li><a href="#">Duct Cleaning</a></li>
+                    <li><a href="#">Maintenance Plans</a></li>
+                    <li><a href="#">Commercial HVAC</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <ul class="contact-info">
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Main Street, Suite 100<br>Your City, ST 12345</li>
+                    <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+                    <li><i class="fas fa-envelope"></i> info@cmhvac.com</li>
+                    <li><i class="far fa-clock"></i> Mon-Fri: 8am - 6pm<br>Sat: 9am - 2pm</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 CM HVAC Services. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
