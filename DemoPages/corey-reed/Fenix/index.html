@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fenix Protect | Vehicle Service Contracts</title>
+    <style>
+        /* CORE RESET */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.4;
+            color: #333;
+            background: #fff;
+        }
+
+        /* WHITE HEADER TOP */
+        header.top-area {
+            background: #fff;
+            padding: 10px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            font-size: 50px;
+            color: #A11D21;
+            line-height: 1;
+        }
+
+        .logo-text .fnx {
+            font-style: italic;
+            font-size: 26px;
+            color: #000;
+            font-weight: 300;
+            display: block;
+            line-height: 0.8;
+        }
+
+        .logo-text .prt {
+            font-weight: 900;
+            font-size: 28px;
+            color: #000;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .header-right {
+            text-align: right;
+        }
+
+        .top-utility {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .btn-red-sm {
+            background: #A11D21;
+            color: #fff;
+            border: none;
+            padding: 6px 14px;
+            font-size: 11px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 2px;
+            text-transform: capitalize;
+        }
+
+        .search-box {
+            display: flex;
+            border: 1px solid #ccc;
+            height: 26px;
+        }
+
+        .search-box input {
+            border: none;
+            padding: 0 5px;
+            font-size: 11px;
+            width: 130px;
+            outline: none;
+        }
+
+        .search-box button {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 0 10px;
+            cursor: pointer;
+        }
+
+        .phone-header {
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .phone-header span {
+            color: #A11D21;
+            margin-left: 5px;
+        }
+
+        /* RED NAVIGATION */
+        nav {
+            background: #D32F2F;
+            border-bottom: 3px solid #b71c1c;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-links a {
+            display: block;
+            padding: 12px 18px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .nav-links a:hover {
+            background: #b71c1c;
+        }
+
+        /* HERO AREA */
+        .hero {
+            position: relative;
+            height: 420px;
+            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1600') center/cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-headline {
+            background: rgba(0, 0, 0, 0.65);
+            width: 100%;
+            color: #fff;
+            text-align: center;
+            padding: 18px 0;
+            font-size: 36px;
+            font-weight: 300;
+        }
+
+        .hero-dots {
+            margin-top: 100px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 11px;
+            height: 11px;
+            background: #fff;
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+
+        .dot.active {
+            opacity: 1;
+            background: #D32F2F;
+        }
+
+        /* FLOATING CARDS */
+        .hero-cards {
+            position: absolute;
+            bottom: -90px;
+            display: flex;
+            gap: 15px;
+            width: 90%;
+            max-width: 1100px;
+        }
+
+        .h-card {
+            flex: 1;
+            height: 200px;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid #fff;
+        }
+
+        .h-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .h-card-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(161, 29, 33, 0.9);
+            color: #fff;
+            padding: 15px 10px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* CONTENT WRAPPER */
+        .content-wrap {
+            max-width: 1150px;
+            margin: 130px auto 40px;
+            display: flex;
+            padding: 0 20px;
+            gap: 35px;
+        }
+
+        .main-col {
+            flex: 2;
+        }
+
+        .side-col {
+            flex: 1;
+        }
+
+        /* MAIN COLUMN CONTENT */
+        h1 {
+            color: #A11D21;
+            font-size: 28px;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            font-weight: 800;
+        }
+
+        h2 {
+            font-size: 21px;
+            margin: 30px 0 15px;
+            color: #333;
+            font-weight: 800;
+        }
+
+        h3 {
+            font-size: 18px;
+            margin: 25px 0 10px;
+            color: #333;
+            font-weight: 800;
+        }
+
+        p {
+            font-size: 14px;
+            margin-bottom: 15px;
+            color: #444;
+        }
+
+        .img-float {
+            float: left;
+            margin: 0 15px 10px 0;
+            border: 1px solid #ccc;
+            padding: 3px;
+            max-width: 250px;
+        }
+
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        ul.check-list {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        ul.check-list li {
+            position: relative;
+            padding-left: 20px;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        ul.check-list li::before {
+            content: "•";
+            color: #A11D21;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* SIDEBAR QUOTE BOX */
+        .quote-box {
+            background: #D32F2F;
+            padding: 25px;
+            color: #fff;
+            border-radius: 4px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .quote-box h2 {
+            color: #fff;
+            text-align: center;
+            font-size: 26px;
+            margin: 0 0 15px;
+            text-transform: none;
+        }
+
+        .quote-type {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .type-btn {
+            background: #fff;
+            color: #A11D21;
+            border: none;
+            padding: 6px 12px;
+            font-size: 11px;
+            font-weight: bold;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .type-btn.active {
+            background: #000;
+            color: #fff;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+            font-size: 13px;
+            outline: none;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-email {
+            width: 100%;
+            background: #A11D21;
+            color: #fff;
+            border: 1px solid #7a1215;
+            padding: 15px;
+            font-weight: 800;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 15px;
+            margin-top: 5px;
+        }
+
+        /* TRUSTPILOT */
+        .trust-box {
+            background: #A11D21;
+            color: #fff;
+            padding: 20px;
+            margin-top: 25px;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        .trust-stars {
+            color: #00b67a;
+            font-size: 24px;
+            margin: 10px 0;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #A11D21;
+            color: #fff;
+            padding: 50px 5%;
+            margin-top: 60px;
+            border-top: 6px solid #8c191c;
+        }
+
+        .footer-grid {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 30px;
+        }
+
+        .f-col {
+            flex: 1;
+        }
+
+        .f-col h4 {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            font-size: 15px;
+            text-transform: uppercase;
+        }
+
+        .f-col ul {
+            list-style: none;
+            font-size: 13px;
+        }
+
+        .f-col li {
+            margin-bottom: 6px;
+            opacity: 0.9;
+            cursor: pointer;
+        }
+
+        .f-col li:hover {
+            text-decoration: underline;
+        }
+
+        .btn-req-quote {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            width: 100%;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .copyright-area {
+            background: #fff;
+            color: #666;
+            padding: 20px 5%;
+            font-size: 12px;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="top-area">
+        <a href="#" class="logo-wrap">
+            <div class="logo-icon">🔥</div>
+            <div class="logo-text">
+                <span class="fnx">fenix</span>
+                <span class="prt">PROTECT</span>
+            </div>
+        </a>
+        <div class="header-right">
+            <div class="top-utility">
+                <div class="search-box">
+                    <input type="text" placeholder="Search this site">
+                    <button>🔍</button>
+                </div>
+                <button class="btn-red-sm">Employment</button>
+                <button class="btn-red-sm">Get a FREE Quote</button>
+            </div>
+            <div class="phone-header">
+                Call Toll Free <span>833-252-4253</span><br>
+                Se habla español <span>833-252-4257</span>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Vechicle Protection ▾</a></li>
+                <li><a href="#">Home Warranty ▾</a></li>
+                <li><a href="#">Get a Quote</a></li>
+                <li><a href="#">Learn More ▾</a></li>
+                <li><a href="#">Why Choose Us</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-headline">Vehicles breakdown, life shouldn't.</div>
+        <div class="hero-dots">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+
+        <div class="hero-cards">
+            <div class="h-card">
+                <img src="https://images.unsplash.com/photo-1486006920555-c77dcf18193c?auto=format&fit=crop&q=80&w=400">
+                <div class="h-card-label">Comprehensive Auto Protection Services</div>
+            </div>
+            <div class="h-card">
+                <img src="https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&q=80&w=400">
+                <div class="h-card-label">Compare Extended Service Plans</div>
+            </div>
+            <div class="h-card">
+                <img src="https://images.unsplash.com/photo-1549890762-0a3f8933ad76?auto=format&fit=crop&q=80&w=400">
+                <div class="h-card-label">Who Needs Car Protection Plans?</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="content-wrap">
+        <div class="main-col">
+            <h1>Vehicle Service Contracts: Because Vehicles Break Down, Life Shouldn't</h1>
+
+            <div class="clearfix">
+                <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&w=400" class="img-float"
+                    alt="Family">
+                <p>With over 10 years of experience offering vehicle service contracts (commonly referred to as extended
+                    warranties), Fenix Protect knows the ins and outs of the business. Making sense of all the
+                    information about vehicle service contracts can be overwhelming, but that’s where we step in to
+                    help!</p>
+                <p>We’ve done the research and legwork to find the best plans available and are proud to be able to
+                    offer a <span class="text-fenix-red" style="text-decoration:underline;">vehicle protection
+                        plan</span> perfect for your needs, from Black Diamond Administrative Company.</p>
+                <p>Fenix Protect will be with you through every step of the process, from picking a vehicle service plan
+                    to helping you if you need to make a claim.</p>
+            </div>
+
+            <h2>Fenix Protect is Different from Other Vehicle Service Contract Companies</h2>
+            <p>At Fenix protect, we’ve built our reputation on customer service. Every employee at Fenix Protect is
+                dedicated to making your life easier when your vehicle breaks down.</p>
+            <ul class="check-list">
+                <li>Our sales process is transparent and thorough—we want you to be knowledgeable and comfortable with
+                    your plan.</li>
+                <li>We ensure that you pick the right plan, one that is appropriate for you, your family, your budget,
+                    and your vehicle.</li>
+                <li>When your vehicle does break down, your life shouldn't, so we will handle the repairs,
+                    communication, and the little details.</li>
+            </ul>
+
+            <h3>Vehicle Service Contracts We Offer</h3>
+            <p><span class="text-fenix-red">Vehicle service plans</span> can help protect you from unanticipated,
+                unplanned, high-cost auto repairs when your car unexpectedly breaks down.</p>
+
+            <p><b>New Vehicle Plans:</b></p>
+            <ul class="check-list">
+                <li><b>Triple Diamond</b> - New vehicles with less than 70,000 miles</li>
+                <li><b>Double Diamond</b> - New vehicles with less than 80,000 miles</li>
+            </ul>
+
+            <p><b>Used Vehicle Plans:</b></p>
+            <ul class="check-list">
+                <li><b>Double Diamond</b> - Used vehicles with less than 100,000 miles</li>
+                <li><b>Diamond</b> - Used vehicles with less than 125,000 miles</li>
+                <li><b>Emerald</b> - Used vehicles with less than 150,000 miles</li>
+                <li><b>Ruby</b> - Used vehicles with less than 175,000 miles</li>
+                <li><b>Sapphire</b> - Used vehicles with less than 500,000 miles</li>
+            </ul>
+
+            <div class="clearfix" style="margin-top: 20px;">
+                <img src="https://images.unsplash.com/photo-1517524206127-48bbd363f3d7?q=80&w=400" class="img-float"
+                    style="float:right; margin: 0 0 10px 15px;">
+                <p><b>All plans come with Roadside Assistance, including:</b></p>
+                <ul class="check-list">
+                    <li>Jump Starts & Lockout Assistance</li>
+                    <li>Flat Tire Changes & Towing</li>
+                    <li>Concierge Services & Fluid Delivery</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="side-col">
+            <div class="quote-box">
+                <h2>Get A FREE Quote</h2>
+                <div class="quote-type">
+                    <button class="type-btn active">Vehicle Service Plan</button>
+                    <button class="type-btn">Home Warranty</button>
+                </div>
+                <input type="text" class="form-input" placeholder="Vehicle Year">
+                <input type="text" class="form-input" placeholder="Vehicle Make">
+                <input type="text" class="form-input" placeholder="Vehicle Model">
+                <input type="text" class="form-input" placeholder="Vehicle Mileage">
+                <input type="text" class="form-input" placeholder="Street Address">
+                <div class="form-row">
+                    <input type="text" class="form-input" placeholder="City">
+                    <input type="text" class="form-input" placeholder="ZIP" style="width: 100px;">
+                </div>
+                <div class="form-row">
+                    <input type="text" class="form-input" placeholder="First Name">
+                    <input type="text" class="form-input" placeholder="Last Name">
+                </div>
+                <input type="text" class="form-input" placeholder="Phone Number">
+                <input type="text" class="form-input" placeholder="Email Address">
+                <button class="btn-email">Email My Quote</button>
+            </div>
+
+            <div class="trust-box">
+                <div style="font-weight: bold; font-size: 20px;">★ Trustpilot</div>
+                <div class="trust-stars">★★★★★</div>
+                <div style="font-size: 11px;">TrustScore 4.5 | 2,215 reviews</div>
+                <p style="font-style: italic; font-size: 12px; margin-top: 12px;">"Good service by phone... I really
+                    appreciated the patience..."</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="f-col">
+                <h4>Protection Plans</h4>
+                <ul>
+                    <li>Protection Plans</li>
+                    <li>Plan Benefits</li>
+                    <li>Plan Comparison</li>
+                    <li>Getting Your Protection Plan</li>
+                    <li>Who Needs Car Protection Plans</li>
+                </ul>
+            </div>
+            <div class="f-col">
+                <h4>Service Contracts</h4>
+                <ul>
+                    <li>Extended Service Plan for Fords</li>
+                    <li>Service Contract for Nissans</li>
+                    <li>Service Contracts for Chryslers</li>
+                    <li>Protection Plan for Chevrolets</li>
+                    <li>Extended Service Plan for Toyota</li>
+                    <li>Service Contract for Honda</li>
+                </ul>
+            </div>
+            <div class="f-col">
+                <h4>Contact Info</h4>
+                <ul style="opacity: 1;">
+                    <li>Account Representative: 833-252-4253</li>
+                    <li>Se Habla Español: 833-252-4257</li>
+                    <li style="margin-top: 15px;"><b>Hours:</b></li>
+                    <li>Monday – Sunday: 7:00 am – 7:00 pm</li>
+                </ul>
+                <button class="btn-req-quote">Request a Quote</button>
+            </div>
+            <div class="f-col" style="text-align: right;">
+                <div style="font-size: 35px; margin-bottom: 10px;">🔥 <span style="font-weight: 900;">fenix</span>
+                    PROTECT</div>
+                <div style="font-size: 11px;">Copyright Fenix Protect.<br>All Rights Reserved.</div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="copyright-area">
+        Auto Warranty Website Design by Silver Scope Design, St. Louis, MO
+    </div>
+
+</body>
+<script type="module" crossorigin="anonymous" src='https://webchat.digitalcx.com/webchat.js'
+    onload="cmwc.add('1505824c-ff73-4e83-a4fe-c9e0a7744bd8').install();"></script>
+
+</html>

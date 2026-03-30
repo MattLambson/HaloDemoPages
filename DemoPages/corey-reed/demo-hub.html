@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,28 +20,31 @@
             padding: 0;
             overflow: hidden;
         }
-        
+
         .side-menu {
-            padding-top: 50px; /* Add space at top to avoid menu button conflict */
+            padding-top: 50px;
+            /* Add space at top to avoid menu button conflict */
         }
-        
+
         .main-content {
             margin: 60px auto 0;
             padding: 15px;
-            background-color: rgba(255, 255, 255, 0.85); /* Restored to 85% transparency */
+            background-color: rgba(255, 255, 255, 0.85);
+            /* Restored to 85% transparency */
             border-radius: 8px;
             max-width: 660px;
             width: 100%;
-            max-height: 450px; /* Limit height */
+            max-height: 450px;
+            /* Limit height */
         }
-        
+
         .demo-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 15px;
             margin-top: 15px;
         }
-        
+
         .demo-card {
             background-color: #fff;
             border-radius: 8px;
@@ -48,53 +52,59 @@
             padding: 15px;
             transition: transform 0.3s ease;
         }
-        
+
         .demo-card:hover {
             transform: translateY(-5px);
         }
-        
+
         .demo-card h3 {
             margin-top: 0;
             margin-bottom: 8px;
             color: #333;
         }
-        
+
         .demo-card p {
             color: #666;
             margin-bottom: 12px;
-            min-height: 60px; /* Reduced height */
-            font-size: 0.95em; /* Slightly smaller text */
+            min-height: 60px;
+            /* Reduced height */
+            font-size: 0.95em;
+            /* Slightly smaller text */
         }
-        
-        h1, p {
+
+        h1,
+        p {
             color: #333;
-            margin: 0 0 10px 0; /* Compact margins */
+            margin: 0 0 10px 0;
+            /* Compact margins */
         }
-        
+
         h1 {
-            font-size: 1.8em; /* Slightly smaller heading */
+            font-size: 1.8em;
+            /* Slightly smaller heading */
         }
-        
+
         @media (max-width: 768px) {
             .main-content {
                 width: 90%;
                 margin-top: 80px;
                 max-height: none;
             }
-            
+
             .demo-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             body {
                 overflow-y: auto;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-    
+
     <div class="side-menu">
         <h2>Demo Hub Navigation</h2>
         <div class="demo-section">
@@ -102,38 +112,52 @@
             <button id="backBtn" class="btn" onclick="window.location.href='index.html'">Back to Main Demo</button>
         </div>
     </div>
-    
+
     <div class="main-content">
         <h1>Demo Environments Hub</h1>
         <p>Select a demo environment to explore:</p>
-        
+
         <div class="demo-grid">
             <div class="demo-card">
                 <h3>CMBank</h3>
-                <p>Experience a simulated banking website that showcases CM.com's all-encompassing HALO solution for the financial and banking industry.</p>
+                <p>Experience a simulated banking website that showcases CM.com's all-encompassing HALO solution for the
+                    financial and banking industry.</p>
                 <button class="btn" onclick="window.open('CMBank/index.html', '_blank')">Open Banking Demo</button>
             </div>
-            
+
             <div class="demo-card">
                 <h3>Goldstein Law</h3>
-                <p>Experience a simulated lawfirm website that showcases CM.com's all-encompassing HALO solution for the legal industry.</p>
+                <p>Experience a simulated lawfirm website that showcases CM.com's all-encompassing HALO solution for the
+                    legal industry.</p>
                 <button class="btn" onclick="window.open('GoldsteinLaw/index.html', '_blank')">Open Legal Demo</button>
             </div>
 
-             <div class="demo-card">
+            <div class="demo-card">
                 <h3>Southern Tool & Equipment</h3>
-                <p>Experience a simulated industrial tools and equipment storefront designed to showcase CM.com’s HALO solution in a retail e-commerce setting.</p>
-                <button class="btn" onclick="window.open('SouthernTool/index.html', '_blank')">Open E-Commerce Demo</button>
+                <p>Experience a simulated industrial tools and equipment storefront designed to showcase CM.com’s HALO
+                    solution in a retail e-commerce setting.</p>
+                <button class="btn" onclick="window.open('SouthernTool/index.html', '_blank')">Open E-Commerce
+                    Demo</button>
             </div>
 
             <div class="demo-card">
                 <h3>Flower Shop</h3>
-                <p>Experience a simulated online floral storefront designed to showcase CM.com’s HALO solution in a retail e-commerce setting.</p>
-                <button class="btn" onclick="window.open('FlowerShop/index.html', '_blank')">Open Flower Shop Demo</button>
+                <p>Experience a simulated online floral storefront designed to showcase CM.com’s HALO solution in a
+                    retail e-commerce setting.</p>
+                <button class="btn" onclick="window.open('FlowerShop/index.html', '_blank')">Open Flower Shop
+                    Demo</button>
+            </div>
+
+            <div class="demo-card">
+                <h3>Fenix</h3>
+                <p>Experience a simulated vehical service contract website designed to showcase CM.com’s HALO solution.
+                </p>
+                <button class="btn" onclick="window.open('Fenix/index.html', '_blank')">Open Fenix Demo</button>
             </div>
         </div>
     </div>
-    
+
     <script src="../../js/demo.js"></script>
 </body>
+
 </html>
