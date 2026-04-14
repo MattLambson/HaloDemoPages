@@ -118,6 +118,5 @@ Matt Lambson
 Michael Ogorek
 Ronnie Jones
 Ryan Sherman
-Santiago Cortes
 
 Reach out to Matt Lambson if you need any further assistance.

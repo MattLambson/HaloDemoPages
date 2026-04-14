@@ -262,8 +262,7 @@ const teamDemos = [
     { name: 'Matt Lambson', path: 'DemoPages/matt-lambson/' },
     { name: 'Nicole Dejidas', path: 'DemoPages/nicole-dejidas/' },
     { name: 'Prasad N', path: 'DemoPages/prasad-n/' },
-    { name: 'Ryan Sam', path: 'DemoPages/ryan-sam/' },
-    { name: 'Santiago Cortes', path: 'DemoPages/santiago-cortes/' }
+    { name: 'Ryan Sam', path: 'DemoPages/ryan-sam/' }
 ];
 
 const toolDemos = [
