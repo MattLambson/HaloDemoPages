@@ -202,6 +202,10 @@ Phase 6 & 7: Optimization, Aftercare & Handover
     title: "Planning",
     tag: "7",
     help: "Capture timeline expectations. Always mention dependency on customer responsiveness and availability.",
+    callout: {
+      title: "Auto-fill",
+      body: "Your start date and lead time from Setup will automatically appear in the exported PDF. Add notes here to expand on them or override."
+    },
     fields: [
       {
         key: "planningText",
@@ -404,10 +408,8 @@ function clearSaved() {
 
 function clearAllHardReset() {
   clearSaved();
-  try { localStorage.removeItem("cm_sow_theme"); } catch (e) {}
   state.data = { useCaseType: "HALO" };
   state.step = 0;
-  initTheme();
   renderCards();
   activateStep(0, "back");
   toast("Cleared", "All fields have been cleared.");
@@ -611,7 +613,6 @@ function renderSummary() {
   const actions = document.createElement("div");
   actions.className = "nav";
   actions.innerHTML = `
-    <button class="btn btn--ghost" type="button" id="clearBtn">Clear saved</button>
     <div class="nav__right">
       <button class="btn btn--ghost" type="button" id="previewBtn">Preview PDF</button>
       <button class="btn btn--primary" type="button" id="exportBtn">Export PDF</button>
@@ -785,6 +786,15 @@ function activateStep(nextIdx, direction) {
   next.classList.add("card--active");
   state.step = nextIdx;
 
+  // Autofocus first input after the slide animation settles (skip summary)
+  const activeSec = SECTIONS[nextIdx];
+  if (activeSec && !activeSec.summary) {
+    setTimeout(() => {
+      const firstInput = next.querySelector('input:not([type="hidden"]), textarea, select');
+      if (firstInput) firstInput.focus({ preventScroll: true });
+    }, 300);
+  }
+
   persist();
   updateProgress();
 
@@ -810,18 +820,6 @@ function bindSummaryActions(force = false) {
       activateStep(idx, "back");
     });
   });
-
-  const clearBtn = $("#clearBtn");
-  if (clearBtn) {
-    clearBtn.addEventListener("click", () => {
-      clearSaved();
-      state.data = { useCaseType: "HALO" };
-      state.step = 0;
-      renderCards();
-      activateStep(0, "back");
-      toast("Cleared", "Saved data removed.");
-    });
-  }
 
   const previewBtn = $("#previewBtn");
   const exportBtn = $("#exportBtn");
@@ -852,7 +850,6 @@ function bindSummaryActions(force = false) {
 
   doneBtn?.addEventListener("click", () => {
     saveWithToast();
-    toast("Done", "Saved.");
   });
 }
 
@@ -868,6 +865,11 @@ function bindNav() {
     if (!v.ok) {
       toast("Missing info", v.msg);
       return;
+    }
+    // Soft warning when advancing past an empty non-required content section
+    const sec = SECTIONS[state.step];
+    if (sec && !sec.summary && !OPTIONAL_SECTION_IDS.has(sec.id) && sec.id !== "meta" && !isSectionComplete(sec)) {
+      toast("Section empty", "You can fill this in later from the Summary screen.");
     }
     persist();
     if (state.step < SECTIONS.length - 1) {

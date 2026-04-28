@@ -2,8 +2,8 @@
    CM.com / HALO Demo Hub — Shared Stylesheet
    ===================================================== */
 
-/* Google Fonts — Inter (body) + Space Grotesk (headings) */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+/* Google Fonts — Montserrat */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
 
 /* ===== Brand & Design Tokens ===== */
 :root {
@@ -29,8 +29,8 @@
     --white: #ffffff;
 
     /* Typography */
-    --font-body:    'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    --font-heading: 'Space Grotesk', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-body:    'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-heading: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* ===== Global Reset ===== */

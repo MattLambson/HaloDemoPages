@@ -123,6 +123,27 @@ body{
 :root[data-theme="dark"] #brandLogoLight{ display:none; }
 :root[data-theme="dark"] #brandLogoDark{ display:block; }
 
+.topbar__back{position:absolute; left:18px;}
+.back-link{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:8px 14px;
+  border:1px solid var(--border);
+  border-radius:999px;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.5px;
+  text-transform:uppercase;
+  color: var(--text);
+  text-decoration:none;
+  background: color-mix(in srgb, var(--bg) 75%, transparent);
+  transition: transform .2s var(--ease), border-color .2s var(--ease);
+}
+.back-link:hover{
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--navy) 35%, var(--border));
+}
 .topbar__actions{position:absolute; right:18px;}
 .icon-btn{
   pointer-events:auto;
@@ -153,8 +174,10 @@ body{
 }
 @media (max-width: 860px){
   .shell__head{grid-template-columns:1fr}
+  .topbar__back{position:static}
   .topbar__actions{position:static}
-  .brand{justify-content:flex-start}
+  .topbar__inner{flex-wrap:wrap; gap:8px}
+  .brand{justify-content:flex-start; width:auto; flex:1}
 }
 
 .titleblock{
@@ -261,6 +284,7 @@ body{
 .card--exit-left{
   transform: translateX(-110%) scale(.98);
   opacity:0;
+  pointer-events: none;
 }
 
 /* Only cards that explicitly opt-in should scroll (Finish card) */
@@ -399,6 +423,18 @@ input::placeholder, textarea::placeholder{
 .btn[disabled]{opacity:.45; cursor:not-allowed; transform:none}
 
 .hint{margin: 12px 0 0; color: var(--muted); font-size: 12px; line-height:1.5}
+
+kbd{
+  display:inline-block;
+  padding:1px 6px;
+  border:1px solid var(--border);
+  border-radius:5px;
+  font-size:11px;
+  font-family: system-ui, -apple-system, monospace;
+  background: color-mix(in srgb, var(--bg) 80%, transparent);
+  color: var(--text);
+  box-shadow: 0 1px 0 var(--border);
+}
 
 /* Summary */
 .summary{
