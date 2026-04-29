@@ -12,12 +12,12 @@
 
 /* ─── Design Tokens ──────────────────────────────────────── */
 :root {
-  /* Sales mode accent: CM Purple */
-  --accent:        #6610F2;
-  --accent-light:  #8540F5;
-  --accent-glow:   rgba(102,16,242,0.22);
-  --accent-faint:  rgba(102,16,242,0.07);
-  --accent-border: rgba(102,16,242,0.28);
+  /* Sales mode accent: CM Purple (screen-optimised) */
+  --accent:        #8B5CF6;
+  --accent-light:  #A78BFA;
+  --accent-glow:   rgba(139,92,246,0.22);
+  --accent-faint:  rgba(139,92,246,0.07);
+  --accent-border: rgba(139,92,246,0.28);
   /* Backgrounds */
   --dark:          #0A1414;
   --surface:       #0F1C1C;
@@ -294,6 +294,17 @@ main { padding-top: 64px; }
   font-size: 10.5px; font-weight: 600; padding: 3px 9px;
   border-radius: 100px; background: rgba(255,255,255,0.05);
   color: var(--text-3); border: 1px solid var(--border);
+}
+.tag-eu {
+  background: rgba(255,164,0,0.1);
+  color: #FFA400; border-color: rgba(255,164,0,0.3);
+}
+.eu-notice {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 16px; border-radius: 8px;
+  background: rgba(255,164,0,0.07); border: 1px solid rgba(255,164,0,0.25);
+  color: #FFA400; font-size: 13px; font-weight: 600;
+  margin-bottom: 28px;
 }
 .card-arrow {
   position: absolute; bottom: 26px; right: 26px;
@@ -749,11 +760,11 @@ function iconImg(key, size) {
 
 // ─── Product definitions ──────────────────────────────────────
 const products = [
-  { id:'halo',         iconKey:'halo',         title:'HALO Agentic AI',           sub:'Autonomous AI agents that plan, decide, and act across the entire CM.com ecosystem.',                                   tags:['AI','Automation','Voice Agents','No-code','Agentic'] },
+  { id:'halo',         iconKey:'halo',         title:'HALO Agentic AI',           sub:'AI agents that take action across messaging, voice, and operations on behalf of your customers and your team.',                                   tags:['AI','Automation','Voice Agents','No-code','Agentic'] },
   { id:'mmc',          iconKey:'mmc',          title:'Mobile Marketing Cloud',    sub:'Omnichannel marketing automation with campaign builder, journey engine, and unified customer data.',                   tags:['Marketing','Campaigns','Automation','Omnichannel','WhatsApp'] },
   { id:'msc',          iconKey:'msc',          title:'Mobile Service Cloud',      sub:'AI-powered unified inbox consolidating every customer service channel into one intelligent workspace.',                 tags:['Support','Omnichannel','AI Assist','Voice','Routing'] },
-  { id:'payments',     iconKey:'payments',     title:'Payments Platform',         sub:'Full-stack payment processing for online, POS, QR, event, and recurring transactions natively embedded in CM.com.',    tags:['Payments','POS','QR','Wero','Recurring','PCI DSS'] },
-  { id:'ticketing',    iconKey:'ticketing',    title:'Ticketing by CM.com',       sub:'Blockchain-based fraud-free ticketing with dynamic QR codes, controlled resale, and integrated event payments.',       tags:['Events','Blockchain','Anti-fraud','Resale','RFID'] },
+  { id:'payments',     iconKey:'payments',     title:'Payments Platform',         sub:'Full-stack payment processing for online, POS, QR, event, and recurring transactions natively embedded in CM.com.',    tags:['Payments','POS','QR','Wero','Recurring','PCI DSS'], euOnly:true },
+  { id:'ticketing',    iconKey:'ticketing',    title:'Ticketing by CM.com',       sub:'Blockchain-based fraud-free ticketing with dynamic QR codes, controlled resale, and integrated event payments.',       tags:['Events','Blockchain','Anti-fraud','Resale','RFID'], euOnly:true },
   { id:'messaging',    iconKey:'messaging',    title:'Messaging & SMS API',       sub:'One API covering SMS, WhatsApp, RCS, Apple Messages, Viber, and Email backed by 200+ direct carrier connections.',    tags:['SMS','WhatsApp','RCS','Email','API','CPaaS'] },
   { id:'voice',        iconKey:'voice',        title:'Voice & VoIP',              sub:'Cloud VoIP, programmable IVR, voice broadcasting, and 24/7 AI Voice Agents that handle calls in natural language.',    tags:['VoIP','IVR','AI Voice','SIP','WebRTC','Broadcasting'] },
   { id:'verification', iconKey:'verification', title:'Verification & OTP API',    sub:'Multi-channel OTP with adaptive fallback, CM Safeguard fraud protection, and full PSD2 SCA compliance.',              tags:['OTP','2FA','Security','PSD2','SMS','Voice','WhatsApp'] },
@@ -767,7 +778,10 @@ function buildGrid() {
       <div class="card-icon">${iconImg(p.iconKey, 32)}</div>
       <div class="card-title">${p.title}</div>
       <div class="card-desc">${p.sub}</div>
-      <div class="card-tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+      <div class="card-tags">
+        ${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+        ${p.euOnly ? '<span class="tag tag-eu">EU Only</span>' : ''}
+      </div>
       <div class="card-arrow">&#8594;</div>
     </div>`).join('');
 }
@@ -792,9 +806,13 @@ function renderProduct(id) {
       <div>
         <div class="detail-title">${p.title}</div>
         <div class="detail-subtitle">${p.sub}</div>
-        <div class="card-tags" style="margin-top:13px">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+        <div class="card-tags" style="margin-top:13px">
+          ${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+          ${p.euOnly ? '<span class="tag tag-eu">EU Only</span>' : ''}
+        </div>
       </div>
     </div>
+    ${p.euOnly ? '<div class="eu-notice">&#9888;&nbsp; This product is currently available in the EU only and is not yet offered in the US market.</div>' : ''}
     ${perspBar()}`;
 
   const bodyFns = {
@@ -988,7 +1006,7 @@ function haloSales() { return `
     <div class="content-block accent">
       <div class="block-title">What Is HALO?</div>
       <div class="block-body">
-        <p>HALO is CM.com's Agentic AI platform. Autonomous AI agents that <em>plan, decide, and take action</em> on behalf of businesses and customers. Unlike chatbots that answer questions, HALO agents actually <strong>do things</strong>.</p>
+        <p>HALO is CM.com's Agentic AI platform. <strong>AI agents that take action across messaging, voice, and operations</strong> on behalf of your customers and your team. Unlike chatbots that answer questions, HALO agents actually <strong>do things</strong>.</p>
         <p>A HALO agent can check an order, create a return label, send a payment link, update a CRM record, and confirm with the customer all in a single conversation flow. <strong>30% MoM growth. Over 1.2M EUR ARR in first 5 months.</strong></p>
       </div>
     </div>
