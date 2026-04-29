@@ -55,7 +55,8 @@
         ];
 
         const toolDemos = [
-            { name: "Statement of Work Builder", path: "DemoPages/sow-builder/index.html" }
+            { name: "Statement of Work Builder", path: "DemoPages/sow-builder/index.html" },
+            { name: "Who is CM.com?", path: "DemoPages/who-is-cm/index.html", buttonText: "View Page" }
         ];
 
         const videosDemos = [
@@ -145,9 +146,10 @@
                     // JS-driven stagger so nth-child limits never apply
                     card.style.animationDelay = (0.05 + i * 0.06) + 's';
 
+                    const displayButtonText = demo.buttonText || buttonText;
                     card.innerHTML = `
                         <h3 class="card-title">${demo.name}</h3>
-                        <div><span class="view-button">${buttonText}</span></div>
+                        <div><span class="view-button">${displayButtonText}</span></div>
                     `;
                     grid.appendChild(card);
                 });
