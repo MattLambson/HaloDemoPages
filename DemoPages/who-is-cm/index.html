@@ -871,7 +871,7 @@ function renderCompanySales() { return `
           '<strong>One platform:</strong> Marketing, service, payments, AI with unified data layer',
           '<strong>AI-first:</strong> HALO Agentic AI deploys autonomous agents with no code',
           '<strong>Payments embedded:</strong> Full payment engine built in, not bolted on',
-          '<strong>EU-native compliance:</strong> GDPR, ISO 27001, HDS (France) first CPaaS to achieve this',
+          '<strong>EU-native compliance:</strong> GDPR, ISO 27001, ISO 42001 (AI Management), HDS (France) first CPaaS to achieve this',
           '<strong>Blockchain ticketing:</strong> GUTS acquisition, only major ticketing platform on blockchain'
         ])}
       </div>
@@ -904,6 +904,22 @@ function renderCompanySales() { return `
       </div>
     </div>
   </div>
+  <div class="content-grid">
+    <div class="content-block accent">
+      <div class="block-title">Market Position</div>
+      <div class="block-body">
+        <p>CM.com is a recognized <strong>Major Player</strong> in CPaaS by IDC, competing in a global market valued at over <strong>$20 billion</strong> and growing rapidly as AI-powered automation transforms customer engagement.</p>
+        <p style="margin-top:12px;">Listed on <strong>Euronext Amsterdam (CMCOM)</strong>. FY 2025 revenue €259.4M. Record EBITDA with 50% YoY growth in Q1 2026. 24 offices across 20+ countries.</p>
+      </div>
+    </div>
+    <div class="content-block">
+      <div class="block-title">The CM.com Pitch</div>
+      <div class="block-body">
+        <p>Twilio gives you powerful developer tools but requires you to stitch everything together yourself, and still doesn't give you payments or AI. CM.com gives you a <strong>production-ready, end-to-end platform</strong> with AI, payments, and compliance baked in.</p>
+        <p style="margin-top:12px;">For businesses who want to <em>move fast without building their own stack</em>, CM.com wins on total cost of ownership, time to value, and regulatory readiness.</p>
+      </div>
+    </div>
+  </div>
   <div class="content-grid full">
     <div class="content-block accent">
       <div class="block-title">Competitive Positioning</div>
@@ -915,7 +931,8 @@ function renderCompanySales() { return `
           <tr><td>Production Agentic AI</td><td class="yes">HALO</td><td class="partial">Beta</td><td class="partial">Partial</td><td class="partial">Partial</td></tr>
           <tr><td>Blockchain ticketing</td><td class="yes">GUTS</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
           <tr><td>EU-first / GDPR-native</td><td class="yes">Yes</td><td class="partial">US-first</td><td class="partial">Partial</td><td class="partial">Partial</td></tr>
-          <tr><td>IDC CPaaS mindshare</td><td>~8%</td><td>~36%</td><td>~10%</td><td>~12%</td></tr>
+          <tr><td>ISO 42001 (AI Management System)</td><td class="yes">Certified</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
+          <tr><td>IDC CPaaS mindshare</td><td>~8% (Major Player)</td><td>~36%</td><td>~10%</td><td>~12%</td></tr>
         </tbody>
       </table>
     </div>
@@ -951,6 +968,7 @@ function renderCompanyEng() { return `
       <div class="block-body">
         ${bullets([
           'ISO 27001: Information Security',
+          'ISO 42001: AI Management System (one of few CPaaS providers globally)',
           'GDPR: EU Data Protection (native)',
           'PCI DSS Level 1: Payment Card Industry',
           'HDS: French Healthcare Data Hosting (first CPaaS)',
@@ -993,6 +1011,44 @@ function renderCompanyEng() { return `
       <div class="block-body">
         <p>For regulated EU sectors (finance, healthcare, government), CM.com + VOLT provides a <strong>sovereign AI deployment:</strong> HALO running in fully EU-controlled infrastructure with no data leaving Dutch/EU borders.</p>
         <p>Available for clients with strict data sovereignty requirements.</p>
+      </div>
+    </div>
+  </div>
+  <div class="content-grid full">
+    <div class="content-block accent">
+      <div class="block-title">Competitive Technical Positioning</div>
+      <div class="block-body">
+        <table class="comp-table">
+          <thead><tr><th></th><th>CM.com</th><th>Twilio</th><th>Bird (MessageBird)</th><th>Vonage</th></tr></thead>
+          <tbody>
+            <tr class="highlight"><td>Unified data layer</td><td class="yes">Native</td><td class="no">Requires custom integration</td><td class="partial">Partial</td><td class="no">No</td></tr>
+            <tr><td>Embedded payments (PSP)</td><td class="yes">Native</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
+            <tr><td>Agentic AI (production)</td><td class="yes">HALO</td><td class="partial">Preview/beta</td><td class="partial">Partial</td><td class="partial">Partial</td></tr>
+            <tr><td>Blockchain ticketing</td><td class="yes">GUTS</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
+            <tr><td>EU data residency</td><td class="yes">Yes</td><td class="partial">US-primary</td><td class="partial">Partial</td><td class="partial">Partial</td></tr>
+            <tr><td>HDS (France healthcare)</td><td class="yes">First CPaaS</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
+            <tr><td>Direct carrier connections</td><td class="yes">200+ operators</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+            <tr><td>Developer ecosystem</td><td class="partial">Growing</td><td class="yes">Largest</td><td class="partial">Large</td><td class="partial">Large</td></tr>
+          </tbody>
+        </table>
+        <p style="margin-top:14px;font-size:13px;color:var(--text-2);"><strong style="color:var(--text-1)">Technical note:</strong> Twilio's mindshare (~36% CPaaS) reflects early developer adoption and broad feature depth. CM.com's differentiation is <strong>integrated platform value</strong>: unified data, embedded payments, and production-ready AI. For architects evaluating total cost of ownership across comms + payments + AI, CM.com typically requires fewer third-party integrations.</p>
+      </div>
+    </div>
+  </div>
+  <div class="content-grid full">
+    <div class="content-block accent">
+      <div class="block-title">Data Platform (GA: H2 2026)</div>
+      <div class="block-body">
+        <p>CM.com's unified data platform consolidates all customer interaction data into a single queryable layer powering the entire product suite:</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-top:16px;">
+          ${[
+            ['Customer Interaction History','All channel events: messages, payments, support tickets, web behavior'],
+            ['Behavioral Data','Clicks, purchases, support contacts, campaign engagement'],
+            ['Contextual Signals','Real-time session state and in-progress transaction data for AI inference'],
+            ['Vector + Relational Store','Hybrid architecture: semantic search and structured query in one layer'],
+          ].map(([t,d]) => `<div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:10px;padding:14px;"><div style="font-size:12.5px;font-weight:700;color:var(--accent);margin-bottom:6px;">${t}</div><div style="font-size:12px;color:var(--text-2);line-height:1.6;">${d}</div></div>`).join('')}
+        </div>
+        <p style="margin-top:14px;font-size:13px;color:var(--text-2)">This is the foundation for HALO's agentic capabilities, ensuring AI agents have access to full customer context rather than operating on isolated session data.</p>
       </div>
     </div>
   </div>`; }
@@ -1052,6 +1108,25 @@ function haloSales() { return `
           <tr><td>Manual escalation, lost context</td><td class="yes">Smart handoff with full transcript</td></tr>
         </tbody>
       </table>
+    </div>
+  </div>
+  <div class="content-grid full">
+    <div class="content-block">
+      <div class="block-title">vs. Standalone AI Chat Tools</div>
+      <table class="comp-table">
+        <thead><tr><th></th><th>CM.com HALO</th><th>Intercom AI</th><th>Zendesk AI</th><th>Drift</th></tr></thead>
+        <tbody>
+          <tr class="highlight"><td>Embedded in comms + payments platform</td><td class="yes">Native</td><td class="no">Chat-only</td><td class="no">Service-only</td><td class="no">Marketing-only</td></tr>
+          <tr><td>AI Voice Agents (inbound calls)</td><td class="yes">HALO on Voice</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
+          <tr><td>Can send payment link and process payment</td><td class="yes">Native</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
+          <tr><td>WhatsApp + SMS + chat + voice unified</td><td class="yes">Yes</td><td class="partial">Chat-first</td><td class="partial">Partial</td><td class="partial">Partial</td></tr>
+          <tr><td>Can create tickets, update CRM, issue refunds</td><td class="yes">Native tools</td><td class="partial">Via integrations</td><td class="partial">Via integrations</td><td class="partial">Via integrations</td></tr>
+          <tr><td>EU-first, GDPR-native</td><td class="yes">Yes</td><td class="partial">US-primary</td><td class="partial">US-primary</td><td class="partial">US-primary</td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top:14px;padding:12px 14px;background:rgba(255,255,255,0.03);border-radius:8px;font-size:13px;color:var(--text-2);">
+        HALO is the only AI agent that can send a WhatsApp message, process a payment, create a support ticket, and update a CRM record in a single conversation flow, without any third-party stitching.
+      </div>
     </div>
   </div>`; }
 
@@ -1114,6 +1189,58 @@ function haloEng() { return `
       </div>
     </div>
   </div>
+  <div class="content-grid">
+    <div class="content-block">
+      <div class="block-title">Data Platform Integration</div>
+      <div class="block-body">
+        <p>HALO agents are powered by CM.com's hybrid data platform (GA: H2 2026):</p>
+        ${bullets([
+          '<strong>Unified customer profiles:</strong> Aggregated across all channels and interactions (messages, payments, service tickets, web behavior)',
+          '<strong>Knowledge base layer:</strong> Structured and unstructured organizational knowledge (product catalogs, FAQs, policies) indexed for fast retrieval',
+          '<strong>Real-time context:</strong> Live session state, in-progress transaction data, and recent interaction history',
+          '<strong>Vector + relational store:</strong> Hybrid architecture for both semantic search and structured queries'
+        ])}
+        <p style="margin-top:12px;font-size:13px;color:var(--text-2)">This ensures agents operate with full customer context, not just session memory, enabling genuinely personalized, context-aware responses.</p>
+      </div>
+    </div>
+    <div class="content-block">
+      <div class="block-title">Agent Builder (No-Code UI)</div>
+      <div class="block-body">
+        ${bullets([
+          'Drag-and-drop workflow editor (decision trees, intent branches, tool call nodes)',
+          'Template library for common flows (order status, appointment booking, FAQ deflection)',
+          'A/B testing and version control for agent flows',
+          'Real-time analytics dashboard: containment rate, escalation rate, CSAT'
+        ])}
+        <p style="margin-top:12px;font-size:13px;color:var(--text-2)">Custom agents requiring complex logic can be built programmatically using HALO's agent configuration API.</p>
+      </div>
+    </div>
+  </div>
+  <div class="content-grid">
+    <div class="content-block">
+      <div class="block-title">Security &amp; Compliance</div>
+      <div class="block-body">
+        ${bullets([
+          'All agent interactions logged with full audit trail',
+          'PII detection and masking before data leaves CM.com infrastructure',
+          'Role-based access control for agent configuration and data access',
+          'EU data residency for agent memory and conversation logs',
+          'GDPR-compliant data retention policies configurable per agent'
+        ])}
+      </div>
+    </div>
+    <div class="content-block">
+      <div class="block-title">External Tool Integration</div>
+      <div class="block-body">
+        ${bullets([
+          '<strong>Webhook-based tool calls</strong> to any REST API (CRM, ERP, e-commerce, booking systems)',
+          '<strong>OAuth 2.0 and API key authentication</strong> for external system access',
+          '<strong>Response schema validation</strong> before agent acts on external data'
+        ])}
+        <p style="margin-top:12px;font-size:13px;color:var(--text-2)">This enables HALO to operate as an orchestration layer across your existing tech stack, not just within CM.com's ecosystem.</p>
+      </div>
+    </div>
+  </div>
   <div class="content-grid full">
     <div class="content-block">
       <div class="block-title">Deployment Modes</div>
@@ -1153,17 +1280,47 @@ function mmcSales() { return `
   </div>
   <div class="content-grid full">
     <div class="content-block">
+      <div class="block-title">Use Cases by Vertical</div>
+      <div class="use-case-grid">
+        ${[
+          ['Retail &amp; E-Commerce','Flash sale SMS broadcasts, abandoned cart recovery via WhatsApp, post-purchase review flows, loyalty tier updates'],
+          ['Events &amp; Entertainment','Pre-event campaign sequences (lineup reveals, schedule updates), on-site engagement, post-event re-engagement and next-event promotion'],
+          ['Financial Services','Secure transactional alerts, compliant product cross-sell campaigns, onboarding sequences for new account holders'],
+          ['Hospitality &amp; Travel','Pre-stay / pre-flight communications, upsell sequences (room upgrades, ancillary services), post-stay review requests'],
+        ].map(([n,d]) => `<div class="use-case-card"><div class="use-case-industry">${n}</div><div class="use-case-desc">${d}</div></div>`).join('')}
+      </div>
+    </div>
+  </div>
+  <div class="content-grid full">
+    <div class="content-block accent">
       <div class="block-title">Competitive Comparison</div>
       <table class="comp-table">
         <thead><tr><th></th><th>CM.com MMC</th><th>Klaviyo</th><th>Salesforce MC</th><th>HubSpot</th></tr></thead>
         <tbody>
           <tr><td>SMS + WhatsApp + Email unified</td><td class="yes">Native</td><td class="partial">SMS limited</td><td class="partial">Add-on</td><td class="partial">Limited</td></tr>
           <tr><td>Embedded payments</td><td class="yes">Yes</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
-          <tr><td>Ticketing integration</td><td class="yes">Yes</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
+          <tr><td>Ticketing integration</td><td class="yes">Yes (via CM Ticketing)</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
+          <tr><td>AI personalization</td><td class="yes">Via HALO</td><td class="partial">Partial</td><td class="yes">Yes (expensive)</td><td class="partial">Partial</td></tr>
           <tr><td>GDPR-native</td><td class="yes">Yes</td><td class="partial">Partial</td><td class="partial">Partial</td><td class="partial">Partial</td></tr>
           <tr><td>Mid-market accessible pricing</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="no">Enterprise only</td><td class="yes">Yes</td></tr>
         </tbody>
       </table>
+      <div style="margin-top:16px;padding:12px 14px;background:rgba(255,255,255,0.03);border-radius:8px;font-size:13px;color:var(--text-2);">
+        <strong style="color:var(--text-1)">The pitch:</strong> Klaviyo is email-first. Salesforce MC is powerful but expensive and complex. MMC is built for the channels customers actually use today (WhatsApp, SMS) with payments and AI baked in, at a price point accessible to mid-market, not just Fortune 500.
+      </div>
+    </div>
+  </div>
+  <div class="content-grid">
+    <div class="content-block">
+      <div class="block-title">Best-Fit Buyer Profile</div>
+      <div class="block-body">
+        ${bullets([
+          'Businesses with a customer database of 10,000+ records',
+          'Companies currently using 2+ separate marketing tools who want consolidation',
+          'Marketers who want to reach customers via WhatsApp or SMS, not just email',
+          'Organizations in CM.com\'s core verticals: retail, events, finance, travel'
+        ])}
+      </div>
     </div>
   </div>`; }
 
@@ -1176,23 +1333,65 @@ function mmcEng() { return `
           '<strong>Customer Data Layer:</strong> Real-time unified profiles from all CM.com channels plus external integrations',
           '<strong>Segmentation Engine:</strong> Dynamic and static audience segments on live profile data',
           '<strong>Journey Engine:</strong> Event-driven workflow engine for trigger-based execution',
-          '<strong>Delivery Layer:</strong> Routes to CM.com messaging infrastructure (SMS, Email, WhatsApp, Push)'
+          '<strong>Delivery Layer:</strong> Routes to CM.com messaging infrastructure (SMS, Email, WhatsApp, Push, Voice)'
         ])}
+      </div>
+    </div>
+    <div class="content-block">
+      <div class="block-title">Customer Profile Model</div>
+      <div class="block-body">
+        <p>Each customer profile aggregates:</p>
+        ${bullets([
+          '<strong>Identity attributes:</strong> email, phone, name, external IDs (CRM IDs, cookie IDs)',
+          '<strong>Behavioral events:</strong> message opens, clicks, purchases, web/app events',
+          '<strong>Transactional data:</strong> purchases connected via CM.com Payments integration',
+          '<strong>Channel preferences &amp; consent:</strong> opt-in/opt-out state per channel with timestamps (GDPR)',
+          '<strong>Custom attributes:</strong> arbitrary key-value data via API or CSV import'
+        ])}
+        <p style="margin-top:10px;font-size:13px;color:var(--text-2)">Profile updates process in real time and are immediately available for segmentation and journey trigger evaluation.</p>
+      </div>
+    </div>
+  </div>
+  <div class="content-grid">
+    <div class="content-block">
+      <div class="block-title">Segmentation Engine</div>
+      <div class="block-body">
+        <p><strong>Static segments:</strong> Point-in-time audience snapshot for one-off campaigns.</p>
+        <p style="margin-top:8px;"><strong>Dynamic segments:</strong> Rule-based segments that re-evaluate continuously as profile data changes.</p>
+        <p style="margin-top:8px;font-size:13px;color:var(--text-2)">Rules support boolean logic across any profile attribute, behavioral event, or calculated value, e.g., "total purchases last 30 days &gt; 2 AND channel preference = WhatsApp AND opt-in = true".</p>
       </div>
     </div>
     <div class="content-block">
       <div class="block-title">Journey Engine Nodes</div>
       <div class="block-body">
         ${bullets([
-          'Entry triggers: profile event, scheduled time, API trigger, segment entry',
-          'Send message (SMS, WhatsApp, Email, Push)',
+          'Entry triggers: profile event, scheduled time, API trigger, segment entry/exit',
+          'Send message (SMS, WhatsApp, Email, Push, RCS)',
           'Delay / wait for time or event',
           'Conditional branch (if/else on profile data)',
           'Webhook call to external endpoint',
           'Update profile attribute',
-          'A/B split with percentage allocation'
+          'A/B split with percentage allocation',
+          'Concurrency: multiple journeys per customer with deduplication / suppression logic'
         ])}
       </div>
+    </div>
+  </div>
+  <div class="content-grid full">
+    <div class="content-block">
+      <div class="block-title">Channel Support &amp; Delivery</div>
+      <table class="comp-table">
+        <thead><tr><th>Channel</th><th>API Used</th><th>Rich Content Support</th></tr></thead>
+        <tbody>
+          <tr><td>SMS</td><td>CM.com SMS Gateway API</td><td>Text, link tracking</td></tr>
+          <tr><td>WhatsApp</td><td>CM.com Business Messaging API</td><td>Images, buttons, carousels, payment links</td></tr>
+          <tr><td>Email</td><td>CM.com Email API</td><td>HTML/MJML templates, dynamic content blocks</td></tr>
+          <tr><td>Push (iOS/Android)</td><td>Mobile SDK + push gateway</td><td>Rich push with deep links</td></tr>
+          <tr><td>RCS</td><td>CM.com Business Messaging API</td><td>Rich cards, suggested actions</td></tr>
+          <tr><td>Apple Messages for Business</td><td>CM.com Business Messaging API</td><td>Interactive message types</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:10px;font-size:13px;color:var(--text-2)">All outbound messages are tracked (sent, delivered, opened, clicked) with events written back to the customer profile.</p>
     </div>
   </div>
   <div class="content-grid">
@@ -1200,9 +1399,23 @@ function mmcEng() { return `
       <div class="block-title">Data Integrations</div>
       <div class="block-body">
         <p><strong>Inbound:</strong> REST API, JavaScript SDK, Mobile SDK (iOS/Android), Shopify, Magento, WooCommerce, Salesforce, HubSpot, CSV/SFTP batch</p>
-        <p><strong>Outbound:</strong> Webhook delivery for engagement events; campaign analytics API; automatic payment conversion sync</p>
+        <p style="margin-top:8px;"><strong>Outbound:</strong> Webhook delivery for campaign engagement events; campaign analytics API; automatic payment conversion sync back to profiles</p>
       </div>
     </div>
+    <div class="content-block">
+      <div class="block-title">Compliance &amp; Consent Management</div>
+      <div class="block-body">
+        ${bullets([
+          '<strong>Consent records</strong> stored per customer per channel with timestamp and source',
+          '<strong>Unsubscribe handling:</strong> Automatic opt-out processing across all channels',
+          '<strong>GDPR tooling:</strong> Right-to-erasure API, data export, consent audit log',
+          '<strong>Double opt-in flows:</strong> Configurable per channel and audience',
+          '<strong>CASL / CAN-SPAM:</strong> Compliance tooling for North American deployments'
+        ])}
+      </div>
+    </div>
+  </div>
+  <div class="content-grid">
     <div class="content-block">
       <div class="block-title">Package Tiers</div>
       <div class="block-body">
@@ -1212,7 +1425,9 @@ function mmcEng() { return `
             <tr><td>Omnichannel campaigns</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
             <tr><td>360 Customer Profiles</td><td class="no">No</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
             <tr><td>Journey automation</td><td class="no">No</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+            <tr><td>CDP Integration &amp; Profile Sync</td><td class="no">No</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
             <tr><td>Conversion Tracking</td><td class="no">No</td><td class="no">No</td><td class="yes">Yes</td></tr>
+            <tr><td>Advanced &amp; Automated Tagging</td><td class="no">No</td><td class="no">No</td><td class="yes">Yes</td></tr>
             <tr><td>Advanced Reporting</td><td class="no">No</td><td class="no">No</td><td class="yes">Yes</td></tr>
           </tbody>
         </table>
@@ -1272,7 +1487,10 @@ function mscEng() { return `
             <tr><td>Email</td><td class="yes">Yes</td><td class="yes">Yes</td><td>Via CM.com Email API</td></tr>
             <tr><td>Live Chat</td><td class="yes">Yes</td><td class="yes">Yes</td><td>JS embed, configurable branding</td></tr>
             <tr><td>Voice</td><td class="yes">Yes</td><td class="yes">Yes</td><td>Native telephony via VoIP</td></tr>
-            <tr><td>Apple Messages</td><td class="yes">Yes</td><td class="yes">Yes</td><td></td></tr>
+            <tr><td>Apple Messages for Business</td><td class="yes">Yes</td><td class="yes">Yes</td><td></td></tr>
+            <tr><td>RCS</td><td class="yes">Yes</td><td class="yes">Yes</td><td></td></tr>
+            <tr><td>Facebook Messenger</td><td class="yes">Yes</td><td class="yes">Yes</td><td>Via social channel integrations</td></tr>
+            <tr><td>Instagram DM</td><td class="yes">Yes</td><td class="yes">Yes</td><td>Via social channel integrations</td></tr>
           </tbody>
         </table>
       </div>
@@ -1317,6 +1535,39 @@ function mscEng() { return `
         ])}
       </div>
     </div>
+  </div>
+  <div class="content-grid">
+    <div class="content-block">
+      <div class="block-title">Security &amp; Compliance</div>
+      <div class="block-body">
+        ${bullets([
+          'All conversations encrypted in transit (TLS) and at rest (AES-256)',
+          'Role-based access control: Admin, Supervisor, Agent with granular permissions',
+          'IP allowlisting for agent access (configurable)',
+          'Full audit log of agent actions (message sent, assignment, tag changes)',
+          'GDPR: Data retention policies, right-to-erasure API endpoint, consent management',
+          'SOC 2 Type II compliance (available upon request for enterprise customers)'
+        ])}
+      </div>
+    </div>
+    <div class="content-block">
+      <div class="block-title">Package Tiers</div>
+      <div class="block-body">
+        <table class="comp-table">
+          <thead><tr><th>Feature</th><th>Basic</th><th>Advanced</th><th>Pro</th></tr></thead>
+          <tbody>
+            <tr><td>Omnichannel inbox</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+            <tr><td>Basic statistics &amp; reporting</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+            <tr><td>360 Customer Profiles</td><td class="no">No</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+            <tr><td>Skills-based routing</td><td class="no">No</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+            <tr><td>CDP Integration &amp; Profile Sync</td><td class="no">No</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+            <tr><td>Conversion Tracking</td><td class="no">No</td><td class="no">No</td><td class="yes">Yes</td></tr>
+            <tr><td>Advanced &amp; Automated Tagging</td><td class="no">No</td><td class="no">No</td><td class="yes">Yes</td></tr>
+            <tr><td>Advanced Statistics &amp; Reporting</td><td class="no">No</td><td class="no">No</td><td class="yes">Yes</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>`; }
 
 function paymentsSales() { return `
@@ -1333,14 +1584,18 @@ function paymentsSales() { return `
       <div class="block-body">
         <div class="channel-pills">
           <span class="channel-pill">Visa / Mastercard</span>
+          <span class="channel-pill">Amex / Maestro</span>
           <span class="channel-pill">iDEAL</span>
           <span class="channel-pill">Wero</span>
           <span class="channel-pill">Apple Pay</span>
           <span class="channel-pill">Google Pay</span>
           <span class="channel-pill">PayPal</span>
+          <span class="channel-pill">Klarna (BNPL)</span>
           <span class="channel-pill">SEPA Direct</span>
           <span class="channel-pill">Bancontact</span>
-          <span class="channel-pill">Recurring</span>
+          <span class="channel-pill">Sofort</span>
+          <span class="channel-pill">Giropay</span>
+          <span class="channel-pill">Recurring / Subscriptions</span>
           <span class="channel-pill">QR Payments</span>
         </div>
       </div>
@@ -1372,8 +1627,26 @@ function paymentsSales() { return `
           <tr><td>Payment links in messaging</td><td class="yes">Native</td><td class="partial">Manual</td><td class="partial">Partial</td><td class="partial">Partial</td></tr>
           <tr><td>Wero support (EU next-gen)</td><td class="yes">Launch partner</td><td class="no">No</td><td class="partial">Partial</td><td class="no">No</td></tr>
           <tr><td>Customer profile linkage</td><td class="yes">Yes</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
+          <tr><td>European local methods (iDEAL, Bancontact, Wero)</td><td class="yes">Full coverage</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
         </tbody>
       </table>
+      <div style="margin-top:14px;padding:12px 14px;background:rgba(255,255,255,0.03);border-radius:8px;font-size:13px;color:var(--text-2);">
+        <strong style="color:var(--text-1)">The pitch:</strong> Stripe and Adyen are best-in-class <em>standalone</em> payment tools for technical teams. CM.com Payments is the choice when you want payments embedded in your customer engagement workflow, without stitching together your comms and your checkout.
+      </div>
+    </div>
+  </div>
+  <div class="content-grid">
+    <div class="content-block">
+      <div class="block-title">Best-Fit Customers</div>
+      <div class="block-body">
+        ${bullets([
+          'Event organizers and festivals running cashless payments',
+          'Retailers who want omnichannel (online + in-store + messaging) transaction data in one place',
+          'Businesses doing conversational commerce (selling via WhatsApp/SMS)',
+          'Subscription businesses needing integrated recurring billing',
+          'European businesses prioritizing local payment methods and Wero readiness'
+        ])}
+      </div>
     </div>
   </div>`; }
 
@@ -1412,6 +1685,32 @@ function paymentsEng() { return `
   </div>
   <div class="content-grid">
     <div class="content-block">
+      <div class="block-title">POS Integration</div>
+      <div class="block-body">
+        ${bullets([
+          '<strong>Hardware:</strong> CM.com-certified Android terminals with Tap-to-Pay support',
+          '<strong>TMS:</strong> Remote terminal configuration, firmware updates, receipt template management',
+          '<strong>Semi-integrated mode:</strong> CM.com terminal SDK for integration with existing EPOS/retail systems',
+          '<strong>Offline mode:</strong> Terminals cache transactions locally if connectivity interrupted, sync on reconnect',
+          '<strong>Receipts:</strong> Print, email, or SMS, customer selection at terminal or pre-configured'
+        ])}
+      </div>
+    </div>
+    <div class="content-block">
+      <div class="block-title">Wero Integration</div>
+      <div class="block-body">
+        <p>CM.com is a launch partner for <strong>Wero</strong>, the SEPA-native digital payments network from EPI (European Payments Initiative), rolling out across Germany, France, Belgium, Luxembourg, and the Netherlands.</p>
+        ${bullets([
+          'Transactions initiated via redirect or QR flow',
+          'Settlement is near-instant (SEPA Instant Credit Transfer)',
+          'No chargeback risk (push payment)',
+          'Handled via CM.com Payments API, no separate Wero integration required'
+        ])}
+      </div>
+    </div>
+  </div>
+  <div class="content-grid">
+    <div class="content-block">
       <div class="block-title">Security &amp; Compliance</div>
       <div class="block-body">
         <table class="comp-table">
@@ -1422,6 +1721,7 @@ function paymentsEng() { return `
             <tr><td>SCA (PSD2)</td><td class="yes">Compliant for EU transactions</td></tr>
             <tr><td>Network tokenization</td><td class="yes">Visa + Mastercard</td></tr>
             <tr><td>Fraud Screening</td><td class="yes">Rule-based + ML scoring</td></tr>
+            <tr><td>GDPR</td><td class="yes">Full data management tooling</td></tr>
           </tbody>
         </table>
       </div>
@@ -1429,7 +1729,18 @@ function paymentsEng() { return `
     <div class="content-block">
       <div class="block-title">Webhook Events</div>
       <div class="block-body">
-        ${bullets(['payment.created','payment.paid','payment.failed','payment.refunded','payment.expired','subscription.renewed','subscription.failed'])}
+        <table class="comp-table">
+          <thead><tr><th>Event</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>payment.created</code></td><td>New payment initiated</td></tr>
+            <tr><td><code>payment.paid</code></td><td>Payment completed successfully</td></tr>
+            <tr><td><code>payment.failed</code></td><td>Payment declined or errored</td></tr>
+            <tr><td><code>payment.refunded</code></td><td>Refund issued</td></tr>
+            <tr><td><code>payment.expired</code></td><td>Payment link expired</td></tr>
+            <tr><td><code>subscription.renewed</code></td><td>Recurring charge successful</td></tr>
+            <tr><td><code>subscription.failed</code></td><td>Recurring charge failed</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>`; }
@@ -1535,6 +1846,34 @@ function ticketingEng() { return `
         ])}
       </div>
     </div>
+  </div>
+  <div class="content-grid">
+    <div class="content-block">
+      <div class="block-title">Marketing Cloud Integration</div>
+      <div class="block-body">
+        <p>Event data flows into Mobile Marketing Cloud automatically:</p>
+        ${bullets([
+          'Ticket purchase triggers post-purchase journey (confirmation, pre-event communication sequence)',
+          'Attendee profile enriched with ticket type, purchase channel, historical attendance',
+          'Geo-triggered messages during events (e.g., "You\'re near the VIP bar, here\'s your complimentary drink code")',
+          'Post-event re-engagement flows triggered on event completion',
+          'Segment by ticket type (VIP vs GA), attendance history, or merchandise purchase behavior'
+        ])}
+      </div>
+    </div>
+    <div class="content-block">
+      <div class="block-title">HALO AI Integration</div>
+      <div class="block-body">
+        <p>AI agents deployed via HALO handle fan-facing ticketing queries in real time:</p>
+        ${bullets([
+          '"Is my ticket still valid?" &rarr; HALO queries Ticketing API, returns live status',
+          '"Can I transfer my ticket?" &rarr; HALO initiates transfer flow',
+          '"Where\'s my ticket?" &rarr; HALO retrieves delivery status and ticket QR link',
+          'Live event navigation and scheduling queries handled with event knowledge base context'
+        ])}
+        <p style="margin-top:12px;font-size:13px;color:var(--text-2)">Deployed live at the <strong>Formula 1 Heineken Dutch Grand Prix</strong>.</p>
+      </div>
+    </div>
   </div>`; }
 
 function messagingSales() { return `
@@ -1578,12 +1917,42 @@ function messagingSales() { return `
       <div class="block-title">Why CM.com</div>
       <div class="block-body">
         ${bullets([
-          '200+ direct carrier connections for fewer delivery failures',
-          'One API for all channels, one integration covering every channel',
-          'Verified sender identity on RCS and WhatsApp, no spam confusion',
-          '24/7/365 NOC monitoring with 99.9%+ uptime SLA',
-          'EU-first, GDPR-native for regulatory peace of mind',
-          'Official WhatsApp Business Solution Provider (Meta BSP)'
+          '<strong>200+ direct carrier connections</strong> for fewer delivery failures and faster throughput',
+          '<strong>One API for all channels</strong>, one integration covering SMS, WhatsApp, RCS, Apple Messages, Viber, Email',
+          '<strong>Verified sender identity</strong> on RCS and WhatsApp, no spam confusion',
+          '<strong>24/7/365 NOC monitoring</strong> with 99.9%+ uptime SLA and automatic route failover',
+          '<strong>EU-first, GDPR-native</strong> with country-by-country compliance handled automatically',
+          '<strong>Official WhatsApp Business Solution Provider (Meta BSP)</strong>',
+          '<strong>RCS support</strong> with automatic SMS fallback when RCS unavailable on recipient device'
+        ])}
+      </div>
+    </div>
+  </div>
+  <div class="content-grid full">
+    <div class="content-block accent">
+      <div class="block-title">vs. Key Competitors</div>
+      <table class="comp-table">
+        <thead><tr><th></th><th>CM.com</th><th>Twilio</th><th>Bird / MessageBird</th><th>Sinch</th></tr></thead>
+        <tbody>
+          <tr><td>All channels (SMS + WhatsApp + RCS + Apple)</td><td class="yes">All</td><td class="yes">All</td><td class="yes">All</td><td class="yes">All</td></tr>
+          <tr><td>Embedded in comms platform (not API-only)</td><td class="yes">Yes</td><td class="no">API-only</td><td class="partial">Partial</td><td class="no">API-only</td></tr>
+          <tr><td>Direct carrier connections</td><td class="yes">200+</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+          <tr><td>EU-first, GDPR-native</td><td class="yes">Yes</td><td class="partial">US-first</td><td class="partial">Partial</td><td class="partial">Partial</td></tr>
+          <tr><td>Integrated payments</td><td class="yes">Yes</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
+          <tr><td>Developer mindshare</td><td class="partial">Growing</td><td class="yes">Largest</td><td class="yes">Large</td><td class="yes">Large</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="content-grid">
+    <div class="content-block">
+      <div class="block-title">Best-Fit Customers</div>
+      <div class="block-body">
+        ${bullets([
+          '<strong>Enterprises and mid-market</strong> with significant customer notification volume',
+          '<strong>SaaS platforms</strong> that want to embed messaging without building carrier infrastructure',
+          '<strong>ISVs and Resellers</strong> looking for a reliable API to white-label or bundle',
+          '<strong>International businesses</strong> needing multi-country messaging with local compliance handled'
         ])}
       </div>
     </div>
@@ -1624,6 +1993,56 @@ function messagingEng() { return `
   </div>
   <div class="content-grid">
     <div class="content-block">
+      <div class="block-title">SMS Message Types &amp; Number Types</div>
+      <div class="block-body">
+        <p style="font-size:12.5px;color:var(--text-3);margin-bottom:8px;font-weight:600;">Message Types:</p>
+        ${bullets([
+          '<strong>MT (Mobile Terminated):</strong> Outbound to end user',
+          '<strong>MO (Mobile Originated):</strong> Inbound from end user (long/short code)',
+          '<strong>Flash SMS:</strong> Class 0, displays immediately without storage',
+          '<strong>Concatenated / Long SMS:</strong> Auto-segmented; billing per segment'
+        ])}
+        <p style="font-size:12.5px;color:var(--text-3);margin:12px 0 8px;font-weight:600;">Number Types:</p>
+        ${bullets([
+          '<strong>Long codes:</strong> Standard 11-digit, conversational 2-way messaging',
+          '<strong>Short codes:</strong> 5-6 digit, high-volume outbound',
+          '<strong>Alphanumeric sender IDs:</strong> Branded names (one-way, not all countries)',
+          '<strong>VMN (Virtual Mobile Numbers):</strong> Dedicated inbound numbers'
+        ])}
+      </div>
+    </div>
+    <div class="content-block">
+      <div class="block-title">Email API / Gateway</div>
+      <div class="block-body">
+        ${bullets([
+          '<strong>Protocol:</strong> REST API with HTML/plain text payload',
+          '<strong>Deliverability:</strong> Dedicated IP pools, reputation monitoring, bounce and spam complaint handling',
+          '<strong>Authentication:</strong> SPF, DKIM, DMARC support',
+          '<strong>Webhooks:</strong> Delivery, open, click, bounce, complaint events',
+          '<strong>Templates:</strong> Stored HTML templates with variable substitution',
+          '<strong>Sending modes:</strong> Transactional (single send) and bulk (batch job scheduling)'
+        ])}
+      </div>
+    </div>
+  </div>
+  <div class="content-grid">
+    <div class="content-block">
+      <div class="block-title">Inbound Message Handling</div>
+      <div class="block-body">
+        <p>All channels support inbound messages via webhook delivery:</p>
+        ${code(`<span class="k">POST</span> <span class="n">[your_webhook_url]</span>
+{
+  <span class="s">"to"</span>: <span class="s">"+31601234567"</span>,
+  <span class="s">"from"</span>: <span class="s">"+31609876543"</span>,
+  <span class="s">"body"</span>: <span class="s">"I need help with my order"</span>,
+  <span class="s">"channel"</span>: <span class="s">"sms"</span>,
+  <span class="s">"messageId"</span>: <span class="s">"abc123"</span>,
+  <span class="s">"receivedAt"</span>: <span class="s">"2026-04-28T10:00:00Z"</span>
+}`)}
+        <p style="margin-top:10px;font-size:13px;color:var(--text-2)">Inbound messages can be routed to: <strong>Mobile Service Cloud</strong> (agent handling), <strong>HALO AI</strong> (automated response), your application directly, or used to trigger <strong>MMC journey entries</strong>.</p>
+      </div>
+    </div>
+    <div class="content-block">
       <div class="block-title">Channel Capabilities</div>
       <div class="block-body">
         <table class="comp-table">
@@ -1634,10 +2053,14 @@ function messagingEng() { return `
             <tr><td>Apple Messages</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Interactive</td><td class="yes">Yes</td></tr>
             <tr><td>SMS</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="no">Text + links</td><td class="no">Sender ID</td></tr>
             <tr><td>Email</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">HTML/MJML</td><td class="yes">DKIM/SPF</td></tr>
+            <tr><td>Facebook Messenger</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Rich media</td><td class="yes">Meta verified</td></tr>
+            <tr><td>Instagram DM</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Rich media</td><td class="yes">Meta verified</td></tr>
           </tbody>
         </table>
       </div>
     </div>
+  </div>
+  <div class="content-grid">
     <div class="content-block">
       <div class="block-title">SDKs &amp; Developer Resources</div>
       <div class="block-body">
@@ -1657,20 +2080,21 @@ function messagingEng() { return `
 function voiceSales() { return `
   <div class="content-grid">
     <div class="content-block accent">
-      <div class="block-title">The AI Voice Agent Difference</div>
+      <div class="block-title">Why Voice Still Matters</div>
       <div class="block-body">
-        <p><strong>Traditional IVR:</strong> "Press 1 for billing, press 2 for support, press 3 for..." (customer frustrated after 4 minutes of menus)</p>
-        <p><strong>CM.com AI Voice Agent:</strong> "Hi, this is Aria from [Brand]. What can I help you with today?" Natural language, context-aware, action-capable, 24/7.</p>
+        <p>Despite the growth of messaging and chat, voice calls remain the preferred channel for <strong>complex, urgent, or emotionally sensitive interactions</strong>. Customers still reach for the phone when something goes wrong, when they need immediate help, or when the stakes are high (medical, financial, emergency).</p>
+        <p>The problem: most phone infrastructure is a separate silo. Agents have no idea what the caller bought, what messages they've received, or what they've already tried. <strong>Every call starts from scratch.</strong></p>
+        <p>CM.com Voice is built into the same platform as messaging, payments, and AI, so every call connects to the full customer profile.</p>
       </div>
     </div>
     <div class="content-block">
       <div class="block-title">Products in Portfolio</div>
       <div class="block-body">
         ${bullets([
-          '<strong>VoIP Calling:</strong> Cloud telephony replacing legacy PBX, lower cost, flexible',
+          '<strong>VoIP Calling:</strong> Cloud telephony replacing legacy PBX, lower cost, flexible, SIP-compatible',
           '<strong>Voice Broadcasting:</strong> Mass outbound TTS or recorded messages at scale',
-          '<strong>IVR Builder:</strong> Automated phone menus, no-code configurable',
-          '<strong>AI Voice Agents:</strong> HALO on voice, handles full inbound calls naturally'
+          '<strong>IVR Builder:</strong> Automated phone menus, no-code configurable, external webhook support',
+          '<strong>AI Voice Agents:</strong> HALO on voice, handles full inbound calls in natural language 24/7'
         ])}
       </div>
     </div>
@@ -1703,6 +2127,20 @@ function voiceSales() { return `
         </tbody>
       </table>
     </div>
+  </div>
+  <div class="content-grid">
+    <div class="content-block">
+      <div class="block-title">Best-Fit Customers by Industry</div>
+      <div class="block-body">
+        ${bullets([
+          '<strong>Retail &amp; E-Commerce:</strong> High inbound call volume about orders; AI handles most queries automatically',
+          '<strong>Healthcare:</strong> Appointment reminders via outbound voice; patient scheduling via AI agent',
+          '<strong>Financial Services:</strong> Fraud alert outbound calls; account inquiry IVR with handoff to agent',
+          '<strong>Utilities &amp; Telecoms:</strong> Service outage notifications; billing inquiry automation',
+          '<strong>Events &amp; Venues:</strong> AI concierge lines for large-scale events'
+        ])}
+      </div>
+    </div>
   </div>`; }
 
 function voiceEng() { return `
@@ -1721,6 +2159,21 @@ function voiceEng() { return `
       </div>
     </div>
     <div class="content-block">
+      <div class="block-title">SIP Trunking</div>
+      <div class="block-body">
+        <p>For businesses replacing traditional PBX or adding cloud telephony:</p>
+        ${bullets([
+          '<strong>SIP Trunking:</strong> Connect existing IP-PBX (Cisco, Avaya, 3CX, FreeSWITCH, Asterisk) via SIP-over-TLS + SRTP',
+          '<strong>DID Provisioning:</strong> Virtual numbers (DIDs) available in 40+ countries',
+          '<strong>Capacity:</strong> Scalable channel count on demand, no hardware provisioning',
+          '<strong>Auth modes:</strong> Registration mode or IP authentication for trunk setup',
+          '<strong>Failover:</strong> Configurable failover SIP URI for redundancy'
+        ])}
+      </div>
+    </div>
+  </div>
+  <div class="content-grid">
+    <div class="content-block">
       <div class="block-title">Voice API: Call Control</div>
       <div class="block-body">
         ${endpoint('POST', '/voice/v2/calls',                  'Initiate outbound call')}
@@ -1733,6 +2186,24 @@ function voiceEng() { return `
     <span class="n">&lt;Say&gt;</span>Press 1 for billing.<span class="n">&lt;/Say&gt;</span>
   <span class="n">&lt;/Gather&gt;</span>
 <span class="k">&lt;/Response&gt;</span>`)}
+      </div>
+    </div>
+    <div class="content-block">
+      <div class="block-title">XML Call Control Verbs</div>
+      <div class="block-body">
+        <table class="comp-table">
+          <thead><tr><th>Verb</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>&lt;Say&gt;</code></td><td>TTS with configurable language and voice</td></tr>
+            <tr><td><code>&lt;Play&gt;</code></td><td>Play audio file (MP3, WAV)</td></tr>
+            <tr><td><code>&lt;Gather&gt;</code></td><td>DTMF input collection</td></tr>
+            <tr><td><code>&lt;Dial&gt;</code></td><td>Forward call to another number or SIP endpoint</td></tr>
+            <tr><td><code>&lt;Record&gt;</code></td><td>Record the call (stored as MP3, URL returned in webhook)</td></tr>
+            <tr><td><code>&lt;Hangup&gt;</code></td><td>Terminate call</td></tr>
+            <tr><td><code>&lt;Redirect&gt;</code></td><td>Redirect to new callback URL</td></tr>
+            <tr><td><code>&lt;Conference&gt;</code></td><td>Add caller to a conference bridge</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -1755,7 +2226,18 @@ function voiceEng() { return `
     <div class="content-block">
       <div class="block-title">Webhook Events</div>
       <div class="block-body">
-        ${bullets(['call.initiated','call.ringing','call.answered','call.completed','call.failed','recording.available','transcript.available'])}
+        <table class="comp-table">
+          <thead><tr><th>Event</th><th>Trigger</th></tr></thead>
+          <tbody>
+            <tr><td><code>call.initiated</code></td><td>Outbound call placed</td></tr>
+            <tr><td><code>call.ringing</code></td><td>Destination ringing</td></tr>
+            <tr><td><code>call.answered</code></td><td>Call picked up</td></tr>
+            <tr><td><code>call.completed</code></td><td>Call ended (includes duration, status)</td></tr>
+            <tr><td><code>call.failed</code></td><td>Call failed to connect (includes failure reason)</td></tr>
+            <tr><td><code>recording.available</code></td><td>Call recording ready for download</td></tr>
+            <tr><td><code>transcript.available</code></td><td>Post-call transcription complete</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>`; }
@@ -1782,9 +2264,24 @@ function verificationSales() { return `
       </div>
     </div>
   </div>
+  <div class="content-grid full">
+    <div class="content-block">
+      <div class="block-title">Key Use Cases</div>
+      <div class="use-case-grid">
+        ${[
+          ['Account Login 2FA','Every login requires both a password and a one-time code. Standard for banking, e-commerce, SaaS, and any platform handling sensitive data.'],
+          ['Transaction Authorization','High-value or unusual transactions trigger an OTP challenge before processing. Critical for online banking, investment platforms, and payment services.'],
+          ['Step-Up Authentication','Low-risk actions require no extra auth; high-risk actions (changing bank details, large purchases) trigger a verification challenge. Balances security with UX.'],
+          ['Password Reset Security','Replace insecure "secret question" resets with a verified OTP to a confirmed phone number.'],
+          ['New Account Registration','Verify a phone number is real and belongs to the person registering. Eliminate fake accounts and bots at signup.'],
+          ['SIM Swap Detection','Detect if a user\'s phone number has recently been ported to a new SIM (a common fraud vector) before completing a sensitive action.'],
+        ].map(([n,d]) => `<div class="use-case-card"><div class="use-case-industry">${n}</div><div class="use-case-desc">${d}</div></div>`).join('')}
+      </div>
+    </div>
+  </div>
   <div class="content-grid">
     <div class="content-block">
-      <div class="block-title">CM Safeguard</div>
+      <div class="block-title">CM Safeguard: Fraud Prevention</div>
       <div class="block-body">
         ${bullets([
           'Real-time traffic monitoring for anomaly detection',
@@ -1798,15 +2295,40 @@ function verificationSales() { return `
       </div>
     </div>
     <div class="content-block">
+      <div class="block-title">PSD2 Strong Customer Authentication</div>
+      <div class="block-body">
+        <p>For any business processing payments in the European Economic Area, PSD2 requires <strong>Strong Customer Authentication (SCA)</strong>. CM.com's Verification API is built to satisfy PSD2 SCA requirements, making it a drop-in compliance solution for European payment businesses.</p>
+        <p style="margin-top:12px;">CM.com satisfies the <strong>"something the user has"</strong> factor (possession of the registered phone/device). The API's audit log and OTP lifecycle records provide the compliance documentation trail regulators require.</p>
+      </div>
+    </div>
+  </div>
+  <div class="content-grid full">
+    <div class="content-block accent">
+      <div class="block-title">vs. Key Competitors</div>
+      <table class="comp-table">
+        <thead><tr><th></th><th>CM.com Verification</th><th>Twilio Verify</th><th>Authy (Twilio)</th><th>Vonage Verify</th></tr></thead>
+        <tbody>
+          <tr><td>Multi-channel (SMS + Voice + WhatsApp + Email)</td><td class="yes">All four</td><td class="yes">Yes</td><td class="partial">Partial</td><td class="yes">Yes</td></tr>
+          <tr><td>Adaptive fallback routing</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="partial">Partial</td><td class="yes">Yes</td></tr>
+          <tr><td>Fraud protection (Safeguard)</td><td class="yes">Native</td><td class="partial">Add-on</td><td class="partial">Limited</td><td class="partial">Limited</td></tr>
+          <tr><td>PSD2 SCA compliant</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="partial">Partial</td><td class="yes">Yes</td></tr>
+          <tr><td>EU-first, GDPR-native</td><td class="yes">Yes</td><td class="partial">US-first</td><td class="partial">US-first</td><td class="partial">Partial</td></tr>
+          <tr><td>Integrated with comms platform</td><td class="yes">Native</td><td class="partial">Same vendor, not unified data</td><td class="no">No</td><td class="partial">Partial</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="content-grid">
+    <div class="content-block">
       <div class="block-title">Best-Fit Industries</div>
       <div class="block-body">
         ${bullets([
           '<strong>Banking &amp; Finance:</strong> PSD2 SCA compliance, transaction signing, fraud prevention',
-          '<strong>E-Commerce:</strong> Account protection, checkout verification',
+          '<strong>E-Commerce &amp; Retail:</strong> Account protection, checkout verification, high-value order confirmation',
           '<strong>Healthcare:</strong> Patient identity verification for telehealth portals',
-          '<strong>SaaS:</strong> Standard 2FA for all user accounts',
-          '<strong>Government:</strong> Citizen digital identity verification',
-          '<strong>Gaming:</strong> Age verification, high-value transaction confirmation'
+          '<strong>SaaS Platforms:</strong> Standard 2FA for all user accounts',
+          '<strong>Government &amp; Public Sector:</strong> Citizen digital identity verification',
+          '<strong>Gaming &amp; Entertainment:</strong> Age verification, account security, high-value transaction confirmation'
         ])}
       </div>
     </div>
@@ -1847,6 +2369,39 @@ function verificationEng() { return `
   </div>
   <div class="content-grid">
     <div class="content-block">
+      <div class="block-title">Number Intelligence API</div>
+      <div class="block-body">
+        <p>Pre-screen numbers before sending an OTP to reduce delivery failures and fraud:</p>
+        ${endpoint('GET', '/verification/v1/number-lookup?number=+31612345678', 'Validate number before sending')}
+        <p style="margin-top:12px;font-size:13px;">Response fields:</p>
+        ${bullets([
+          '<code>valid</code>: boolean',
+          '<code>type</code>: <code>mobile</code>, <code>landline</code>, <code>voip</code>, <code>premium</code>',
+          '<code>carrier</code>: carrier name and MCC/MNC',
+          '<code>country</code>: ISO country code',
+          '<code>ported</code>: boolean (recently ported to different carrier)',
+          '<code>reachable</code>: boolean (currently registered on a live network)'
+        ])}
+      </div>
+    </div>
+    <div class="content-block">
+      <div class="block-title">Webhook Events</div>
+      <div class="block-body">
+        <table class="comp-table">
+          <thead><tr><th>Event</th><th>Trigger</th></tr></thead>
+          <tbody>
+            <tr><td><code>otp.sent</code></td><td>Code dispatched to delivery channel</td></tr>
+            <tr><td><code>otp.delivered</code></td><td>Delivery confirmed (SMS DLR or WhatsApp read receipt)</td></tr>
+            <tr><td><code>otp.verified</code></td><td>Successful code validation</td></tr>
+            <tr><td><code>otp.failed</code></td><td>Max attempts exceeded or code expired</td></tr>
+            <tr><td><code>otp.blocked</code></td><td>Safeguard rule triggered, request blocked</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="content-grid">
+    <div class="content-block">
       <div class="block-title">Security Design</div>
       <div class="block-body">
         ${bullets([
@@ -1864,8 +2419,12 @@ function verificationEng() { return `
       <div class="block-body">
         <p style="font-size:12.5px;color:var(--text-3);margin-bottom:6px">Standard 2FA login:</p>
         <p style="font-size:12.5px;color:var(--text-2);line-height:1.8">User submits password &rarr; <span style="color:var(--accent)">OTP send</span> &rarr; User submits code &rarr; <span style="color:var(--accent)">OTP validate</span> &rarr; Grant/deny session</p>
+        <p style="font-size:12.5px;color:var(--text-3);margin:12px 0 6px">Step-up authentication:</p>
+        <p style="font-size:12.5px;color:var(--text-2);line-height:1.8">High-risk action detected &rarr; <span style="color:var(--accent)">OTP send</span> &rarr; User submits code &rarr; <span style="color:var(--accent)">OTP validate</span> &rarr; Allow action</p>
         <p style="font-size:12.5px;color:var(--text-3);margin:12px 0 6px">PSD2 SCA transaction signing:</p>
         <p style="font-size:12.5px;color:var(--text-2);line-height:1.8">Payment initiated &rarr; Amount + destination in OTP context &rarr; <span style="color:var(--accent)">OTP send</span> &rarr; User validates &rarr; Payment authorized</p>
+        <p style="font-size:12.5px;color:var(--text-3);margin:12px 0 6px">New account phone verification:</p>
+        <p style="font-size:12.5px;color:var(--text-2);line-height:1.8">User submits phone at registration &rarr; <span style="color:var(--accent)">OTP send</span> &rarr; User enters code &rarr; <span style="color:var(--accent)">OTP validate</span> &rarr; Phone confirmed, account created</p>
       </div>
     </div>
   </div>`; }
