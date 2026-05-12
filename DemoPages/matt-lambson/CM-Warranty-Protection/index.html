@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CM Warranty Protection: Vehicle &amp; Home Coverage</title>
+  <meta name="description" content="Affordable vehicle and home warranty coverage. No surprise bills, no runaround. Just protection you can rely on.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ── TOKENS ─────────────────────────────────────────────── */
+    :root {
+      --brand-purple: oklch(38% 0.27 320);
+      --brand-blue:   oklch(42% 0.30 265);
+      --brand-navy:   oklch(22% 0.10 295);
+      --bg-tint:      oklch(98% 0.006 295);
+      --text-dark:    oklch(18% 0.04 295);
+      --text-mid:     oklch(45% 0.06 295);
+      --text-light:   oklch(62% 0.04 295);
+      --hero-grad:    linear-gradient(135deg,
+                        oklch(38% 0.27 320) 0%,
+                        oklch(34% 0.29 290) 42%,
+                        oklch(42% 0.30 265) 100%);
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ── RESET ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      color: var(--text-dark);
+      background: var(--bg-tint);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── CONTAINER ──────────────────────────────────────────── */
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin-inline: auto;
+    }
+
+    /* ── NAV ────────────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 68px;
+      background: transparent;
+      transition: background 0.35s var(--ease-out-expo),
+                  box-shadow 0.35s var(--ease-out-expo);
+    }
+    .nav.scrolled {
+      background: oklch(99% 0.005 295 / 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 1px 0 oklch(90% 0.01 295);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      color: oklch(99% 0.005 295);
+      letter-spacing: 0.3px;
+      transition: color 0.35s var(--ease-out-expo);
+    }
+    .nav.scrolled .nav-logo { color: var(--brand-navy); }
+    .nav-logo-mark {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--hero-grad);
+      position: relative;
+      flex-shrink: 0;
+    }
+    .nav-logo-mark::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: oklch(22% 0.10 295);
+      transition: background 0.35s var(--ease-out-expo);
+    }
+    .nav.scrolled .nav-logo-mark::after { background: oklch(99% 0.005 295); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: oklch(99% 0.005 295 / 0.78);
+      transition: color 0.35s;
+    }
+    .nav.scrolled .nav-links { color: var(--text-mid); }
+    .nav-links a {
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: oklch(99% 0.005 295); }
+    .nav.scrolled .nav-links a:hover { color: var(--brand-purple); }
+    .nav-cta {
+      font-family: 'Syne', sans-serif;
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      padding: 9px 20px;
+      border-radius: 7px;
+      background: oklch(99% 0.005 295);
+      color: var(--brand-navy);
+      cursor: pointer;
+      transition: transform 0.2s var(--ease-out-expo),
+                  box-shadow 0.2s var(--ease-out-expo);
+    }
+    .nav.scrolled .nav-cta {
+      background: var(--brand-purple);
+      color: oklch(99% 0.005 295);
+    }
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px oklch(38% 0.27 320 / 0.35);
+    }
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px; height: 2px;
+      background: oklch(99% 0.005 295);
+      border-radius: 2px;
+      transition: background 0.3s;
+    }
+    .nav.scrolled .nav-hamburger span { background: var(--brand-navy); }
+
+    /* ── HERO ───────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      background: var(--hero-grad);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 140px 80px 100px;
+      overflow: hidden;
+    }
+    /* Decorative HALO ring arcs */
+    .hero-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid oklch(99% 0.005 295 / 0.07);
+      pointer-events: none;
+    }
+    .hero-ring.r1 { width: 700px; height: 700px; top: -260px; right: -200px; }
+    .hero-ring.r2 { width: 480px; height: 480px; top: -120px; right: -60px; }
+    .hero-ring.r3 {
+      width: 300px; height: 300px;
+      top: -10px; right: 80px;
+      background: oklch(99% 0.005 295 / 0.03);
+      border-color: oklch(99% 0.005 295 / 0.1);
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 680px; }
+    .hero-eyebrow {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: oklch(99% 0.005 295 / 0.55);
+      margin-bottom: 22px;
+    }
+    .hero-headline {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(34px, 4.5vw, 54px);
+      font-weight: 800;
+      color: oklch(99% 0.005 295);
+      line-height: 1.08;
+      letter-spacing: -0.5px;
+      margin-bottom: 22px;
+    }
+    .hero-headline em {
+      font-style: normal;
+      color: oklch(99% 0.005 295 / 0.55);
+    }
+    .hero-sub {
+      font-size: 17px;
+      font-weight: 300;
+      color: oklch(99% 0.005 295 / 0.68);
+      max-width: 480px;
+      line-height: 1.65;
+      margin-bottom: 44px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Syne', sans-serif;
+      font-size: 14.5px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      padding: 15px 28px;
+      border-radius: 9px;
+      cursor: pointer;
+      transition: transform 0.2s var(--ease-out-expo),
+                  box-shadow 0.2s var(--ease-out-expo);
+    }
+    .btn-primary.white {
+      background: oklch(99% 0.005 295);
+      color: var(--brand-navy);
+    }
+    .btn-primary.white:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px oklch(18% 0.04 295 / 0.18);
+    }
+    .btn-primary.ghost {
+      background: oklch(99% 0.005 295 / 0.11);
+      color: oklch(99% 0.005 295);
+      border: 1.5px solid oklch(99% 0.005 295 / 0.28);
+    }
+    .btn-primary.ghost:hover {
+      background: oklch(99% 0.005 295 / 0.18);
+      transform: translateY(-2px);
+    }
+    .btn-icon { font-size: 19px; line-height: 1; }
+
+    /* Hero entrance animations */
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-eyebrow,
+      .hero-headline,
+      .hero-sub,
+      .hero-actions {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeUp 0.7s var(--ease-out-expo) forwards;
+      }
+      .hero-eyebrow  { animation-delay: 0.1s; }
+      .hero-headline { animation-delay: 0.2s; }
+      .hero-sub      { animation-delay: 0.32s; }
+      .hero-actions  { animation-delay: 0.44s; }
+      @keyframes fadeUp {
+        to { opacity: 1; transform: translateY(0); }
+      }
+    }
+
+    /* ── VALUE BAND ─────────────────────────────────────────── */
+    .value-band {
+      background: var(--brand-navy);
+      padding: 20px 40px;
+    }
+    .value-band-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .value-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 400;
+      color: oklch(99% 0.005 295 / 0.78);
+      padding: 6px 28px;
+    }
+    .value-sep {
+      width: 1px;
+      height: 18px;
+      background: oklch(99% 0.005 295 / 0.12);
+      flex-shrink: 0;
+    }
+
+    /* ── PRODUCTS ────────────────────────────────────────────── */
+    .products {
+      background: var(--bg-tint);
+      padding: 96px 80px;
+    }
+    .section-eyebrow {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 14px;
+    }
+    .section-headline {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 800;
+      color: var(--text-dark);
+      line-height: 1.18;
+      margin-bottom: 52px;
+      max-width: 520px;
+    }
+    .products-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 26px;
+    }
+    .product-card {
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px oklch(38% 0.27 320 / 0.08);
+      transition: transform 0.25s var(--ease-out-expo),
+                  box-shadow 0.25s var(--ease-out-expo);
+    }
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px oklch(38% 0.27 320 / 0.15);
+    }
+    .product-header {
+      padding: 36px 36px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .product-header.vsc {
+      background: linear-gradient(160deg, oklch(38% 0.27 320) 0%, oklch(36% 0.26 305) 100%);
+    }
+    .product-header.hws {
+      background: linear-gradient(160deg, oklch(36% 0.29 280) 0%, oklch(42% 0.30 265) 100%);
+    }
+    .product-header-ring {
+      position: absolute;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      border: 1px solid oklch(99% 0.005 295 / 0.09);
+      top: -70px; right: -70px;
+      pointer-events: none;
+    }
+    .product-icon {
+      font-size: 38px;
+      margin-bottom: 16px;
+      display: block;
+      line-height: 1;
+    }
+    .product-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 21px;
+      font-weight: 800;
+      color: oklch(99% 0.005 295);
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+    .product-desc {
+      font-size: 13.5px;
+      font-weight: 300;
+      color: oklch(99% 0.005 295 / 0.7);
+      line-height: 1.6;
+    }
+    .product-body {
+      background: oklch(99.5% 0.003 295);
+      padding: 30px 36px 32px;
+    }
+    .product-features {
+      list-style: none;
+      margin-bottom: 26px;
+    }
+    .product-features li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13.5px;
+      color: var(--text-mid);
+      padding: 8px 0;
+      border-bottom: 1px solid oklch(95% 0.006 295);
+    }
+    .product-features li:last-child { border-bottom: none; }
+    .product-features li::before {
+      content: '→';
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--brand-purple);
+      flex-shrink: 0;
+    }
+    .product-btn {
+      display: block;
+      width: 100%;
+      padding: 12px 20px;
+      background: transparent;
+      border: 1.5px solid oklch(60% 0.15 295);
+      border-radius: 8px;
+      color: oklch(38% 0.27 320);
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.2s var(--ease-out-expo), color 0.2s var(--ease-out-expo), border-color 0.2s var(--ease-out-expo);
+    }
+    .product-btn:hover {
+      background: oklch(38% 0.27 320);
+      border-color: oklch(38% 0.27 320);
+      color: oklch(99% 0.005 295);
+    }
+    /* ── HOW IT WORKS ────────────────────────────────────────── */
+    .how {
+      background: oklch(99% 0.005 295);
+      padding: 96px 80px;
+    }
+    .how-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+      position: relative;
+    }
+    .how-steps::before {
+      content: '';
+      position: absolute;
+      top: 22px;
+      left: calc(33.333% - 12px);
+      right: calc(33.333% - 12px);
+      height: 1px;
+      background: linear-gradient(90deg,
+        transparent,
+        oklch(72% 0.14 310) 20%,
+        oklch(72% 0.14 275) 80%,
+        transparent);
+      opacity: 0.35;
+      pointer-events: none;
+    }
+    .how-step { position: relative; }
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: oklch(95% 0.018 310);
+      font-family: 'Syne', sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--brand-purple);
+      margin-bottom: 20px;
+    }
+    .step-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 8px;
+    }
+    .step-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+      line-height: 1.25;
+    }
+    .step-body {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+
+    /* ── COVERAGE ────────────────────────────────────────────── */
+    .coverage {
+      background: var(--bg-tint);
+      padding: 96px 80px;
+    }
+    .coverage-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 26px;
+    }
+    .coverage-col {
+      background: oklch(99% 0.005 295);
+      border-radius: 16px;
+      padding: 36px;
+    }
+    .coverage-col-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Syne', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 22px;
+    }
+    .coverage-dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .coverage-dot.purple { background: var(--brand-purple); }
+    .coverage-dot.blue   { background: var(--brand-blue); }
+    .coverage-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .coverage-tag {
+      font-size: 12.5px;
+      font-weight: 500;
+      padding: 5px 13px;
+      border-radius: 20px;
+      color: var(--text-mid);
+      background: oklch(96% 0.007 295);
+    }
+
+    /* ── BOTTOM CTA ──────────────────────────────────────────── */
+    .bottom-cta {
+      background: var(--hero-grad);
+      padding: 96px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .bottom-cta-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid oklch(99% 0.005 295 / 0.06);
+      pointer-events: none;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .bottom-cta-ring.r1 { width: 560px; height: 560px; top: -220px; }
+    .bottom-cta-ring.r2 { width: 340px; height: 340px; top: -100px; }
+    .bottom-cta-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1280px;
+      margin-inline: auto;
+    }
+    .bottom-cta-headline {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(26px, 3.5vw, 36px);
+      font-weight: 800;
+      color: oklch(99% 0.005 295);
+      margin-bottom: 14px;
+      line-height: 1.15;
+    }
+    .bottom-cta-sub {
+      font-size: 16px;
+      font-weight: 300;
+      color: oklch(99% 0.005 295 / 0.62);
+      margin-bottom: 40px;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+    .bottom-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: oklch(99% 0.005 295);
+      color: var(--brand-navy);
+      font-family: 'Syne', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      padding: 17px 38px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s var(--ease-out-expo),
+                  box-shadow 0.2s var(--ease-out-expo);
+    }
+    .bottom-cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 36px oklch(18% 0.04 295 / 0.22);
+    }
+
+    /* ── FOOTER ──────────────────────────────────────────────── */
+    .footer {
+      background: oklch(19% 0.08 295);
+      padding: 56px 80px 36px;
+    }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid oklch(99% 0.005 295 / 0.08);
+      margin-bottom: 28px;
+    }
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: oklch(99% 0.005 295);
+    }
+    .footer-logo-mark {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: var(--hero-grad);
+      position: relative;
+      flex-shrink: 0;
+    }
+    .footer-logo-mark::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 11px; height: 11px;
+      border-radius: 50%;
+      background: oklch(19% 0.08 295);
+    }
+    .footer-tagline {
+      font-size: 12.5px;
+      font-weight: 300;
+      color: oklch(99% 0.005 295 / 0.38);
+      margin-top: 10px;
+      max-width: 220px;
+      line-height: 1.5;
+    }
+    .footer-nav {
+      display: flex;
+      gap: 56px;
+    }
+    .footer-col-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: oklch(99% 0.005 295 / 0.35);
+      margin-bottom: 16px;
+    }
+    .footer-col-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-col-links a {
+      font-size: 13px;
+      font-weight: 400;
+      color: oklch(99% 0.005 295 / 0.55);
+      transition: color 0.2s;
+    }
+    .footer-col-links a:hover { color: oklch(99% 0.005 295 / 0.9); }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 11.5px;
+      color: oklch(99% 0.005 295 / 0.25);
+    }
+    /* ── SCROLL REVEALS ──────────────────────────────────────── */
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal-section {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 0.7s var(--ease-out-expo),
+                    transform 0.7s var(--ease-out-expo);
+      }
+      .reveal-section.revealed {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────────────── */
+
+    /* Tablet (768px–1023px) */
+    @media (max-width: 1023px) {
+      .hero        { padding: 120px 48px 80px; }
+      .products,
+      .how,
+      .coverage,
+      .bottom-cta,
+      .footer      { padding-left: 48px; padding-right: 48px; }
+      .value-band  { padding: 16px 24px; }
+      .value-item  { padding: 6px 16px; font-size: 12.5px; }
+      .how-steps::before { display: none; }
+    }
+
+    /* Mobile (<768px) */
+    @media (max-width: 767px) {
+      /* Nav */
+      .nav { padding: 0 20px; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 68px; left: 0; right: 0;
+        flex-direction: column;
+        gap: 0;
+        background: oklch(99% 0.005 295);
+        box-shadow: 0 8px 32px oklch(18% 0.04 295 / 0.1);
+        padding: 8px 0 16px;
+      }
+      .nav-links.mobile-open { display: flex; }
+      .nav-links a {
+        color: var(--text-mid);
+        padding: 12px 24px;
+        font-size: 14px;
+      }
+      .nav-links a:hover { color: var(--brand-purple); }
+      .nav-cta  { display: none; }
+      .nav-hamburger { display: flex; }
+
+      /* Hero */
+      .hero { padding: 100px 24px 72px; min-height: 90vh; }
+      .hero-ring.r1 { width: 360px; height: 360px; top: -120px; right: -120px; }
+      .hero-ring.r2 { width: 240px; height: 240px; top: -60px; right: -40px; }
+      .hero-ring.r3 { display: none; }
+      .hero-headline { font-size: clamp(28px, 8vw, 40px); }
+      .hero-sub      { font-size: 15px; }
+      .hero-actions  { flex-direction: column; }
+      .btn-primary   { justify-content: center; width: 100%; }
+
+      /* Value band */
+      .value-band {
+        flex-direction: column;
+        gap: 2px;
+        padding: 16px 24px;
+      }
+      .value-sep { display: none; }
+      .value-item { padding: 5px 0; font-size: 13px; }
+
+      /* Products */
+      .products,
+      .how,
+      .coverage,
+      .bottom-cta { padding: 72px 24px; }
+      .products-grid,
+      .coverage-cols { grid-template-columns: 1fr; }
+
+      /* How it works */
+      .how-steps { grid-template-columns: 1fr; gap: 40px; }
+      /* Footer */
+      .footer { padding: 48px 24px 28px; }
+      .footer-top {
+        flex-direction: column;
+        gap: 36px;
+      }
+      .footer-nav {
+        flex-wrap: wrap;
+        gap: 32px;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+      }
+    }
+    /* ── FOCUS & ACCESSIBILITY ───────────────────────────────── */
+    :focus-visible {
+      outline: 2.5px solid var(--brand-purple);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 20px;
+      background: oklch(99% 0.005 295);
+      color: var(--brand-navy);
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 10px 18px;
+      border-radius: 6px;
+      z-index: 200;
+      transition: top 0.2s;
+    }
+    .skip-link:focus { top: 16px; }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav" aria-label="Main navigation">
+    <a href="#" class="nav-logo" aria-label="CM Warranty Protection home">
+      <div class="nav-logo-mark" aria-hidden="true"></div>
+      CM Warranty Protection
+    </a>
+    <div class="nav-links" id="nav-links">
+      <a href="#plans">Vehicle Coverage</a>
+      <a href="#plans">Home Coverage</a>
+      <a href="#how">How It Works</a>
+    </div>
+    <a href="#plans" class="nav-cta">Get a Quote →</a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main id="main-content">
+
+  <!-- HERO -->
+  <section class="hero" aria-label="Hero">
+    <div class="hero-ring r1" aria-hidden="true"></div>
+    <div class="hero-ring r2" aria-hidden="true"></div>
+    <div class="hero-ring r3" aria-hidden="true"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Vehicle &amp; Home Protection</p>
+      <h1 class="hero-headline">
+        When something breaks,<br>
+        <em>we've already got you.</em>
+      </h1>
+      <p class="hero-sub">Affordable coverage for your vehicle and home. No surprise bills, no runaround. Just protection you can actually rely on.</p>
+      <div class="hero-actions">
+        <a href="#plans" class="btn-primary white">
+          <span class="btn-icon" aria-hidden="true">🚗</span>
+          Protect My Vehicle
+        </a>
+        <a href="#plans" class="btn-primary ghost">
+          <span class="btn-icon" aria-hidden="true">🏠</span>
+          Protect My Home
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUE BAND -->
+  <div class="value-band">
+    <div class="container value-band-inner" role="list" aria-label="Key benefits">
+      <div class="value-item" role="listitem">No surprise repair bills</div>
+      <div class="value-sep" aria-hidden="true"></div>
+      <div class="value-item" role="listitem">30-day money-back guarantee</div>
+      <div class="value-sep" aria-hidden="true"></div>
+      <div class="value-item" role="listitem">Transferable coverage</div>
+      <div class="value-sep" aria-hidden="true"></div>
+      <div class="value-item" role="listitem">Plans from $0 deductible</div>
+    </div>
+  </div>
+
+  <!-- COVERAGE PLANS -->
+  <section class="products reveal-section" id="plans" aria-labelledby="plans-heading">
+    <div class="container">
+      <p class="section-eyebrow">Coverage Plans</p>
+      <h2 class="section-headline" id="plans-heading">Two ways to stay protected.</h2>
+      <div class="products-grid">
+
+        <article class="product-card">
+          <div class="product-header vsc">
+            <div class="product-header-ring" aria-hidden="true"></div>
+            <span class="product-icon" aria-hidden="true">🚗</span>
+            <h3 class="product-title">Vehicle Service Contracts</h3>
+            <p class="product-desc">For existing policyholders and new customers. Coverage tiers from Triple Diamond to Sapphire, matched to your vehicle's age and mileage.</p>
+          </div>
+          <div class="product-body">
+            <ul class="product-features" aria-label="VSC coverage highlights">
+              <li>Engine, transmission &amp; drive axle</li>
+              <li>Air conditioning &amp; electrical systems</li>
+              <li>Steering, suspension &amp; brakes</li>
+              <li>Transferable if you sell your car</li>
+              <li>$0–$100 deductible options</li>
+            </ul>
+            <a href="#" class="product-btn">View Vehicle Plans →</a>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-header hws">
+            <div class="product-header-ring" aria-hidden="true"></div>
+            <span class="product-icon" aria-hidden="true">🏠</span>
+            <h3 class="product-title">Home Warranty Services</h3>
+            <p class="product-desc">Three-year Platinum coverage for every major system and appliance. New customers welcome. Enroll in minutes, fully refundable within 30 days.</p>
+          </div>
+          <div class="product-body">
+            <ul class="product-features" aria-label="HWS coverage highlights">
+              <li>Central heat &amp; air conditioning</li>
+              <li>Plumbing, electrical &amp; water heater</li>
+              <li>Kitchen appliances &amp; washer/dryer</li>
+              <li>Fully refundable within 30 days</li>
+              <li>Available in all 50 states</li>
+            </ul>
+            <a href="#" class="product-btn">View Home Plans →</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how reveal-section" id="how" aria-labelledby="how-heading">
+    <div class="container">
+      <p class="section-eyebrow">The Process</p>
+      <h2 class="section-headline" id="how-heading">Coverage that works as hard as you do.</h2>
+      <div class="how-steps">
+
+        <div class="how-step">
+          <div class="step-num" aria-hidden="true">1</div>
+          <p class="step-label">Enroll Today</p>
+          <h3 class="step-title">Pick your plan</h3>
+          <p class="step-body">Choose vehicle, home, or both. Plans activate immediately with a 30-day waiting period, and if it is not right for you, it is fully refundable within the first 30 days.</p>
+        </div>
+
+        <div class="how-step">
+          <div class="step-num" aria-hidden="true">2</div>
+          <p class="step-label">Something Breaks</p>
+          <h3 class="step-title">Call or chat with us</h3>
+          <p class="step-body">One call or message connects you to your coverage team. We verify your policy and coordinate a certified technician, so you never have to chase contractors on your own.</p>
+        </div>
+
+        <div class="how-step">
+          <div class="step-num" aria-hidden="true">3</div>
+          <p class="step-label">We Handle It</p>
+          <h3 class="step-title">Just pay the service fee</h3>
+          <p class="step-body">You pay only your deductible, between $0 and $100 depending on your plan. We take care of the rest. No surprise invoice, no negotiating with a shop.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT'S COVERED -->
+  <section class="coverage reveal-section" id="coverage" aria-labelledby="coverage-heading">
+    <div class="container">
+      <p class="section-eyebrow">What's Covered</p>
+      <h2 class="section-headline" id="coverage-heading">Comprehensive protection, top to bottom.</h2>
+      <div class="coverage-cols">
+
+      <div class="coverage-col">
+        <div class="coverage-col-title">
+          <span class="coverage-dot purple" aria-hidden="true"></span>
+          Vehicle Coverage
+        </div>
+        <div class="coverage-tags" aria-label="Vehicle coverage items">
+          <span class="coverage-tag">Engine</span>
+          <span class="coverage-tag">Transmission</span>
+          <span class="coverage-tag">Air Conditioning</span>
+          <span class="coverage-tag">Electrical</span>
+          <span class="coverage-tag">Steering</span>
+          <span class="coverage-tag">Suspension</span>
+          <span class="coverage-tag">Brakes</span>
+          <span class="coverage-tag">Fuel System</span>
+          <span class="coverage-tag">Cooling System</span>
+          <span class="coverage-tag">Drive Axle</span>
+          <span class="coverage-tag">Transfer Case</span>
+          <span class="coverage-tag">Turbo / Supercharger</span>
+        </div>
+      </div>
+
+      <div class="coverage-col">
+        <div class="coverage-col-title">
+          <span class="coverage-dot blue" aria-hidden="true"></span>
+          Home Coverage
+        </div>
+        <div class="coverage-tags" aria-label="Home coverage items">
+          <span class="coverage-tag">Central Heat</span>
+          <span class="coverage-tag">Air Conditioning</span>
+          <span class="coverage-tag">Plumbing</span>
+          <span class="coverage-tag">Electrical</span>
+          <span class="coverage-tag">Water Heater</span>
+          <span class="coverage-tag">Refrigerator</span>
+          <span class="coverage-tag">Dishwasher</span>
+          <span class="coverage-tag">Washer &amp; Dryer</span>
+          <span class="coverage-tag">Oven &amp; Range</span>
+          <span class="coverage-tag">Garbage Disposal</span>
+          <span class="coverage-tag">Ceiling Fans</span>
+          <span class="coverage-tag">Faucets &amp; Toilets</span>
+        </div>
+      </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTTOM CTA -->
+  <section class="bottom-cta reveal-section" aria-label="Get started">
+    <div class="bottom-cta-ring r1" aria-hidden="true"></div>
+    <div class="bottom-cta-ring r2" aria-hidden="true"></div>
+    <div class="bottom-cta-content">
+      <h2 class="bottom-cta-headline">Ready to stop worrying about repairs?</h2>
+      <p class="bottom-cta-sub">Talk to our team right now. Vehicle or home, we have a plan for you.</p>
+      <a href="#" class="bottom-cta-btn">Chat With Us &rarr;</a>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">
+          <div class="footer-logo-mark" aria-hidden="true"></div>
+          CM Warranty Protection
+        </div>
+        <p class="footer-tagline">Protecting vehicles and homes across America.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <div>
+          <p class="footer-col-title">Coverage</p>
+          <div class="footer-col-links">
+            <a href="#plans">Vehicle Service Contracts</a>
+            <a href="#plans">Home Warranty Services</a>
+            <a href="#coverage">Coverage Details</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-col-title">Support</p>
+          <div class="footer-col-links">
+            <a href="#">File a Claim</a>
+            <a href="#">Contact Us</a>
+            <a href="#">FAQs</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-col-title">Legal</p>
+          <div class="footer-col-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">California Residents</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2025 CM Warranty Protection. All rights reserved.</span>
+      <span>Administered by Warranty Global Group &middot; Homeguard Insurance Agency (CA)</span>
+    </div>
+    </div>
+  </footer>
+
+  <!-- HALO WIDGET PLACEHOLDER -->
+  <!-- <script src="YOUR_HALO_WIDGET_SCRIPT_URL"></script> -->
+
+  <script>
+    // Nav scroll behavior
+    const nav = document.getElementById('nav');
+    const onScroll = () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Scroll reveal (IntersectionObserver)
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+    document.querySelectorAll('.reveal-section').forEach((el) => {
+      revealObserver.observe(el);
+    });
+
+    // Mobile hamburger menu
+    const hamburger = document.getElementById('nav-hamburger');
+    const navLinks  = document.getElementById('nav-links');
+    hamburger.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('mobile-open');
+      hamburger.setAttribute('aria-expanded', String(isOpen));
+    });
+    navLinks.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('mobile-open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
+
+</body>
+</html>
